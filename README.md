@@ -1,6 +1,6 @@
 # SurvivorMissions
 This is a modification of the PC-Game DayZ from Bohemia Interactive.
-It contains all steps that will be necessary to run the modification on your game server and to provide following features to the gameplay and mission development at its current stage:
+This ReadMe contains all steps that will be necessary to run the modification on your game server and to provide following features to the gameplay and mission development at its current stage:
 
 * Continuous time-based tasks (missions) for all players of your server
 * Ability to modify and create new missions for your server
