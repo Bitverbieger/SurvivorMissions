@@ -33,7 +33,7 @@ If you don't want to make a new mission at this point, you just need to install 
 - [ ] Now navigate to directory `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\SurvivorMissionModule\Missions\` and edit file `Missions.h`with your favorit text editor.
 Change all the file paths of each mission file-inlude 
 ```C++
-#include "$CurrentDir:\\mpmissions\\%YourMission%.%YourTerrain%**\\SurvivorMissionModule\\Missions\\Apartment.c"
+#include "$CurrentDir:\\mpmissions\\%YourMission%.%YourTerrain%\\SurvivorMissionModule\\Missions\\Apartment.c"
 ```
 by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path. For example, the default mpmission path could be: 
 ```C++
