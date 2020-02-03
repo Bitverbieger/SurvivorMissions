@@ -26,7 +26,7 @@ class BearHuntMission extends SurvivorMissions
 		m_MissionExtended = true;
 				
 		//Mission timeout
-		m_MissionTimeout = 600;				//seconds, mission max duration time
+		m_MissionTimeout = 2700;		//seconds, mission max duration time
 		
 		//Mission zones
 		m_MissionZoneOuterRadius = 80.0;	//meters (!Do not set lower than 200m), mission activation distance
