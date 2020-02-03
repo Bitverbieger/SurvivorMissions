@@ -24,13 +24,13 @@ If you don't want to make a new mission at this point, you just need to install 
 ### On a existing server configuration 
 1. Subscribe to SurvivorMissions Mod by using your Steam account. 
 [DayZ SurvivorMissions Mod on Steam](https://pages.github.com/).
-2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop` and copy the folder `@SurvivorMissions` to your server root directory.
-3. Open this folder and navigate to the `\serverfiles\mpmissions` directory.
+2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop\` and copy the folder `@SurvivorMissions\` to your server root directory. Also copy the file **SurvivorMissions.bikey** in the `.\key\` folder to the server **keys** folder located in server root `%DayzServerRoot%\keys\`. 
+3. Open folder **@SurvivorMissions** located now in `%DayzServerRoot%\@SurvivorMissions\` and navigate to the `\serverfiles\mpmissions\` directory.
 4. Copy the folder `\SurvivorMissionModule` to `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\` (like in DayZ default mission `\mpmissions\dayzOffline.chernarusplus`) of your server.
-5. Now open this folder `\SurvivorMissionModule` and rename the file `EventsWorldData_chernarusplus.c`* to `EventsWorldData.c` 
+5. Now open this folder `\SurvivorMissionModule` and **rename the file** `EventsWorldData_chernarusplus.c`* to `EventsWorldData.c` 
 (* or another terrain EWD file matching your server loaded map, like `EventsWorldData_enoch.c`for BI's DLC map Livonia)
 7. Delete all other EventsWorldData files.
-8. Now navigate to directory `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\SurvivorMissionModule\Missions\` and edit file `Missions.h`with your favorit text editor.
+8. Now navigate to directory `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\SurvivorMissionModule\Missions\` and edit file `Missions.h` with your favorit text editor.
 Change all the file paths of each mission file-inlude 
 ```C++
 #include "$CurrentDir:\\mpmissions\\%YourMission%.%YourTerrain%\\SurvivorMissionModule\\Missions\\Apartment.c"
@@ -69,7 +69,8 @@ SCRIPT       : [SMM] MissionBuilding is Land_City_Store at central of Berezino @
 SCRIPT       : [SMM] Mission zone is active. Waiting for trigger...
 ```
 This means SurvivorMissions mod has started successfully.
+
 If it fails, look out for error logs printed by SMM /SEM. In most cases it tells you exactly why it can't be started. You can view advanced logs by activating the option **DEBUG MODE** in **MissionSettings** and restart the server!
 
 If you encountered any issues running your server in combination with the SurvivorMissions Mod, please visit my Discord Server
-[DayZ Survivor Missions on Discord](https://discord.gg/reP3dq8/).
+[DayZ Survivor Missions on Discord](https://discord.gg/reP3dq8/) for further support.
