@@ -32,7 +32,13 @@ If you don't want to make a new mission at this point, you just need to install 
 - [ ] Delete all other EventsWorldData files.
 - [ ] Now navigate to directory `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\SurvivorMissionModule\Missions\` and edit file `Missions.h`with your favorit text editor.
 Change all the file paths of each mission file-inlude 
-`#include "$CurrentDir:\\mpmissions\\%YourMission%.%YourTerrain%**\\SurvivorMissionModule\\Missions\\Apartment.c"` by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path. For example, the default mpmission path could be: `#include "$CurrentDir:\\mpmissions\\dayzOffline.chernarusplus\\SurvivorMissionModule\\Missions\\Apartment.c"`
+```C++
+#include "$CurrentDir:\\mpmissions\\%YourMission%.%YourTerrain%**\\SurvivorMissionModule\\Missions\\Apartment.c"
+```
+by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path. For example, the default mpmission path could be: 
+```C++
+#include "$CurrentDir:\\mpmissions\\dayzOffline.chernarusplus\\SurvivorMissionModule\\Missions\\Apartment.c"
+```
 - [ ] Now navigate to `%DayzServerRoot%\@SurvivorMissions\serverfiles\profile\` folder.
 - [ ] Copy the folder `\SurvivorMissions\`to your profile folder (server logs) of your server located at root.
 - [ ] In this folder edit the file `MissionSettings.c` and also change the file-inlcudes in the top lines same as above. Read comments. Change mission settings to match your needs.
