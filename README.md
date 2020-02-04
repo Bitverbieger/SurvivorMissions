@@ -21,7 +21,7 @@ You see, it gets deeper in porgramming / scripting if you decide to make your ow
 If you don't want to make a new mission at this point, you just need to install the SurvivorMissions Mod and the server files.
 
 ## Server Installation
-### On a existing server configuration 
+### On an existing server configuration 
 1. Subscribe to SurvivorMissions Mod by using your Steam account. 
 [DayZ SurvivorMissions Mod on Steam](https://pages.github.com/).
 2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop\` and copy the folder `@SurvivorMissions\` to your server root directory. Also copy the file **SurvivorMissions.bikey** in the `.\key\` folder to the server **keys** folder located in server root `%DayzServerRoot%\keys\`. 
@@ -40,7 +40,7 @@ by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path
 #include "$CurrentDir:\\mpmissions\\dayzOffline.chernarusplus\\SurvivorMissionModule\\Missions\\Apartment.c"
 ```
 9. Now navigate to `%DayzServerRoot%\@SurvivorMissions\serverfiles\profile\` folder.
-10. Copy the folder `\SurvivorMissions`to your profile folder (server logs folder located in root) of your server located at root.
+10. Copy the folder `\SurvivorMissions`to your profile folder (server logs folder located in root) of your server.
 11. Open this folder and edit the file `MissionSettings.c` and also change the file-inlcudes in the top lines same as above. Read the comments for changing mission settings to match your needs.
 12. Save and close all edited files.
 13. Edit your **StartDayzServer.bat** or your **launch parameters** for DayzServer_X64.exe by adding SurvivorMissions Mod `-mod=@SurvivorMissions` and adding `-scrAllowFileWrite` param, if it doesn't already exist.
