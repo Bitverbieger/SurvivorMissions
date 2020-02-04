@@ -348,6 +348,14 @@ class BearHuntMission extends SurvivorMissions
 	
 	void PlayerChecks( PlayerBase player )
 	{
+		//Update Bear position 
+		if ( m_MissionExtended )
+		{
+			Object Bear = Object.Cast( m_MissionAIs[0] );
+			if ( Bear && Bear.ClassName() == "Animal_UrsusArctos" )
+			m_MissionPosition = Bear.GetPosition();
+		}
+			
 		//Check if container gets taken from player
 		if ( MissionSettings.Opt_DenyObjTakeaway && !m_MissionExtended )
 		{
