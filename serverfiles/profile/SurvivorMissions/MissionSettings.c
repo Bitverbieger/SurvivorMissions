@@ -1,5 +1,5 @@
 //This file was created to make a "Multi Server" setup possible. Change mission and map for this server if needed. 
-//Modify between "$CurrentDir:\\mpmissions\\      and 		\\SurvivorMissionModule\\
+//Modify between "$CurrentDir:\\mpmissions\\      and 		\\SurvivorMissionModule\\...
 #include "$CurrentDir:\\mpmissions\\SurvivorEvents.chernarusplus\\SurvivorMissionModule\\EventsWorldData.c"
 #include "$CurrentDir:\\mpmissions\\SurvivorEvents.chernarusplus\\SurvivorMissionModule\\Missions\\Missions.h"
 
