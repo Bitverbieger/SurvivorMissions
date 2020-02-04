@@ -954,16 +954,6 @@ class EventsWorldData extends SurvivorMissions
 				Print("[SEM] Found building "+ MBuilding +" @ "+ FoundObject.GetPosition().ToString() );
 			}
 		}
-		Print("[SEM] DEBUG MODE: Map wide raycast END");
-		
-		//TEST 
-		GetGame().GetObjectsAtPosition("6899.3 406.9 11441.8", 4, Objects, ObjectCargos );	
-		for ( i=0; i < Objects.Count(); i++ )
-		{
-			FoundObject = Objects.Get(i);
-			if ( FoundObject )
-			Print("[SEM] Found Object: "+ FoundObject.GetType() +" @ "+ FoundObject.GetPosition().ToString() );
-			
-		}			
+		Print("[SEM] DEBUG MODE: Map wide raycast END");			
 	}
 }
