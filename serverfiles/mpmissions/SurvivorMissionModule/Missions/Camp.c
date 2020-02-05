@@ -22,7 +22,7 @@ class CampMission extends SurvivorMissions
 	void CampMission()
 	{
 		//Mission mission timeout
-		m_MissionTimeout = 2700;				//seconds, mission duration time
+		m_MissionTimeout = 2700;			//seconds, mission duration time
 		
 		//Mission zones
 		m_MissionZoneOuterRadius = 170.0;	//meters (!Do not set lower than 200m), mission activation distance

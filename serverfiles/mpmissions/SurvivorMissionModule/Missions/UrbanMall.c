@@ -39,7 +39,7 @@ class UrbanMallMission extends SurvivorMissions
 		m_MissionExtended = true;
 		
 		//Mission timeout
-		m_MissionTimeout = 2700;				//seconds, primary mission duration time
+		m_MissionTimeout = 2700;			//seconds, primary mission duration time
 		
 		//Mission zones
 		m_MissionZoneOuterRadius = 100.0;	//meters (!Do not set lower than 200m), mission activation distance

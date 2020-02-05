@@ -20,7 +20,7 @@ class ApartmentMission extends SurvivorMissions
 	void ApartmentMission()
 	{
 		//Mission timeout
-		m_MissionTimeout = 2700;		//seconds, mission duration time
+		m_MissionTimeout = 2700;			//seconds, mission duration time
 		
 		//Mission zone params
 		m_MissionZoneOuterRadius = 90.0;	//meters (!Do not set lower than 50m), mission activation distance

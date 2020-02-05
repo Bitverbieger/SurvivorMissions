@@ -26,11 +26,11 @@ class BearHuntMission extends SurvivorMissions
 		m_MissionExtended = true;
 				
 		//Mission timeout
-		m_MissionTimeout = 2700;		//seconds, mission max duration time
+		m_MissionTimeout = 2700;			//seconds, mission max duration time
 		
 		//Mission zones
 		m_MissionZoneOuterRadius = 80.0;	//meters (!Do not set lower than 200m), mission activation distance
-		m_MissionZoneInnerRadius = 60.0;	//meters (!Do not set outside of 1-5m), mission finishing distance to target object
+		m_MissionZoneInnerRadius = 3.0;		//meters (!Do not set outside of 1-5m), mission finishing distance to target object
 				
 		//Mission informant
 		m_MissionInformant = "Dr. Legasov";
@@ -355,7 +355,7 @@ class BearHuntMission extends SurvivorMissions
 			if ( Bear && Bear.ClassName() == "Animal_UrsusArctos" )
 			m_MissionPosition = Bear.GetPosition();
 		}
-			
+		
 		//Check if container gets taken from player
 		if ( MissionSettings.Opt_DenyObjTakeaway && !m_MissionExtended )
 		{
