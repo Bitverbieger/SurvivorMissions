@@ -23,7 +23,7 @@ If you don't want to make a new mission at this point, you just need to install 
 ## Server Installation
 ### On an existing server configuration 
 1. Subscribe to SurvivorMissions Mod by using your Steam account. 
-[DayZ SurvivorMissions Mod on Steam](https://pages.github.com/).
+[DayZ SurvivorMissions Mod on Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=1988925918).
 2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop\` and copy the folder `@SurvivorMissions\` to your server root directory. Also copy the file **SurvivorMissions.bikey** in the `.\key\` folder to the server **keys** folder located in server root `%DayzServerRoot%\keys\`. 
 3. Open folder **@SurvivorMissions** located now in `%DayzServerRoot%\@SurvivorMissions\` and navigate to the `\serverfiles\mpmissions\` directory.
 4. Copy the folder `\SurvivorMissionModule` to `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\` (like in DayZ default mission `\mpmissions\dayzOffline.chernarusplus`) of your server.
