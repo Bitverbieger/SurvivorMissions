@@ -25,7 +25,7 @@ If you don't want to make a new mission at this point, you just need to install 
 1. Subscribe to SurvivorMissions Mod by using your Steam account. 
 [DayZ SurvivorMissions Mod on Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=1988925918).
 2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop\` and copy the folder `@Survivor Missions\` to your server root directory. Also copy the file **Funkdoc.bikey** in the `.\Keys` folder to the server **keys** folder located in server root `%DayzServerRoot%\keys\`. 
-3. Open folder **@SurvivorMissions** located now in `%DayzServerRoot%\@Survivor Missions\` and navigate to the `\serverfiles\mpmissions\` directory.
+3. Open folder **@Survivor Missions** located now in `%DayzServerRoot%\@Survivor Missions\` and navigate to the `\serverfiles\mpmissions\` directory.
 4. Copy the folder `\SurvivorMissionModule` to `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\` (like in DayZ default mission `\mpmissions\dayzOffline.chernarusplus`) of your server.
 5. Now open this folder `\SurvivorMissionModule` and **rename the file** `EventsWorldData_chernarusplus.c`* to `EventsWorldData.c` 
 (* or another terrain EWD file matching your server loaded map, like `EventsWorldData_enoch.c`for BI's DLC map Livonia)
