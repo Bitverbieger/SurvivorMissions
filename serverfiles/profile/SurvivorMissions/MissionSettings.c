@@ -31,7 +31,7 @@ class MissionSettings
 	static int MsgFreqDlyTime = 1800;			//seconds (!Do not set lower than 900 seconds), radio frequency information delay time 
 	static float RadioFrequency = 99.7;			//Mhz (!Do only set a frequency from channels used ingame), radio frequency of mission channel	
 	static int MsgWaitTime = 300;				//seconds (!Do not set lower than 300 seconds), message interval, cycle duration time
-	static int MsgCutoffTime = 2;				//minutes (!Do not set higher than 10 minutes), time of messaging cutoff before mission ends 	
+	static int MsgCutoffTime = 2;				//minutes, time of messaging cutoff before mission ends 	
 	
 	static string GetStoriesFilePath() return StoriesFilePath;
 	
