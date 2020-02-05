@@ -24,8 +24,8 @@ If you don't want to make a new mission at this point, you just need to install 
 ### On an existing server configuration 
 1. Subscribe to SurvivorMissions Mod by using your Steam account. 
 [DayZ SurvivorMissions Mod on Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=1988925918).
-2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop\` and copy the folder `@SurvivorMissions\` to your server root directory. Also copy the file **Funkdoc.bikey** in the `.\Keys` folder to the server **keys** folder located in server root `%DayzServerRoot%\keys\`. 
-3. Open folder **@SurvivorMissions** located now in `%DayzServerRoot%\@SurvivorMissions\` and navigate to the `\serverfiles\mpmissions\` directory.
+2. After the download go to your Steam Workshop directory `%Programs%\Steam\steamapps\common\DayZ\!Workshop\` and copy the folder `@Survivor Missions\` to your server root directory. Also copy the file **Funkdoc.bikey** in the `.\Keys` folder to the server **keys** folder located in server root `%DayzServerRoot%\keys\`. 
+3. Open folder **@SurvivorMissions** located now in `%DayzServerRoot%\@Survivor Missions\` and navigate to the `\serverfiles\mpmissions\` directory.
 4. Copy the folder `\SurvivorMissionModule` to `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\` (like in DayZ default mission `\mpmissions\dayzOffline.chernarusplus`) of your server.
 5. Now open this folder `\SurvivorMissionModule` and **rename the file** `EventsWorldData_chernarusplus.c`* to `EventsWorldData.c` 
 (* or another terrain EWD file matching your server loaded map, like `EventsWorldData_enoch.c`for BI's DLC map Livonia)
@@ -39,7 +39,7 @@ by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path
 ```C++
 #include "$CurrentDir:\\mpmissions\\dayzOffline.chernarusplus\\SurvivorMissionModule\\Missions\\Apartment.c"
 ```
-9. Now navigate to `%DayzServerRoot%\@SurvivorMissions\serverfiles\profile\` folder.
+9. Now navigate to `%DayzServerRoot%\@Survivor Missions\serverfiles\profile\` folder.
 10. Copy the folder `\SurvivorMissions`to your profile folder (server logs folder located in root) of your server.
 11. Open this folder and edit the file `MissionSettings.c` and also change the file-inlcudes in the top lines same as above. Read the comments for changing mission settings to match your needs.
 12. Save and close all edited files.
