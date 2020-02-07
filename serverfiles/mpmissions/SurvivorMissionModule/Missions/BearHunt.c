@@ -382,11 +382,11 @@ class BearHuntMission extends SurvivorMissions
 			{
 				if ( CargoCount >= ReqMeatAmount && FoundMeatObjects <= ReqMeatAmount )
 				{	
-					CargoBase CargoItems = MissionObject.GetInventory().GetCargo();		
+					CargoBase CargoItems1 = MissionObject.GetInventory().GetCargo();		
 					
 					for ( int i = 0; i < CargoCount; i++ )
 					{
-						EntityAI CargoItem = CargoItems.GetItem(i);
+						EntityAI CargoItem = CargoItems1.GetItem(i);
 						if ( CargoItem && CargoItem.GetType() == "BearSteakMeat" ) FoundMeatObjects++;
 						else if ( CargoItem && CargoItem.GetType() == "BearPelt" ) FoundPeltObject = true;
 						else continue;					
