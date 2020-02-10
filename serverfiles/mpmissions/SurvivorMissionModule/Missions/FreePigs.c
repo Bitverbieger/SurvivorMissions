@@ -368,12 +368,6 @@ class FreePigsMission extends SurvivorMissions
 	
 	void ExtendMission()
 	{	//When player enters mission target zone at primary mission
-		string Coords = m_MissionPosition[0].ToString() +" / "+ m_MissionPosition[2].ToString(); 
-		
-		//Set messages for secondary mission,
-		m_MissionMessage1 = "Allright, you have found the pigs. Herd them all out of the shed. Protect them from infected attacks and kill 2 pigs to get some meat.";
-		m_MissionMessage2 = "A man from the survivor camp said he could go to a save position anywhere in the forests and get the meat. I left a hunting backpack at a hiking rest.";
-		m_MissionMessage3 = "Bring the meat to hiking rest near\n** "+ m_MissionDescription[3] +", coordinates: "+ Coords +" **\nPut "+ ReqMeatAmount +" steaks inside it and then you can take what you need. Be carefull!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1
@@ -392,6 +386,13 @@ class FreePigsMission extends SurvivorMissions
 		m_MissionPosition = ExtendedPosList.GetRandomElement();
 		else Print("[SMM] Can't get secondary MissionPosition in "+ m_MissionDescription[3] +" from EventsWorldData!");
 
+		string Coords = Math.Round( m_MissionPosition[0] ).ToString() +" / "+ Math.Round( m_MissionPosition[2] ).ToString();  
+		
+		//Set messages for secondary mission,
+		m_MissionMessage1 = "Allright, you have found the pigs. Herd them all out of the shed. Protect them from infected attacks and kill 2 pigs to get some meat.";
+		m_MissionMessage2 = "A man from the survivor camp said he could go to a save position anywhere in the forests and get the meat. I left a hunting bag at the picnic table on the hiking trail.";
+		m_MissionMessage3 = "Bring the meat to the picnic table near\n** "+ m_MissionDescription[3] +", coordinates: "+ Coords +" **\nPut "+ ReqMeatAmount +" pig steaks inside it and then you can take what you need. Be careful!";
+				
 		//Search for mission building at old mission position	
 		GetGame().GetObjectsAtPosition( m_MissionPositions.Get( m_selectedMission ) , 1.0 , m_ObjectList , m_ObjectCargoList );
 		for ( int i = 0 ; i < m_ObjectList.Count(); i++ )
@@ -448,11 +449,11 @@ class FreePigsMission extends SurvivorMissions
 				
 				if ( CargoCount >= ReqMeatAmount )
 				{	
-					CargoBase CargoItems = MissionObject.GetInventory().GetCargo();		
+					CargoBase CargoItems1 = MissionObject.GetInventory().GetCargo();		
 					
 					for ( int i = 0; i < CargoCount; i++ )
 					{
-						EntityAI CargoItem = CargoItems.GetItem(i);
+						EntityAI CargoItem = CargoItems1.GetItem(i);
 						if ( CargoItem && CargoItem.GetType() == "PigSteakMeat" ) FoundObjects++;
 						else continue;
 												
