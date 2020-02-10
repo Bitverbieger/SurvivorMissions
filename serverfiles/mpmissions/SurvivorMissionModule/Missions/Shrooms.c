@@ -410,11 +410,11 @@ class ShroomsMission extends SurvivorMissions
 			{
 				if ( CargoCount >= ReqShroomsCount && FoundObjects <= ReqShroomsCount )
 				{	
-					CargoBase CargoItems = MissionObject.GetInventory().GetCargo();		
+					CargoBase CargoItems1 = MissionObject.GetInventory().GetCargo();		
 					
 					for ( int i = 0; i < CargoCount; i++ )
 					{
-						EntityAI CargoItem = CargoItems.GetItem(i);
+						EntityAI CargoItem = CargoItems1.GetItem(i);
 						if ( m_MissionObjects.Find( CargoItem ) > -1 ) FoundObjects++;
 						else continue;					
 						

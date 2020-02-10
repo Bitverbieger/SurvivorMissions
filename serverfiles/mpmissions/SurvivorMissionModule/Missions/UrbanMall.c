@@ -699,11 +699,12 @@ class UrbanMallMission extends SurvivorMissions
 			{
 				if ( CargoCount >= ReqFoodAmount + ReqMedAmount && FoundMedObjects <= ReqMedAmount && FoundFoodObjects <= ReqFoodAmount )
 				{	Print("[SMM] Cargo check OK. Foodcount: "+ FoundFoodObjects +", Medcount: "+ FoundMedObjects );
-					CargoBase CargoItems = MissionObject.GetInventory().GetCargo();		
+					
+					CargoBase CargoItems1 = MissionObject.GetInventory().GetCargo();		
 					
 					for ( int i = 0; i < CargoCount; i++ )
 					{
-						EntityAI CargoItem = CargoItems.GetItem(i); 
+						EntityAI CargoItem = CargoItems1.GetItem(i); 
 						Object CargoObject = CargoItem;
 
 						if ( m_MissionObjects.Find( CargoObject ) > -1 ) 
