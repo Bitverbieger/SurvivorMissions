@@ -40,8 +40,8 @@ class BearHuntMission extends SurvivorMissions
 		SurvivorName = SurvivorNames.GetRandomElement();
 		
 		//Set mission messages for primary mission
-		m_MissionMessage1 = "A survivor recently reported me that a bear mauled my friend "+ SurvivorName +" and 2 other survivor's to death. Maybe they made a misstake when they were hunting some deer in the forest of "+ m_MissionLocation +".";
-		m_MissionMessage2 = "I still can't believe it. "+ SurvivorName +" was one of the best hunters in Chernarus. Once a week he brought fresh meat to the hidden camp of the old and young survivor's. He always was so selfless and tried to do everything for the camp.";
+		m_MissionMessage1 = "A survivor recently reported to me that a bear attacked my friend "+ SurvivorName +" and killed 2 other survivor's. They went to the wrong location trying to hunt some deer in the forest of "+ m_MissionLocation +".";
+		m_MissionMessage2 = "I still can't believe it. "+ SurvivorName +" was one of the best hunters in Chernarus. Once a week he brought fresh meat to the hidden camp to feed the survivor's. He was never selfless and tried to do everything to help out in the camp.";
 		m_MissionMessage3 = "The bear was last reported at the forest near\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI want you to kill this animal and take his pelt. It's not for revenge, we just need the pelt to make winter clothing for the kids. Be careful!";
 		
 		//Spawnpoint for MissionObject for secondary mission
