@@ -46,7 +46,7 @@ by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path
 13. Edit your **StartDayzServer.bat** or your **launch parameters** for DayzServer_X64.exe by adding SurvivorMissions Mod `"-servermod=@Survivor Missions"` and adding `-scrAllowFileWrite` param, if it doesn't already exist.
 
 ### First Server Start
-1. After execution of DayzServer_X64.exe with the defined launch parameters check the script log file (script_*date*.log) in your profile folder of your server root. New server profiles could be added to the launch params like `-profile=MyServerLogs`.
+1. After execution of DayzServer_X64.exe with the defined launch parameters check the script log file (script_*date*.log) in your profile folder of your server root. New server profiles could be added to the launch params like `-profiles=MyServerLogs`.
 2. Survivor Events Manager [SEM] checks now several things. Read the scriptlog output and check if SEM has started SMM without errors. Loading of your mpmission will be rejected if an error occurs.
 3. Viewing your server scriptlog, following lines should be visible from SEM & SMM scriptlogger when mpmission is loaded by the server:
 ```
