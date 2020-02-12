@@ -43,7 +43,9 @@ by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path
 10. Copy the folder `\SurvivorMissions`to your profile folder (server logs folder located in root) of your server.
 11. Open this folder and edit the file `MissionSettings.c` and also change the file-inlcudes in the top lines same as above. Read the comments for changing mission settings to match your needs.
 12. Save and close all edited files.
-13. Edit your **StartDayzServer.bat** or your **launch parameters** for DayzServer_X64.exe by adding SurvivorMissions Mod `"-servermod=@Survivor Missions"` and adding `-scrAllowFileWrite` param, if it doesn't already exist.
+13. Edit your **StartDayzServer.bat** or your **launch parameters** for DayzServer_X64.exe by adding SurvivorMissions Mod to your
+a. **Community server**  by adding `"-servermod=@Survivor Missions"` and `-scrAllowFileWrite` to launch params **OR**  
+b. **Private server**  by adding `"-mod=@Survivor Missions"` and `-scrAllowFileWrite` to launch params.
 
 ### First Server Start
 1. After execution of DayzServer_X64.exe with the defined launch parameters check the script log file (script_*date*.log) in your profile folder of your server root. New server profiles could be added to the launch params like `-profiles=MyServerLogs`.
