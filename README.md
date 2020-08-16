@@ -9,7 +9,7 @@ This ReadMe contains all steps that will be necessary to run the modification on
 * Ability to change module and mission settings processed by the SurvivorMissionModule
 
 ## How it works
-SurvivorMissions is a mod that covers the requirements of current community servers for enhanced multiplayer gameplay and combining other mods with SurvivorMissions by implementing their objects/items in the missions.
+SurvivorMissions is a mod that covers the requirements of current community servers for enhanced multiplayer gameplay and allows a combination with other mods by implementing their objects/items in the missions, to extend the player experience based on all loaded mods of your server.
 SurvivorMissions comes with a module called SMM (SurvivorMissionModule). SMM is loaded by the Survivor Events Manager (SEM) who is able to load other modules from my project as they are published and checks the validity of the missions and the server file paths. It also can check all the mission locations if a static map building is defined as a mission building and printing advanced mission debugging information, if configured in settings.
 
 SMM has a defined interface to interact with the mission instances. All self created missions must use its interface, defined as methods in your mission. It randomly selects a mission from the cached data of the "Events World Data" (EWD) file excluding last 2 mission types and mission locations. In the EWD are all missions listed in an array of 2 several data types, the event name and the position of the mission. Positions can be outdoor (rallye point) or a building position in the "WorldSpace" of the loaded terrain. After selecting it starts and activates the selected mission, the mission timer, the mission zone trigger and the mission messenger (radio transmition). All the parameters are changed by the instance when a action is fired like the mission zone entry of a player or his found of the mission target. Missions could also be extended, which means that a secondary mission target is applied (e.g. Find & Deliver).
@@ -28,10 +28,10 @@ If you don't want to make a new mission at this point, you just need to install 
 3. Open folder **@Survivor Missions** located now in `%DayzServerRoot%\@Survivor Missions\` and navigate to the `\serverfiles\mpmissions\` directory.
 4. Copy the folder `\SurvivorMissionModule` to `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\` (like in DayZ default mission `\mpmissions\dayzOffline.chernarusplus`) of your server.
 5. Now open this folder `\SurvivorMissionModule` and **rename the file** `EventsWorldData_chernarusplus.c`* to `EventsWorldData.c` 
-(* or another terrain EWD file matching your server loaded map, like `EventsWorldData_enoch.c`for BI's DLC map Livonia)
-7. Delete all other EventsWorldData files.
-8. Now navigate to directory `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\SurvivorMissionModule\Missions\` and edit file `Missions.h` with your favorit text editor.
-Change all the file paths of each mission file-inlude 
+(* or another terrain EWD file matching your server loaded map, like `EventsWorldData_enoch.c`for BI's DLC map Livonia or `EventsWorldData_ChernarusPlusGloom_EXP` for Expansion Mod)
+6. Double check if it is the right EWD file for this server instance. 
+7. Now navigate to directory `%DayzServerRoot%\mpmissions\%YourMission%.%YourTerrain%\SurvivorMissionModule\Missions\` and edit file `Missions.h` with your favorit text editor.
+Search&Replace all the file paths of each mission file-inlude 
 ```C++
 #include "$CurrentDir:\\mpmissions\\%YourMission%.%YourTerrain%\\SurvivorMissionModule\\Missions\\Apartment.c"
 ```
@@ -39,13 +39,12 @@ by editing **"YourMission"** and **"YourTerrain"** to match your mpmissions path
 ```C++
 #include "$CurrentDir:\\mpmissions\\dayzOffline.chernarusplus\\SurvivorMissionModule\\Missions\\Apartment.c"
 ```
-9. Now navigate to `%DayzServerRoot%\@Survivor Missions\serverfiles\profile\` folder.
-10. Copy the folder `\SurvivorMissions`to your profile folder (server logs folder located in root) of your server.
-11. Open this folder and edit the file `MissionSettings.c` and also change the file-inlcudes in the top lines same as above. Read the comments for changing mission settings to match your needs.
-12. Save and close all edited files.
-13. Edit your **StartDayzServer.bat** or your **launch parameters** for DayzServer_X64.exe by adding SurvivorMissions Mod to your  
-a. **Community server**  by adding `"-servermod=@Survivor Missions"` and `-scrAllowFileWrite` to launch params **OR**  
-b. **Private server**  by adding `"-mod=@Survivor Missions"` and `-scrAllowFileWrite` to launch params.
+8. Now navigate to `%DayzServerRoot%\@Survivor Missions\serverfiles\profile\` folder.
+9. Copy the folder `\SurvivorMissions`to your profile folder (server logs folder located in root) of your server.
+10. Open this folder and edit the file `MissionSettings.c` and also change the file-inlcudes in the top lines same as above. Read the comments for changing mission settings to match your needs.
+11. Save and close all edited files.
+12. Edit your **StartDayzServer.bat** or your **launch parameters** for DayzServer_X64.exe by adding SurvivorMissions Mod to your  
+**server**  by adding `"-servermod=@Survivor Missions"`
 
 ### First Server Start
 1. After execution of DayzServer_X64.exe with the defined launch parameters check the script log file (script_*date*.log) in your profile folder of your server root. New server profiles could be added to the launch params like `-profiles=MyServerLogs`.
@@ -62,7 +61,7 @@ SCRIPT       : [SEM] EWD check...OK
 SCRIPT       : [SEM] SurvivorStories file parsed successfully. 3 stories imported.
 SCRIPT       : [SEM] SURVIVOR EVENTS MANAGER version 0.6 successfully loaded.
 SCRIPT       : [SEM] Starting [SURVIVOR MISSION MODULE]...
-SCRIPT       : [SMM] 574 SurvivorEvents successfully cached from EventsWorldData.
+SCRIPT       : [SMM] 794 SurvivorEvents successfully cached from EventsWorldData.
 ```
 After a defined delay time in **MissionSettings** from server start, a new Mission will be selected and started.
 ```
