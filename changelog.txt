@@ -1,0 +1,29 @@
+------------------------------------------------------------------------------------------------------------------------------
+//changelog version 0.85 released 2020/8/17
+Module:
+- added: RP / Campaign mode, chronological mission selection for roleplay servers and MP campaigns
+- added: DeerIsle terrain support
+- added: Transmitter base class check, now all radios are working with SMM on server->client transmition
+- fixed: All none mission related radio messages are now editable in MissionSettings (like zone messages, accomplished msg,...)
+- fixed: Localizer texts in EWD can now have underscores to separate words (ex. for location names like "Novaya_Petrovka")
+- fixed: Scriptlog spamming Error, if the EWD_MAP_NAME doesn't match the loaded world name. SMM deactivates itself if a cache error occured +log 
+- tweaked: increased display time of messages for a few seconds
+- tweaked: decreased display time of first message
+
+Server files:
+- added: New EventsWorldData file for Livonia, 312 mission locations
+- added: New EventsWorldData file for DeerIsle, 322 mission locations
+- added: New EventsWorldData file for Chernarus, 794 mission locations
+- added: 35 PlaneCrash missions to Chernarus EWD
+- added: 185 Horde missions to Chernarus EWD (this will now be the most common random mission on chernarus)
+- added: More reward loadouts in all missions
+- added: More infected types in all missions (doubled type count)
+- added: Debug info shows now also the heading of the player (needed for defining mission locations with a EWD heading parameter like PlaneCrash)
+- added: Debug info shows actual RP mission and description
+- added: Static base / fortress / HQ spawning function (building cluster spawner for new trader bases or new mission HQ's [w.i.p.])
+- fixed: Changed several location / village names of Chernarus ( matching "iZurvive" location names)
+- fixed: Car spawnpoint of right garage in TransportMission
+- tweaked: Increased finish time in Camp + Apartment mission, now the mission main object stays longer after it was found by the player
+------------------------------------------------------------------------------------------------------------------------------
+//steam release version 0.61 released 2020/2/5
+------------------------------------------------------------------------------------------------------------------------------
