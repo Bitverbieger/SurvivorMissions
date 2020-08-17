@@ -1,4 +1,4 @@
-class TransportMission extends SurvivorMissions
+class GanjaMission extends SurvivorMissions
 {
 	//Mission related entities 
 	Car MissionCar;
@@ -23,7 +23,7 @@ class TransportMission extends SurvivorMissions
 	
 	bool IsExtended() return true;
 	
-	void TransportMission()
+	void GanjaMission()
 	{		
 		//Select primary mission
 		m_MissionExtended = true;
@@ -49,7 +49,7 @@ class TransportMission extends SurvivorMissions
 		
 		//Spawnpoints for MissionCar in Garage 
 		GarageCarSpawns.Insert("5.055 -1.504 -2.064"); 	//left garage
-		GarageCarSpawns.Insert("-4.95 -1.504 -1.843");	//right garage
+		GarageCarSpawns.Insert("-4.702 -1.504 -1.843");	//right garage
 		
 		//Spawnpoints for MissionObjects in middle garage (Do not change order!)
 		Spawnpoints.Insert("1.575 -0.605 -5.431");  //on table right (3x motor oil)
@@ -59,7 +59,7 @@ class TransportMission extends SurvivorMissions
 		Spawnpoints.Insert("-1.85 -1.04 -2.196");	//shelf (spark plug)
 		
 		//Spawnpoint for reward container in Gas Station Building
-		Spawnpoints.Insert("0.330 -1.538 0.6");		//aside desk
+		Spawnpoints.Insert("0.330 -1.538 0.6");		//beside desk
 				
 		//Infected spawnpoints for primary mission
 		PriInfectSpawns.Insert("-10 0 20");
@@ -134,7 +134,7 @@ class TransportMission extends SurvivorMissions
 		}			
 	}
 	
-	void ~TransportMission()
+	void ~GanjaMission()
 	{	
 		//Despawn all remaining mission objects
 		if ( m_MissionObjects )
@@ -547,7 +547,12 @@ class TransportMission extends SurvivorMissions
 		m_MissionZoneInnerRadius = 2.0;
 		
 		//Get secondary mission position
-		if ( EventsWorldData.GetBuildingsAtLoc("Land_FuelStation_Build", m_MissionDescription[3], ExtendedPosList ))
+		if ( m_MissionDescription[3] == "Widok" )
+		{
+			if ( EventsWorldData.GetBuildingsAtLoc("Land_FuelStation_Build", m_MissionDescription[3], ExtendedPosList ))
+			m_MissionPosition = ExtendedPosList.GetRandomElement();			
+		}
+		else if ( EventsWorldData.GetBuildingsAtLoc("Land_FuelStation_Build_Enoch", m_MissionDescription[3], ExtendedPosList ))
 		m_MissionPosition = ExtendedPosList.GetRandomElement();
 		else Print("[SMM] Can't get secondary MissionPosition in "+ m_MissionDescription[3] +" from EventsWorldData!");
 	}
@@ -616,7 +621,7 @@ class TransportMission extends SurvivorMissions
 			for ( int i=0; i < m_ObjectList.Count(); i++ )
 			{ 
 				Object FoundObject = m_ObjectList.Get(i);
-				if ( FoundObject.GetType() == "Land_FuelStation_Build" )
+				if ( FoundObject.GetType() == "Land_FuelStation_Build_Enoch" || FoundObject.GetType() == "Land_FuelStation_Build")
 				{			 
 					MissionBuilding = FoundObject;
 					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" Gas Station @ "+ m_MissionPosition );

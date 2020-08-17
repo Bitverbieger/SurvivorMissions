@@ -1,6 +1,6 @@
 class EventsWorldData extends SurvivorMissions
 {
-	const string EWD_MAP_NAME = "chernarusplus";
+	const string EWD_MAP_NAME = "ChernarusPlus";
 	const string EWD_SCRIPT_VERSION = "0.85";
 	static ref array<string> MissionEvents = new array<string>;
 	static ref array<vector> MissionPositions = new array<vector>;

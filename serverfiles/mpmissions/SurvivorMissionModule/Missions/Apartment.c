@@ -1,10 +1,10 @@
 class ApartmentMission extends SurvivorMissions
 {
-	//Mission related entities
+	//Mission related entities 
 	Object MissionBuilding;
 
 	//Mission parameters	
-	int MsgDlyFinish = 60;					//seconds, message delay time after player has finished mission
+	int MsgDlyFinish = 300;					//seconds, message delay time after player has finished mission
 	
 	//Mission containers
 	ref array<vector> Spawnpoints = new array<vector>;
@@ -34,10 +34,10 @@ class ApartmentMission extends SurvivorMissions
 		SurvivorName = SurvivorNames.GetRandomElement();
 						
 		//Mission messages 
-		m_MissionMessage1 = SurvivorName +" was one of my best students. I used to talk to him on radio in the last nights but now i have lost contact to him.";
-		m_MissionMessage2 = "He told me that he has hidden a seachest with good equipment anywhere in the apartments. A few days ago he barricaded the whole building against the infected.";
-		m_MissionMessage3 = "He used to live in a apartment at a tenement\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation+" **\nPlease check if "+SurvivorName+" is still alive. If not, then i am sure you can take his things.";
-		
+        m_MissionMessage1 = SurvivorName +" was one of my best students. I used to talk to him on the radio, but now I have lost contact with him.";
+        m_MissionMessage2 = "He told me that he has hidden a seachest with good equipment somewhere in the apartments. A few days ago he barricaded the whole building against the infected.";
+        m_MissionMessage3 = "He used to live in one of the apartments\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation+" **\nPlease check if "+SurvivorName+" is still alive. If not, then take his stuff to help you survive.";
+				
 		//Mission object spawnpoints in mission building	
 		Spawnpoints.Insert("8.1257 2.7203 3.1963");
 		Spawnpoints.Insert("-8.3906 -0.6797 -1.1826");
@@ -76,6 +76,20 @@ class ApartmentMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_HeavyIndustryWorker");	InfectedTypes.Insert("ZmbF_PatientOld");
 		InfectedTypes.Insert("ZmbM_Jacket_black");			InfectedTypes.Insert("ZmbF_ShortSkirt_beige");
 		InfectedTypes.Insert("ZmbM_Jacket_stripes");		InfectedTypes.Insert("ZmbF_VillagerOld_Red");
+		InfectedTypes.Insert("ZmbM_HikerSkinny_Blue");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Red");
+		InfectedTypes.Insert("ZmbM_HikerSkinny_Yellow");	InfectedTypes.Insert("ZmbF_MilkMaidOld_Beige");
+		InfectedTypes.Insert("ZmbM_PolicemanFat");			InfectedTypes.Insert("ZmbF_VillagerOld_Green");
+		InfectedTypes.Insert("ZmbM_PatrolNormal_Summer");	InfectedTypes.Insert("ZmbF_ShortSkirt_yellow");
+		InfectedTypes.Insert("ZmbM_JoggerSkinny_Blue");		InfectedTypes.Insert("ZmbF_NurseFat");
+		InfectedTypes.Insert("ZmbM_VillagerOld_White");		InfectedTypes.Insert("ZmbF_PoliceWomanNormal");
+		InfectedTypes.Insert("ZmbM_SkaterYoung_Brown");		InfectedTypes.Insert("ZmbF_HikerSkinny_Blue");
+		InfectedTypes.Insert("ZmbM_MechanicSkinny_Green");	InfectedTypes.Insert("ZmbF_ParamedicNormal_Green");
+		InfectedTypes.Insert("ZmbM_DoctorFat");				InfectedTypes.Insert("ZmbF_JournalistNormal_Red");
+		InfectedTypes.Insert("ZmbM_PatientSkinny");			InfectedTypes.Insert("ZmbF_SurvivorNormal_White");
+		InfectedTypes.Insert("ZmbM_ClerkFat_Brown");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Brown");
+		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
+		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
+		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");
 		
 		//Entrance barricade  (view from inside building!)
 		//Log frame
@@ -148,7 +162,7 @@ class ApartmentMission extends SurvivorMissions
 		ItemBase MissionObject = ItemBase.Cast( GetGame().CreateObject( "SeaChest", m_MissionPosition, false, false, false ) );
 		
 		//Get random loadout 			
-		int selectedLoadout = Math.RandomIntInclusive(0,7);	//!Change randomization limit after adding new loadouts!
+		int selectedLoadout = Math.RandomIntInclusive(0,11);	//!Change randomization limit after adding new loadouts!
 		
 		//Spawn selected loadout items in mission object
 		EntityAI weapon;
@@ -199,6 +213,7 @@ class ApartmentMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("SardinesCan");
 			MissionObject.GetInventory().CreateInInventory("Canteen");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
 		if (selectedLoadout == 3)
 		{
@@ -214,6 +229,8 @@ class ApartmentMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Yellow");	
 			MissionObject.GetInventory().CreateInInventory("TacticalBaconCan");
 			MissionObject.GetInventory().CreateInInventory("SteakKnife");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}	
 		if (selectedLoadout == 4)
 		{
@@ -229,6 +246,8 @@ class ApartmentMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
 			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
 			MissionObject.GetInventory().CreateInInventory("WaterBottle");			
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
 		if (selectedLoadout == 5)
@@ -251,7 +270,9 @@ class ApartmentMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
 			MissionObject.GetInventory().CreateInInventory("SpaghettiCan");
 			MissionObject.GetInventory().CreateInInventory("StoneKnife");
-			MissionObject.GetInventory().CreateInInventory("M67Grenade");					
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
 		}
 		if (selectedLoadout == 6)
 		{			
@@ -261,27 +282,98 @@ class ApartmentMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
 			MissionObject.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
 			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
-			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Cannabis");
 			MissionObject.GetInventory().CreateInInventory("CannabisSeedsPack");
 			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
 			MissionObject.GetInventory().CreateInInventory("TunaCan");
-			MissionObject.GetInventory().CreateInInventory("RDG5Grenade");					
+			MissionObject.GetInventory().CreateInInventory("RDG5Grenade");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
 		}	
 		if (selectedLoadout == 7)
 		{			
 			weapon = MissionObject.GetInventory().CreateInInventory("VSS");
-				weapon.GetInventory().CreateAttachment("PSO11Optic");
-				//weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+				weapon.GetInventory().CreateAttachment("PSO11Optic");		
 			MissionObject.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
 			MissionObject.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
 			MissionObject.GetInventory().CreateInInventory("AmmoBox_9x39_20Rnd");
-			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("GardenLime");
 			MissionObject.GetInventory().CreateInInventory("CannabisSeedsPack");
 			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
 			MissionObject.GetInventory().CreateInInventory("SardinesCan");
-			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Green");					
+			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Green");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 8)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("MP5K");
+				weapon.GetInventory().CreateAttachment("MP5_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("MP5k_StockBttstck");
+				weapon.GetInventory().CreateAttachment("M68Optic");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("AmmoBox_9x19_25rnd");
+			MissionObject.GetInventory().CreateInInventory("GP5GasMask");
+			MissionObject.GetInventory().CreateInInventory("NBCGlovesGray");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
+			MissionObject.GetInventory().CreateInInventory("SpaghettiCan");
+			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Red");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 9)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("AK74");
+				weapon.GetInventory().CreateAttachment("AK_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");	
+				weapon.GetInventory().CreateAttachment("KashtanOptic");
+				weapon.GetInventory().CreateAttachment("'AK_Suppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Headtorch_Grey");
+			MissionObject.GetInventory().CreateInInventory("NBCBootsGray");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("TacticalBaconCan");
+			MissionObject.GetInventory().CreateInInventory("Tomato");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 10)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("AKS74U");
+				weapon.GetInventory().CreateAttachment("AKS74U_Bttstck");			
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("Matchbox");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("PortableGasStove");
+			MissionObject.GetInventory().CreateInInventory("SmallGasCanister");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");			
+		}
+		if (selectedLoadout == 11)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("Glock19");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("FishingRod");
+			MissionObject.GetInventory().CreateInInventory("Carp");
+			MissionObject.GetInventory().CreateInInventory("Hook");
+			MissionObject.GetInventory().CreateInInventory("Worm");
+			MissionObject.GetInventory().CreateInInventory("CombatKnife");
+			MissionObject.GetInventory().CreateInInventory("FieldShovel");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("MackerelFilletMeat");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");			
 		}
 		
 		Print("[SMM] Mission rewards spawned in reward container. Randomly selected loadout was "+ selectedLoadout +"." );

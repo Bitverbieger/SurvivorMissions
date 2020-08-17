@@ -1,6 +1,6 @@
 class ShroomsMission extends SurvivorMissions
 {
-	//Mission related entities	
+	//Mission related entities
 	ItemBase MissionObject;
 	Object MissionBuilding;
 
@@ -43,9 +43,9 @@ class ShroomsMission extends SurvivorMissions
 		SurvivorExtName = SurvivorExtNames.GetRandomElement();
 		
 		//Set mission messages for primary mission
-		m_MissionMessage1 = SurvivorName +", a survivor i met in Vyshnoye a few days ago told me that there are some places in Chernarus with numerous occurence of a special mushroom. It's classification name is 'Psilocybe semilanceata'.";
-		m_MissionMessage2 = "At the moment i am experimenting with the psychoactive ingredient Psilocybin on infected wild animals. The animals show interesting behaviors after 30 minutes of the oral intake. I can't say much about it yet, but for my experiments I need more mushrooms.";
-		m_MissionMessage3 = SurvivorName +" said that he found some of those anywhere\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI need "+ ReqShroomsCount +" more pieces of it. The mushrooms are very small. I recommend using a mushroom encyclopedia for possible occurencies!";
+		m_MissionMessage1 = SurvivorName +", a survivor i met a few days ago told me that there are some places around here with numerous occurrencies of a special mushroom. It's classification name is 'Psilocybe semilanceata'.";
+		m_MissionMessage2 = "At the moment i am experimenting with the containing psychoactive substance Psilocybin on infected wild animals. The animals show interesting behaviors after 30 minutes of the oral intake. I can't say much about it yet, but for my experiments I need more mushrooms.";
+		m_MissionMessage3 = SurvivorName +" said that he found some of those anywhere\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI need "+ ReqShroomsCount +" more pieces of it. The mushrooms are very small. I recommend using a mushroom encyclopedia for possible occurrencies!";
 		
 		//Spawnpoints for MissionObject for secondary mission
 		Spawnpoints.Insert("-20.2900 -6.6398 0.7559");
@@ -85,7 +85,21 @@ class ShroomsMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_HandymanNormal_Green");	InfectedTypes.Insert("ZmbF_MechanicNormal_Beige");
 		InfectedTypes.Insert("ZmbM_HeavyIndustryWorker");	InfectedTypes.Insert("ZmbF_PatientOld");
 		InfectedTypes.Insert("ZmbM_Jacket_black");			InfectedTypes.Insert("ZmbF_ShortSkirt_beige");
-		InfectedTypes.Insert("ZmbM_Jacket_stripes");		InfectedTypes.Insert("ZmbF_VillagerOld_Red");			
+		InfectedTypes.Insert("ZmbM_Jacket_stripes");		InfectedTypes.Insert("ZmbF_VillagerOld_Red");
+		InfectedTypes.Insert("ZmbM_HikerSkinny_Blue");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Red");
+		InfectedTypes.Insert("ZmbM_HikerSkinny_Yellow");	InfectedTypes.Insert("ZmbF_MilkMaidOld_Beige");
+		InfectedTypes.Insert("ZmbM_PolicemanFat");			InfectedTypes.Insert("ZmbF_VillagerOld_Green");
+		InfectedTypes.Insert("ZmbM_PatrolNormal_Summer");	InfectedTypes.Insert("ZmbF_ShortSkirt_yellow");
+		InfectedTypes.Insert("ZmbM_JoggerSkinny_Blue");		InfectedTypes.Insert("ZmbF_NurseFat");
+		InfectedTypes.Insert("ZmbM_VillagerOld_White");		InfectedTypes.Insert("ZmbF_PoliceWomanNormal");
+		InfectedTypes.Insert("ZmbM_SkaterYoung_Brown");		InfectedTypes.Insert("ZmbF_HikerSkinny_Blue");
+		InfectedTypes.Insert("ZmbM_MechanicSkinny_Green");	InfectedTypes.Insert("ZmbF_ParamedicNormal_Green");
+		InfectedTypes.Insert("ZmbM_DoctorFat");				InfectedTypes.Insert("ZmbF_JournalistNormal_Red");
+		InfectedTypes.Insert("ZmbM_PatientSkinny");			InfectedTypes.Insert("ZmbF_SurvivorNormal_White");
+		InfectedTypes.Insert("ZmbM_ClerkFat_Brown");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Brown");
+		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
+		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
+		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");		
 	}
 	
 	void ~ShroomsMission()
@@ -134,7 +148,7 @@ class ShroomsMission extends SurvivorMissions
 		MissionObject = ItemBase.Cast( GetGame().CreateObject( "MountainBag_Green", m_MissionPosition ));
 		
 		//Get random loadout 
-		int selectedLoadout = Math.RandomIntInclusive( 0, 5);	//!change randomization limit after adding new loadouts!	
+		int selectedLoadout = Math.RandomIntInclusive( 0, 9);	//!change randomization limit after adding new loadouts!	
 
 		//Spawn selected loadout items in mission object
 		EntityAI weapon;
@@ -238,7 +252,77 @@ class ShroomsMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("TLRLight");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
-		
+		if (selectedLoadout == 6)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("MP5K");
+				weapon.GetInventory().CreateAttachment("MP5_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("MP5k_StockBttstck");
+				weapon.GetInventory().CreateAttachment("M68Optic");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("AmmoBox_9x19_25rnd");
+			MissionObject.GetInventory().CreateInInventory("GP5GasMask");
+			MissionObject.GetInventory().CreateInInventory("NBCGlovesGray");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
+			MissionObject.GetInventory().CreateInInventory("SpaghettiCan");
+			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Red");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 7)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("AK74");
+				weapon.GetInventory().CreateAttachment("AK_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");	
+				weapon.GetInventory().CreateAttachment("KashtanOptic");
+				weapon.GetInventory().CreateAttachment("'AK_Suppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Headtorch_Grey");
+			MissionObject.GetInventory().CreateInInventory("NBCBootsGray");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("TacticalBaconCan");
+			MissionObject.GetInventory().CreateInInventory("Tomato");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 8)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("AKS74U");
+				weapon.GetInventory().CreateAttachment("AKS74U_Bttstck");			
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("Matchbox");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("PortableGasStove");
+			MissionObject.GetInventory().CreateInInventory("SmallGasCanister");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");			
+		}
+		if (selectedLoadout == 9)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("Glock19");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("FishingRod");
+			MissionObject.GetInventory().CreateInInventory("Carp");
+			MissionObject.GetInventory().CreateInInventory("Hook");
+			MissionObject.GetInventory().CreateInInventory("Worm");
+			MissionObject.GetInventory().CreateInInventory("CombatKnife");
+			MissionObject.GetInventory().CreateInInventory("FieldShovel");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("MackerelFilletMeat");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");			
+		}
+					
 		Print("[SMM] Mission rewards spawned in reward container. Randomly selected loadout was "+ selectedLoadout +"." );	
 	}
 	

@@ -1,5 +1,6 @@
-class CityMallMission extends SurvivorMissions
-{
+class CityStoreMission extends SurvivorMissions
+{	//CityStore is a copy of UrbanMall mission, it uses another secondary mission building
+	
 	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
@@ -20,15 +21,17 @@ class CityMallMission extends SurvivorMissions
 	ref array<vector> SecInfectSpawns = new array<vector>;
 	ref array<string> InfectedTypes = new array<string>;
 	ref array<ref Param3<string,vector,vector>> Barricades = new array<ref Param3<string,vector,vector>>;
+
 	
 	//Mission variables 
+	vector Offset = "-1.351 0.00 0.824";				//Offset vector of all spawn positions of primary mission
 	vector TargetPosition = "-5.3 -1.2 1.9";
 	vector RewardsPosition = "-3.46 -5.72 6.63";
 	string SurvivorName;	
 	
 	bool IsExtended() return true;
 	
-	void CityMallMission()
+	void CityStoreMission()
 	{		
 		//Select primary mission
 		m_MissionExtended = true;
@@ -49,50 +52,61 @@ class CityMallMission extends SurvivorMissions
 		
 		//Set mission messages for primary mission
 		m_MissionMessage1 = "Ms. "+ SurvivorName +", a ground school teacher, told me that she has brought some children of her class in safety from their infected families. I promised that i will help her for getting food and other medical supplies for the kids.";
-		m_MissionMessage2 = "Yesterday I found out that the Supermarket in\n** "+ m_MissionLocation +" **\nis barricaded and probably has some food inside. But there were too many infected around, i wasn't able to check the Supermarket.";
-		m_MissionMessage3 = "She immediately needs following things from the market:\n- "+ ReqFoodAmount +" cans of food and..\n- "+ ReqMedAmount +" packets of antibiotics\nPlease help me to support Ms. "+ SurvivorName +" with those life essentials for the kids.";
+		m_MissionMessage2 = "Yesterday I found out that the city store\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nis barricaded and probably has some food inside. But there were too many infected around, i wasn't able to check the Supermarket.";
+		m_MissionMessage3 = "She immediately needs following things:\n- "+ ReqFoodAmount +" cans of food\n- "+ ReqMedAmount +" packets of antibiotics\nPlease help me to support Ms. "+ SurvivorName +" with these life essentials for the kids. Be careful!";
 		
 		//Spawnpoints for antibiotics in store (cash desk)
-		MedSpawns.Insert("-5.392 -0.686 1.087");
-		MedSpawns.Insert("-5.836 -0.686 1.087");
-		MedSpawns.Insert("-5.865 -0.686 2.964");
-		MedSpawns.Insert("-5.051 -0.686 3.033");
-		MedSpawns.Insert("-5.092 -0.686 1.087");
+		MedSpawns.Insert("-5.392 -0.686 1.087" - Offset );
+		MedSpawns.Insert("-5.836 -0.686 1.087" - Offset );
+		MedSpawns.Insert("-5.865 -0.686 2.964" - Offset );
+		MedSpawns.Insert("-5.051 -0.686 3.033" - Offset );
+		MedSpawns.Insert("-5.092 -0.686 1.087" - Offset );
 				
 		//Spawnpoints for food in store (shelves)
-		FoodSpawns.Insert("10.9 0.061 0.019");
-		FoodSpawns.Insert("10.9 0.061 0.857");
-		FoodSpawns.Insert("10.9 0.061 2.525");
-		FoodSpawns.Insert("10.9 0.061 3.195");
-		FoodSpawns.Insert("10.9 -0.270 0.119");
-		FoodSpawns.Insert("10.9 -0.621 0.219");
-		FoodSpawns.Insert("10.5 0.061 0.019");
-		FoodSpawns.Insert("10.5 -0.270 0.857");
-		FoodSpawns.Insert("10.5 -0.621 2.525");
-		FoodSpawns.Insert("10.5 0.061 3.195");				
+		FoodSpawns.Insert("10.9 0.061 0.019" - Offset );
+		FoodSpawns.Insert("10.9 0.061 0.857" - Offset );
+		FoodSpawns.Insert("10.9 0.061 2.525" - Offset );
+		FoodSpawns.Insert("10.9 0.061 3.195" - Offset );
+		FoodSpawns.Insert("10.9 -0.280 0.119" - Offset );
+		FoodSpawns.Insert("10.9 -0.621 0.219" - Offset );
+		FoodSpawns.Insert("10.5 0.061 0.019" - Offset );
+		FoodSpawns.Insert("10.5 -0.280 0.857" - Offset );
+		FoodSpawns.Insert("10.5 -0.621 2.525" - Offset );
+		FoodSpawns.Insert("10.5 0.061 3.195" - Offset );				
 				
 		//Infected spawnpoints for primary mission
 		//indoor
-		PriInfectSpawns.Insert("-8.4 0 -1.2");	//dead
-		PriInfectSpawns.Insert("-3.8 0 -1.3");	//dead
-		PriInfectSpawns.Insert("-7.4 0 2");		//dead 
-		PriInfectSpawns.Insert("12.2 0 1.5");
-		PriInfectSpawns.Insert("10.5 0 -6.7");
+		PriInfectSpawns.Insert("-8.4 0 -1.2" - Offset );	//dead
+		PriInfectSpawns.Insert("-3.8 0 -1.3" - Offset );	//dead
+		PriInfectSpawns.Insert("-7.4 0 2" - Offset );		//dead 
+		PriInfectSpawns.Insert("12.2 0 1.5" - Offset );
+		PriInfectSpawns.Insert("10.5 0 -6.7" - Offset );
 		//outdoor
-		PriInfectSpawns.Insert("-13.2 0 -6.5");
-		PriInfectSpawns.Insert("-13.6 0 2.8");
-		PriInfectSpawns.Insert("-8.57 0 7.3");
-		PriInfectSpawns.Insert("-0.47 0 10.13");
-		PriInfectSpawns.Insert("10.4 0 10");
-		PriInfectSpawns.Insert("-7.5 0 -11");
-		PriInfectSpawns.Insert("5.7 0 -12");
+		PriInfectSpawns.Insert("-13.2 0 -6.5" - Offset );
+		PriInfectSpawns.Insert("-13.6 0 2.8" - Offset );
+		PriInfectSpawns.Insert("-8.57 0 7.3" - Offset );
+		PriInfectSpawns.Insert("-0.47 0 10.13" - Offset );
+		PriInfectSpawns.Insert("10.4 0 10" - Offset );
+		PriInfectSpawns.Insert("-7.5 0 -11" - Offset );
+		PriInfectSpawns.Insert("5.7 0 -12" - Offset );
 		
 		//Infected spawnpoints for secondary mission 
-		SecInfectSpawns.Insert("-3.3 0 -5.5");
-		SecInfectSpawns.Insert("-2.9 0 -9");
-		SecInfectSpawns.Insert("6.7 0 -7.2");
-		SecInfectSpawns.Insert("8 0 4");
-		
+		//indoor 1st floor
+		SecInfectSpawns.Insert("-7.81 -2.55 -4.34");	//policeman in quiet room
+		SecInfectSpawns.Insert("-4.5 -2.55 -1.07");		//policeman in office 
+		SecInfectSpawns.Insert("7.33 -2.55 -3.68");		//policeman in back office
+		SecInfectSpawns.Insert("2.44 -2.55 -2.31");		//interrogated
+		//indoor 2nd floor
+		SecInfectSpawns.Insert("2.68 -6.35 5.97");		//arrested
+		SecInfectSpawns.Insert("3.63 -6.35 5.32");		//arrested
+		SecInfectSpawns.Insert("3.89 -6.35 4.51");		//arrested
+		SecInfectSpawns.Insert("3.94 -6.35 3.5");		//arrested
+		//outdoor
+		SecInfectSpawns.Insert("-5.7 0 -11.2");
+		SecInfectSpawns.Insert("-7.0 0 7.7");
+		SecInfectSpawns.Insert("5.6 0 7.1");
+		SecInfectSpawns.Insert("4.5 0 -8.3");
+	
 		//Infected types for primary and secondary mission position
 		//Male												//Female
 		InfectedTypes.Insert("ZmbM_CitizenASkinny_Brown");	InfectedTypes.Insert("ZmbF_JournalistNormal_White");
@@ -123,79 +137,79 @@ class CityMallMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
 		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
 		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");
-
+		
 		//Shop barricades  (view from inside building!)
 		//shopwindow bottom line  (from right to left) 
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "11.24 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "9.98 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "8.72 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "7.46 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "6.2 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "4.94 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "3.68 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "2.42 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "1.16 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-0.1 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-1.36 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-2.62 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-3.88 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-5.14 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-6.4 -0.05 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "10.0 0.9 5.9", "0 110 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "7.0 0.9 5.9", "0 110 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "4.0 0.9 5.9", "0 110 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "1.0 0.9 5.9", "0 110 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "-2.0 0.9 5.9", "0 110 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "-5.0 0.9 5.9", "0 110 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "11.24 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "9.98 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "8.72 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "7.46 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "6.2 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "4.94 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "3.68 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "2.42 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "1.16 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-0.1 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-1.36 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-2.62 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-3.88 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-5.14 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-6.4 -0.05 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "10.0 0.9 5.9" - Offset , "0 110 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "7.0 0.9 5.9" - Offset , "0 110 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "4.0 0.9 5.9" - Offset , "0 110 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "1.0 0.9 5.9" - Offset , "0 110 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "-2.0 0.9 5.9" - Offset , "0 110 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Boat_Small1", "-5.0 0.9 5.9" - Offset , "0 110 0"));
 		//shopwindow top line  (from right to left)
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "11.24 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "9.98 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "8.72 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "7.46 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "6.2 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "4.94 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "3.68 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "2.42 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "1.16 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-0.1 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-1.36 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-2.62 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-3.88 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-5.14 1.21 5.97", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-6.4 1.21 5.97", "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "11.24 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "9.98 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "8.72 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "7.46 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "6.2 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "4.94 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "3.68 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "2.42 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "1.16 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-0.1 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-1.36 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-2.62 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-3.88 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-5.14 1.21 5.97" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-6.4 1.21 5.97" - Offset , "0 90 0"));
 		//shopwindow small 
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.370 0.11 6.03", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.622 0.11 6.03", "0 -90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-7.764 0.31 6.03", "180 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.642 0.31 6.03", "180 -90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.370 0.51 6.03", "180 -90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.622 0.51 6.03", "0 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.070 0.72 6.03", "0 -90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.322 0.72 6.03", "180 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.370 0.93 6.03", "0 -90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.622 0.93 6.03", "180 -90 0"));				
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.370 0.11 6.03" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.622 0.11 6.03" - Offset , "0 -90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-7.764 0.31 6.03" - Offset , "180 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.642 0.31 6.03" - Offset , "180 -90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.370 0.51 6.03" - Offset , "180 -90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.622 0.51 6.03" - Offset , "0 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.070 0.72 6.03" - Offset , "0 -90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.322 0.72 6.03" - Offset , "180 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-8.370 0.93 6.03" - Offset , "0 -90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-9.622 0.93 6.03" - Offset , "180 -90 0"));				
 		//shop entrance		
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 -0.602 4.070", "90 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 -0.602 2.810", "90 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.236 -0.602 1.560", "75 85 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 0.658 4.070", "90 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 0.658 2.810", "90 90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.236 0.658 1.560", "75 95 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_Table", "-10.036 -0.252 4.070", "0 0 -90"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_Table", "-10.036 -0.252 2.970", "0 0 -90"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_WoodenCrate", "-10.0 -0.852 3.520", "0 0 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_WoodenCrate", "-9.69 -0.882 1.7", "-30 0 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_WoodenCrate", "-9.59 -0.262 1.7", "-32 0 5"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 -0.602 4.070" - Offset , "90 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 -0.602 2.810" - Offset , "90 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.236 -0.602 1.560" - Offset , "75 85 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 0.658 4.070" - Offset , "90 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.436 0.658 2.810" - Offset , "90 90 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "-10.236 0.658 1.560" - Offset , "75 95 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_Table", "-10.036 -0.252 4.070" - Offset , "0 0 -90"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_Table", "-10.036 -0.252 2.970" - Offset , "0 0 -90"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_WoodenCrate", "-10.0 -0.852 3.520" - Offset , "0 0 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_WoodenCrate", "-9.69 -0.882 1.7" - Offset , "-30 0 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("Land_Roadblock_WoodenCrate", "-9.59 -0.262 1.7" - Offset , "-32 0 5"));
 		//other stuff, dead survivor related 
-		Barricades.Insert( new Param3<string,vector,vector>("AdvancedImprovisedShelterPitched", "7.84 -1.18149 1.39", "-90 0 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("PissGround", "-10.26 -1.21049 -8.08", "180 0 0"));
-									
+		Barricades.Insert( new Param3<string,vector,vector>("AdvancedImprovisedShelterPitched", "7.84 -1.18149 1.39" - Offset , "-90 0 0"));
+		Barricades.Insert( new Param3<string,vector,vector>("PissGround", "-10.26 -1.200 -8.08" - Offset , "180 0 0"));
+		
 		//Search for mission building at primary mission position	
 		GetGame().GetObjectsAtPosition( m_MissionPosition , 1.0 , m_ObjectList , m_ObjectCargoList );
 		for ( int i = 0 ; i < m_ObjectList.Count(); i++ )
 		{ 
 			Object FoundObject = m_ObjectList.Get(i);
-			if ( FoundObject.GetType() == "Land_City_Store" )
+			if ( FoundObject.GetType() == "Land_City_Store_WithStairs" )
 			{	
 				MissionBuilding = FoundObject;			 
 				Print("[SMM] MissionBuilding is "+ MissionBuilding.GetType() +" at "+ m_MissionDescription[2] +" of "+ m_MissionDescription[1] +" @ "+ MissionBuilding.GetPosition() );
@@ -216,7 +230,7 @@ class CityMallMission extends SurvivorMissions
 		}			
 	}
 	
-	void ~CityMallMission()
+	void ~CityStoreMission()
 	{	
 		//Despawn all remaining mission objects
 		if ( m_MissionObjects )
@@ -258,7 +272,7 @@ class CityMallMission extends SurvivorMissions
 			//Spawn antibiotics
 			for ( int i=0; i < MedSpawns.Count(); i++ )		
 			{
-				Object Med = GetGame().CreateObject("TetracyclineAntibiotics", MissionBuilding.ModelToWorld("-5.836 -0.216 1.005")); //safe position
+				Object Med = GetGame().CreateObject("TetracyclineAntibiotics", MissionBuilding.ModelToWorld("-5.836 -0.216 1.005" - Offset ) ); //safe position
 				vector MedPos = MissionBuilding.ModelToWorld( MedSpawns.Get(i) );
 				Med.SetPosition( MedPos );
 				m_MissionObjects.Insert( Med );
@@ -273,18 +287,24 @@ class CityMallMission extends SurvivorMissions
 				CanOfFood.SetPosition( CanPos );
 				m_MissionObjects.Insert( CanOfFood );
 			}
+			
+			//Spawn extra weapon
+			Object weapon = GetGame().CreateObject("Mp133Shotgun", MissionBuilding.ModelToWorld("9.67 -1.16 0.53"));
+			m_MissionObjects.Insert( weapon );
+			weapon = GetGame().CreateObject("Ammo_12gaPellets", MissionBuilding.ModelToWorld("9.57 -1.16 0.63"));
+			weapon = GetGame().CreateObject("Ammo_12gaPellets", MissionBuilding.ModelToWorld("9.51 -1.16 0.73"));
 		}
 		else
 		{
 			//Spawn orange MountainBag 
-			vector RewardPos = MissionBuilding.ModelToWorld( RewardsPosition );
-			MissionObject = ItemBase.Cast( GetGame().CreateObject( "MountainBag_Orange" , RewardPos ));
+			//vector pos = MissionBuilding.ModelToWorld( RewardsPosition );
+			MissionObject = ItemBase.Cast( GetGame().CreateObject( "MountainBag_Orange" , m_MissionPosition ));
 			m_MissionObjects.InsertAt( MissionObject, 0 );
 		} 		
 	}
 	
 	void SpawnRewards()
-	{
+	{		
 		//new MissionObject after deleting orange bag
 		MissionObject = ItemBase.Cast( GetGame().CreateObject( "MountainBag_Orange", m_MissionPosition ));
 		
@@ -463,7 +483,7 @@ class CityMallMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");			
 		}
-					
+							
 		Print("[SMM] Mission rewards spawned in reward container. Randomly selected loadout was "+selectedLoadout+"." );			
 	}
 	
@@ -472,7 +492,7 @@ class CityMallMission extends SurvivorMissions
 		Object FoundObject;
 		
 		if ( m_MissionExtended )
-		{	
+		{	//Primary mission is selected
 			//New MissionPosition is at cash desk
 			m_MissionPosition = MissionBuilding.ModelToWorld( TargetPosition );
 	 		
@@ -505,7 +525,6 @@ class CityMallMission extends SurvivorMissions
 				vector BarricadeDir = MissionBuilding.GetDirection();
 				Object PlankBarricade;
 				
-				
 				if ( BarricadeType == "Land_Boat_Small1" )
 				PlankBarricade = GetGame().CreateObject( BarricadeType, BarricadePos, true );
 				else
@@ -525,20 +544,20 @@ class CityMallMission extends SurvivorMissions
 			}
 			
 			//Spawn dead survivors hideout legacy	
-			EntityAI Cooker = EntityAI.Cast( GetGame().CreateObject( "PortableGasStove", MissionBuilding.ModelToWorld("-5.96 -0.2156 0.84")));
+			EntityAI Cooker = EntityAI.Cast( GetGame().CreateObject( "PortableGasStove", MissionBuilding.ModelToWorld("-5.96 -0.2156 0.84" - Offset )));
 			Cooker.GetInventory().CreateAttachment("SmallGasCanister");
 			Cooker.GetInventory().CreateAttachment("Pot");
 			m_MissionObjects.Insert( Cooker );
 			
-			m_MissionObjects.Insert( GetGame().CreateObject( "Paper", MissionBuilding.ModelToWorld("-9.74 -1.17 -7.49") ));
-			m_MissionObjects.Insert( GetGame().CreateObject( "Paper", MissionBuilding.ModelToWorld("-8.18 -1.17 -8.09") ));
-			m_MissionObjects.Insert( GetGame().CreateObject( "ShitGround", MissionBuilding.ModelToWorld("-9.54 -1.17 -7.69") ));
-			m_MissionObjects.Insert( GetGame().CreateObject( "ShitGround", MissionBuilding.ModelToWorld("-9.34 -1.17 -7.89") ));
+			m_MissionObjects.Insert( GetGame().CreateObject( "Paper", MissionBuilding.ModelToWorld("-9.74 -1.17 -7.49" - Offset )));
+			m_MissionObjects.Insert( GetGame().CreateObject( "Paper", MissionBuilding.ModelToWorld("-8.18 -1.17 -8.09" - Offset )));
+			m_MissionObjects.Insert( GetGame().CreateObject( "ShitGround", MissionBuilding.ModelToWorld("-9.54 -1.17 -7.69" - Offset )));
+			m_MissionObjects.Insert( GetGame().CreateObject( "ShitGround", MissionBuilding.ModelToWorld("-9.34 -1.17 -7.89" - Offset )));
 			
 			Print("[SMM] Survivor Mission "+ m_selectedMission +" :: "+ m_MissionName +" ...primary mission deployed!");
 		}
 		else
-		{
+		{	//Secondary mission is selected
 			//New MissionPosition is bed in quiet room 
 			m_MissionPosition = MissionBuilding.ModelToWorld( RewardsPosition );
 	 		
@@ -581,7 +600,7 @@ class CityMallMission extends SurvivorMissions
 				for ( int j = 0 ; j < PriInfectSpawns.Count() ; j++ )
 				{
 		    	   	RandomInfected = InfectedTypes.GetRandomElement();
-					InfectedPos = MissionBuilding.ModelToWorld( PriInfectSpawns.Get(j) );
+					InfectedPos = MissionBuilding.ModelToWorld( PriInfectSpawns.Get(j) - Offset );
 					Zed = DayZInfected.Cast( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ));
 					if ( j < DeadInfectedCount ) Zed.SetHealth("","",0);
 					m_MissionAIs.Insert( Zed );
@@ -596,7 +615,7 @@ class CityMallMission extends SurvivorMissions
 					InfectedPos = MissionBuilding.ModelToWorld( SecInfectSpawns.Get(k) );
 					Zed = DayZInfected.Cast( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ));
 					m_MissionAIs.Insert( Zed );
-				}		
+				}			
 			}
 		}
 	}
@@ -626,8 +645,8 @@ class CityMallMission extends SurvivorMissions
 
 		//Set messages for secondary mission
 		m_MissionMessage1 = "Allright you have found the supplies, try to get out there safely. Ms. "+ SurvivorName +" never told me her whereabouts because she wants to be absolutely secure from bandits and scavengers.";
-		m_MissionMessage2 = "I think the best will be if you could deposit the supplies in the quiet room of the small\n** "+ m_MissionDescription[3] +" ** police station and put all in the orange backpack i left there. I will check it in one hour and try to contact her on radio.";
-		m_MissionMessage3 = "I have some things for you at the small police station. Be careful, there might be bandits around "+ m_MissionDescription[3] +". They could intercepted our little radio talk here. Good luck!";
+		m_MissionMessage2 = "I think the best will be if you could deposit the supplies in the quiet room of the small\n** "+ m_MissionSecondaryLoc +" ** police station and put all in the orange backpack i left there. I will check it in one hour and try to contact her on radio.";
+		m_MissionMessage3 = "I have some things for you at the small police station. Be careful, there might be bandits around "+ m_MissionSecondaryLoc +". They could intercepted our little radio talk here. Good luck!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1
@@ -651,7 +670,7 @@ class CityMallMission extends SurvivorMissions
 		for ( int i = 0 ; i < m_ObjectList.Count(); i++ )
 		{ 
 			Object FoundObject = m_ObjectList.Get(i);
-			if ( FoundObject.GetType() == "Land_City_Store")
+			if ( FoundObject.GetType() == "Land_City_Store_WithStairs")
 			{	
 				Object Store = FoundObject;			 
 				//Spawn infected at store outdoor
@@ -672,7 +691,7 @@ class CityMallMission extends SurvivorMissions
 	{	//When player enters last mission target zone
 		
 		//Spawn second wave of infected at secondary mission
-		SpawnAIs();		
+		SpawnAIs();				
 	}
 	
 	void PlayerChecks( PlayerBase player )
@@ -694,15 +713,16 @@ class CityMallMission extends SurvivorMissions
 		//Check if container has desired amount of mushrooms collected at primary mission position
 		if ( MissionObject && MissionObject.ClassName() == "MountainBag_Orange" && !m_MissionExtended )
 		{
-			int CargoCount = MissionObject.GetInventory().CountInventory();
 			int LastCount = 0;
+			int CargoCount = MissionObject.GetInventory().CountInventory();			
 			int FoundMedObjects = 0;
 			int FoundFoodObjects = 0;
 			
 			if ( CargoCount != LastCount )
 			{
 				if ( CargoCount >= ReqFoodAmount + ReqMedAmount && FoundMedObjects <= ReqMedAmount && FoundFoodObjects <= ReqFoodAmount )
-				{	
+				{	Print("[SMM] Cargo check OK. Foodcount: "+ FoundFoodObjects +", Medcount: "+ FoundMedObjects );
+					
 					CargoBase CargoItems1 = MissionObject.GetInventory().GetCargo();		
 					
 					for ( int i = 0; i < CargoCount; i++ )

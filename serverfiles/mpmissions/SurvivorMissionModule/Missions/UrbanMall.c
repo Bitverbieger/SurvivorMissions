@@ -2,7 +2,7 @@ class UrbanMallMission extends SurvivorMissions
 {	//UrbanMall is a copy of CityMall mission, it has equal functionality but uses different MissionBuilding 
 	//types which also have different model center positions. All model vectors of indoor spawnpoints get an offset.
 	 
-	//Mission related entities
+	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
 	ItemBase MissionObject;
@@ -125,7 +125,21 @@ class UrbanMallMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_HeavyIndustryWorker");	InfectedTypes.Insert("ZmbF_PatientOld");
 		InfectedTypes.Insert("ZmbM_Jacket_black");			InfectedTypes.Insert("ZmbF_ShortSkirt_beige");
 		InfectedTypes.Insert("ZmbM_Jacket_stripes");		InfectedTypes.Insert("ZmbF_VillagerOld_Red");
-
+		InfectedTypes.Insert("ZmbM_HikerSkinny_Blue");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Red");
+		InfectedTypes.Insert("ZmbM_HikerSkinny_Yellow");	InfectedTypes.Insert("ZmbF_MilkMaidOld_Beige");
+		InfectedTypes.Insert("ZmbM_PolicemanFat");			InfectedTypes.Insert("ZmbF_VillagerOld_Green");
+		InfectedTypes.Insert("ZmbM_PatrolNormal_Summer");	InfectedTypes.Insert("ZmbF_ShortSkirt_yellow");
+		InfectedTypes.Insert("ZmbM_JoggerSkinny_Blue");		InfectedTypes.Insert("ZmbF_NurseFat");
+		InfectedTypes.Insert("ZmbM_VillagerOld_White");		InfectedTypes.Insert("ZmbF_PoliceWomanNormal");
+		InfectedTypes.Insert("ZmbM_SkaterYoung_Brown");		InfectedTypes.Insert("ZmbF_HikerSkinny_Blue");
+		InfectedTypes.Insert("ZmbM_MechanicSkinny_Green");	InfectedTypes.Insert("ZmbF_ParamedicNormal_Green");
+		InfectedTypes.Insert("ZmbM_DoctorFat");				InfectedTypes.Insert("ZmbF_JournalistNormal_Red");
+		InfectedTypes.Insert("ZmbM_PatientSkinny");			InfectedTypes.Insert("ZmbF_SurvivorNormal_White");
+		InfectedTypes.Insert("ZmbM_ClerkFat_Brown");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Brown");
+		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
+		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
+		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");
+		
 		//Shop barricades  (view from inside building!)
 		//shopwindow bottom line  (from right to left) 
 		Barricades.Insert( new Param3<string,vector,vector>("MetalPlate", "11.24 -0.05 5.97" - Offset , "0 90 0"));
@@ -319,7 +333,7 @@ class UrbanMallMission extends SurvivorMissions
 		GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 1000, false, PoliceDepartment );
 		
 		//Get random loadout 
-		int selectedLoadout = Math.RandomIntInclusive( 0, 5);	//!change randomization limit after adding new loadouts!	
+		int selectedLoadout = Math.RandomIntInclusive( 0, 9);	//!change randomization limit after adding new loadouts!	
 
 		//Spawn selected loadout items in mission object
 		EntityAI weapon;
@@ -423,7 +437,77 @@ class UrbanMallMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("TLRLight");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
-		
+		if (selectedLoadout == 6)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("MP5K");
+				weapon.GetInventory().CreateAttachment("MP5_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("MP5k_StockBttstck");
+				weapon.GetInventory().CreateAttachment("M68Optic");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_MP5_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("AmmoBox_9x19_25rnd");
+			MissionObject.GetInventory().CreateInInventory("GP5GasMask");
+			MissionObject.GetInventory().CreateInInventory("NBCGlovesGray");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
+			MissionObject.GetInventory().CreateInInventory("SpaghettiCan");
+			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Red");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 7)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("AK74");
+				weapon.GetInventory().CreateAttachment("AK_RailHndgrd");
+				weapon.GetInventory().CreateAttachment("AK74_WoodBttstck");	
+				weapon.GetInventory().CreateAttachment("KashtanOptic");
+				weapon.GetInventory().CreateAttachment("'AK_Suppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Headtorch_Grey");
+			MissionObject.GetInventory().CreateInInventory("NBCBootsGray");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("TacticalBaconCan");
+			MissionObject.GetInventory().CreateInInventory("Tomato");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");				
+		}
+		if (selectedLoadout == 8)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("AKS74U");
+				weapon.GetInventory().CreateAttachment("AKS74U_Bttstck");			
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_AK74_30Rnd");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");
+			MissionObject.GetInventory().CreateInInventory("Matchbox");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("PortableGasStove");
+			MissionObject.GetInventory().CreateInInventory("SmallGasCanister");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");			
+		}
+		if (selectedLoadout == 9)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("Glock19");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_Glock_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("FishingRod");
+			MissionObject.GetInventory().CreateInInventory("Carp");
+			MissionObject.GetInventory().CreateInInventory("Hook");
+			MissionObject.GetInventory().CreateInInventory("Worm");
+			MissionObject.GetInventory().CreateInInventory("CombatKnife");
+			MissionObject.GetInventory().CreateInInventory("FieldShovel");
+			MissionObject.GetInventory().CreateInInventory("Canteen");	
+			MissionObject.GetInventory().CreateInInventory("MackerelFilletMeat");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");			
+		}
+					
 		//Spawn additional police department items 
 		for ( int i=0; i < PoliceInventory.Count(); i++ )
 		{

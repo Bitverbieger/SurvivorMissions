@@ -1,51 +1,38 @@
-class GraveyardMission extends SurvivorMissions
+class HordeMission extends SurvivorMissions
 {
 	//Mission related entities 
 	ItemBase MissionObject;
-	UndergroundStash stash;
 	
 	//Mission parameters
 	int MsgDlyFinish = 300;					//seconds, message delay time after player has finished mission
+	int HordeDensity = 60;					//infected, spawned in circle 
 	
 	//Mission containers
-	ref array<vector> InfectedSpawns = new array<vector>;
 	ref array<string> InfectedTypes = new array<string>;
 
 	//Mission variables 
-	string SurvivorName;		
+			
 	
 	bool IsExtended() return false;
 	
-	void GraveyardMission()
+	void HordeMission()
 	{
 		//Mission mission timeout
 		m_MissionTimeout = 2700;			//seconds, mission duration time
 		
 		//Mission zones
-		m_MissionZoneOuterRadius = 100.0;	//meters (!Do not set lower than 200m), mission activation distance
-		m_MissionZoneInnerRadius = 2.0;		//meters (!Do not set outside of 1-5m), mission finishing distance to target object
+		m_MissionZoneOuterRadius = 200.0;	//meters (!Do not set lower than 200m), mission activation distance
+		m_MissionZoneInnerRadius = 3.0;		//meters (!Do not set outside of 1-5m), mission finishing distance to target object
 				
 		//Mission informant
 		m_MissionInformant = "Dr. Legasov";
-	
-		//Mission person names
-		TStringArray SurvivorNames = {"Shukov", "Stonov", "Alexejev", "Kasakov", "Stepanov", "Ivanov", "Mironov", "Dimitrijev", "Antonov", "Sorokin"};
-		SurvivorName = SurvivorNames.GetRandomElement();
 		
 		//Set mission messages
-		m_MissionMessage1 = "I just received that the commander of the Chernarus Defense Troups General Major "+ SurvivorName +" hasn't survived his infection.";
-		m_MissionMessage2 = "He was one of the Soviet Army officers in Chernarus. "+ SurvivorName +" told me that he lost over 2000 men here and will never give up the fight against the infection as long as he lives. He got infected while securing residents of "+ m_MissionLocation +".";
-		m_MissionMessage3 = "He hided some equipment at the graveyard of\n** "+ m_MissionLocation +", "+ m_MissionLocationDir +" near the church **\nI think someone should get his lagcy. He burried it anywhere near the graves. You need atleast a shovel. Take care!";
+		m_MissionMessage1 = "I got an emergency call from a heli pilot who crashed somewhere in the forests. He is injured but still alive. He was afraid that the infected will find him soon.";
+		m_MissionMessage2 = "He maid it to a house in a village near the crash site. He is well equiped and he think he will stay in the house over the night where he treats his open wounds.";
+		m_MissionMessage3 = "The house is at the ** "+ m_MissionLocationDir +" side of "+ m_MissionLocation +" **\nBe careful there may be infected and other survivors who want his equipment!";
 		
-		//Infected spawnpoints
-		InfectedSpawns.Insert("-10.5186 0 25.0269");
-		InfectedSpawns.Insert("24.9775 0 -10.4146");
-		InfectedSpawns.Insert("-30.1726 0 -6.2729");
-		InfectedSpawns.Insert("-20.9209 0 4.6636");
-		InfectedSpawns.Insert("15.0283 0 -10.3276");
-		InfectedSpawns.Insert("7.2461 0 30.5884");
-		InfectedSpawns.Insert("-20.6855 0 5.9956");
-		
+
 		//Infected types
 		//Male												//Female
 		InfectedTypes.Insert("ZmbM_CitizenASkinny_Brown");	InfectedTypes.Insert("ZmbF_JournalistNormal_White");
@@ -75,27 +62,23 @@ class GraveyardMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_ClerkFat_Brown");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Brown");
 		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
 		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
-		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");		
+		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");
 	}
 	
-	void ~GraveyardMission()
+	void ~HordeMission()
 	{
 		//Despawn all remaining mission objects
 		if ( m_MissionObjects )
 		{	
 			Print("[SMM] Despawning "+ m_MissionObjects.Count() +" mission objects from old mission...");				
 			for ( int i = 0; i < m_MissionObjects.Count(); i++ )
-			{
+			{ 
 				if ( !m_MissionObjects.Get(i) ) continue;
-				else 
+				else
 				{
-					//Delete Object clientside first
-					if ( m_MissionObjects.Get(i).GetType() == "ClutterCutter2x2" )
-					GetGame().RemoteObjectDelete( m_MissionObjects.Get(i) );
-					
-					//Delete Object serverside	
-					GetGame().ObjectDelete( m_MissionObjects.Get(i) );		
-				}
+					//Delete Object serverside
+					GetGame().ObjectDelete( m_MissionObjects.Get(i) );
+				}		
 			}
 			m_MissionObjects.Clear();
 		}
@@ -117,83 +100,66 @@ class GraveyardMission extends SurvivorMissions
 		
 		//Delete PlayersInZone list & reset container takeaway
 		if ( m_PlayersInZone )	m_PlayersInZone.Clear();
-		if ( m_ContainerWasTaken ) m_ContainerWasTaken = false;			
-	}	
+		if ( m_ContainerWasTaken ) m_ContainerWasTaken = false;
+	}
 	
 	void SpawnObjects()
-	{	
+	{				
+		//Mission object is pilot bag
+		MissionObject = ItemBase.Cast( GetGame().CreateObject("AliceBag_Camo", m_MissionPosition ) );
+		MissionObject.SetPosition( m_MissionPosition + "0 0.2 0" );
+		//MissionObject.PlaceOnSurface(); 
 		
-		//Create underground stash  
-		stash = UndergroundStash.Cast( GetGame().CreateObject( "UndergroundStash", m_MissionPosition ));
-		stash.PlaceOnGround(); 
-		Print(" Orientation UndergroundStash : "+ stash.GetOrientation().ToString() );
-		vector pos = stash.GetPosition();
-		vector ori = stash.GetOrientation();
+		//Get random loadout 			
+		int selectedLoadout = Math.RandomIntInclusive(0,11);	//!Change randomization limit after adding new loadouts!
 		
-		if ( ori[2] == -180 || ori[2] == 180 )
-		{	//Bugfix for invisible Undergroundstashes
-			ori[2] = 0;
-			stash.SetOrientation( ori );
-		}
-				
-		//Spawn seachest in stash
-		MissionObject = ItemBase.Cast( stash.GetInventory().CreateInInventory("SeaChest"));		
-		
-		//Get random loadout 
-		int selectedLoadout = Math.RandomIntInclusive( 0, 9);	//!change randomization limit after adding new loadouts!	
-
 		//Spawn selected loadout items in mission object
 		EntityAI weapon;
-				
-		if ( selectedLoadout == 0 )
+								
+		if (selectedLoadout == 0)
 		{
 			weapon = MissionObject.GetInventory().CreateInInventory("M4A1_Green");
 				weapon.GetInventory().CreateAttachment("M4_RISHndgrd_Green");
 				weapon.GetInventory().CreateAttachment("M4_MPBttstck");
-				weapon.GetInventory().CreateAttachment("ACOGOptic");
 				weapon.GetInventory().CreateAttachment("M4_Suppressor");
+				weapon.GetInventory().CreateAttachment("ACOGOptic");
+				//weapon.GetInventory().CreateAttachment("M4_T3NRDSOptic");
 			MissionObject.GetInventory().CreateInInventory("Mag_STANAG_30Rnd");
-			MissionObject.GetInventory().CreateInInventory("Mag_STANAG_30Rnd");
-			MissionObject.GetInventory().CreateInInventory("M4_T3NRDSOptic");
 			MissionObject.GetInventory().CreateInInventory("Ammo_556x45");
 			MissionObject.GetInventory().CreateInInventory("Ammo_556x45");
-			MissionObject.GetInventory().CreateInInventory("CanOpener");
-			MissionObject.GetInventory().CreateInInventory("PeachesCan");
+			MissionObject.GetInventory().CreateInInventory("HuntingKnife");
+			MissionObject.GetInventory().CreateInInventory("BakedBeansCan");
 			MissionObject.GetInventory().CreateInInventory("Canteen");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
 		if (selectedLoadout == 1)
 		{
 			weapon = MissionObject.GetInventory().CreateInInventory("SVD");
-				weapon.GetInventory().CreateAttachment("PSO1Optic");
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
+				//weapon.GetInventory().CreateAttachment("PSO1Optic");
+				//weapon.GetInventory().CreateAttachment("KazuarOptic");
 			MissionObject.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
 			MissionObject.GetInventory().CreateInInventory("Mag_SVD_10Rnd");
-			MissionObject.GetInventory().CreateInInventory("PSO1Optic");
-			MissionObject.GetInventory().CreateInInventory("KazuarOptic");
-			MissionObject.GetInventory().CreateInInventory("Ammo_762x54");
-			MissionObject.GetInventory().CreateInInventory("Ammo_762x54");
-			MissionObject.GetInventory().CreateInInventory("Ammo_762x54");
 			MissionObject.GetInventory().CreateInInventory("Ammo_762x54");
 			MissionObject.GetInventory().CreateInInventory("Ammo_762x54");
 			MissionObject.GetInventory().CreateInInventory("CanOpener");
 			MissionObject.GetInventory().CreateInInventory("PeachesCan");
-			MissionObject.GetInventory().CreateInInventory("Canteen");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle"); 
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
 		if (selectedLoadout == 2)
 		{
 			weapon = MissionObject.GetInventory().CreateInInventory("AKM");
 				weapon.GetInventory().CreateAttachment("AK_RailHndgrd_Green");
+				weapon.GetInventory().CreateAttachment("AK_Suppressor");
 				weapon.GetInventory().CreateAttachment("AK_PlasticBttstck_Green");
 				weapon.GetInventory().CreateAttachment("PSO1Optic");
-				weapon.GetInventory().CreateAttachment("AK_Suppressor");
+				//weapon.GetInventory().CreateAttachment("KobraOptic");
 			MissionObject.GetInventory().CreateInInventory("Mag_AKM_30Rnd");
-			MissionObject.GetInventory().CreateInInventory("Mag_AKM_30Rnd");
 			MissionObject.GetInventory().CreateInInventory("Ammo_762x39");
 			MissionObject.GetInventory().CreateInInventory("Ammo_762x39");
-			MissionObject.GetInventory().CreateInInventory("Ammo_762x39");
-			MissionObject.GetInventory().CreateInInventory("CanOpener");
-			MissionObject.GetInventory().CreateInInventory("PeachesCan");
+			MissionObject.GetInventory().CreateInInventory("KitchenKnife");
+			MissionObject.GetInventory().CreateInInventory("SardinesCan");
 			MissionObject.GetInventory().CreateInInventory("Canteen");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
@@ -201,50 +167,86 @@ class GraveyardMission extends SurvivorMissions
 		{
 			weapon = MissionObject.GetInventory().CreateInInventory("FAL");
 				weapon.GetInventory().CreateAttachment("Fal_OeBttstck");
+				weapon.GetInventory().CreateAttachment("M4_Suppressor");
+				weapon.GetInventory().CreateAttachment("M68Optic");
+				//weapon.GetInventory().CreateAttachment("ReflexOptic");
 			MissionObject.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
 			MissionObject.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
-			MissionObject.GetInventory().CreateInInventory("Mag_FAL_20Rnd");
-			MissionObject.GetInventory().CreateInInventory("M4_Suppressor");
-			MissionObject.GetInventory().CreateInInventory("ACOGOptic");
-			MissionObject.GetInventory().CreateInInventory("FNX45");
-			MissionObject.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
-			MissionObject.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
-			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
-			MissionObject.GetInventory().CreateInInventory("FNP45_MRDSOptic");
-			MissionObject.GetInventory().CreateInInventory("PistolSuppressor");
-			MissionObject.GetInventory().CreateInInventory("PsilocybeMushroom");
-			MissionObject.GetInventory().CreateInInventory("AmmoBox");
-			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");
+			MissionObject.GetInventory().CreateInInventory("MilitaryBelt");	
+			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Yellow");	
+			MissionObject.GetInventory().CreateInInventory("TacticalBaconCan");
+			MissionObject.GetInventory().CreateInInventory("SteakKnife");
 		}	
 		if (selectedLoadout == 4)
 		{
 			weapon = MissionObject.GetInventory().CreateInInventory("SKS");
 				weapon.GetInventory().CreateAttachment("PUScopeOptic");
+				weapon.GetInventory().CreateAttachment("SKS_Bayonet");
 			MissionObject.GetInventory().CreateInInventory("Ammo_762x39");
 			MissionObject.GetInventory().CreateInInventory("Ammo_762x39");
 			weapon = MissionObject.GetInventory().CreateInInventory("FNX45");
 				weapon.GetInventory().CreateAttachment("PistolSuppressor");
-				EntityAI weaponlight = weapon.GetInventory().CreateAttachment("TLRLight");
-					weaponlight.GetInventory().CreateAttachment("Battery9V");
+				weapon.GetInventory().CreateAttachment("FNP45_MRDSOptic");
+				weapon.GetInventory().CreateAttachment("TLRLight");
 			MissionObject.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
 			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
-			MissionObject.GetInventory().CreateInInventory("AmmoBox");
-		}	
-		if (selectedLoadout == 5)
-		{
-			weapon = MissionObject.GetInventory().CreateInInventory("Winchester70");
-				weapon.GetInventory().CreateAttachment("HuntingOptic");
-			MissionObject.GetInventory().CreateInInventory("Ammo_308Win");
-			MissionObject.GetInventory().CreateInInventory("Ammo_308Win");
-			MissionObject.GetInventory().CreateInInventory("FNX45");
-			MissionObject.GetInventory().CreateInInventory("Mag_FNX45_15Rnd");
-			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
-			MissionObject.GetInventory().CreateInInventory("AmmoBox");
-			MissionObject.GetInventory().CreateInInventory("PistolSuppressor");
-			MissionObject.GetInventory().CreateInInventory("TLRLight");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");			
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 		}
+		if (selectedLoadout == 5)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("Winchester70");
+				weapon.GetInventory().CreateAttachment("HuntingOptic");		
+			MissionObject.GetInventory().CreateInInventory("Ammo_308Win");
+			MissionObject.GetInventory().CreateInInventory("Ammo_308Win");
+		
+			weapon = MissionObject.GetInventory().CreateInInventory("CZ75");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");
+				weapon.GetInventory().CreateAttachment("FNP45_MRDSOptic");
+			MissionObject.GetInventory().CreateInInventory("Mag_CZ75_15Rnd");
+			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
+					
+			weapon = MissionObject.GetInventory().CreateInInventory("NVGHeadstrap");
+				weapon.GetInventory().CreateInInventory("NVGoggles");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("PsilocybeMushroom");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
+			MissionObject.GetInventory().CreateInInventory("SpaghettiCan");
+			MissionObject.GetInventory().CreateInInventory("StoneKnife");
+			MissionObject.GetInventory().CreateInInventory("M67Grenade");					
+		}
 		if (selectedLoadout == 6)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("UMP45");
+				weapon.GetInventory().CreateAttachment("M68Optic");
+				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_UMP_25Rnd");
+			MissionObject.GetInventory().CreateInInventory("Ammo_45ACP");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("Cannabis");
+			MissionObject.GetInventory().CreateInInventory("CannabisSeedsPack");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
+			MissionObject.GetInventory().CreateInInventory("TunaCan");
+			MissionObject.GetInventory().CreateInInventory("RDG5Grenade");					
+		}	
+		if (selectedLoadout == 7)
+		{			
+			weapon = MissionObject.GetInventory().CreateInInventory("VSS");
+				weapon.GetInventory().CreateAttachment("PSO11Optic");
+				//weapon.GetInventory().CreateAttachment("PistolSuppressor");			
+			MissionObject.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
+			MissionObject.GetInventory().CreateInInventory("Mag_VSS_10Rnd");
+			MissionObject.GetInventory().CreateInInventory("AmmoBox_9x39_20Rnd");
+			MissionObject.GetInventory().CreateInInventory("Battery9V");
+			MissionObject.GetInventory().CreateInInventory("GardenLime");
+			MissionObject.GetInventory().CreateInInventory("CannabisSeedsPack");
+			MissionObject.GetInventory().CreateInInventory("WaterBottle");	
+			MissionObject.GetInventory().CreateInInventory("SardinesCan");
+			MissionObject.GetInventory().CreateInInventory("M18SmokeGrenade_Green");					
+		}
+		if (selectedLoadout == 8)
 		{			
 			weapon = MissionObject.GetInventory().CreateInInventory("MP5K");
 				weapon.GetInventory().CreateAttachment("MP5_RailHndgrd");
@@ -263,7 +265,7 @@ class GraveyardMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");				
 		}
-		if (selectedLoadout == 7)
+		if (selectedLoadout == 9)
 		{			
 			weapon = MissionObject.GetInventory().CreateInInventory("AK74");
 				weapon.GetInventory().CreateAttachment("AK_RailHndgrd");
@@ -280,7 +282,7 @@ class GraveyardMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");				
 		}
-		if (selectedLoadout == 8)
+		if (selectedLoadout == 10)
 		{			
 			weapon = MissionObject.GetInventory().CreateInInventory("AKS74U");
 				weapon.GetInventory().CreateAttachment("AKS74U_Bttstck");			
@@ -296,7 +298,7 @@ class GraveyardMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");			
 		}
-		if (selectedLoadout == 9)
+		if (selectedLoadout == 11)
 		{			
 			weapon = MissionObject.GetInventory().CreateInInventory("Glock19");
 				weapon.GetInventory().CreateAttachment("PistolSuppressor");			
@@ -314,81 +316,103 @@ class GraveyardMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");			
 		}
-			
-		//Clutter cutter stash 	
-		Object cc_stash = GetGame().CreateObject( "ClutterCutter2x2" , MissionObject.GetPosition() );
-		GetGame().RemoteObjectCreate( cc_stash );		
+						
+		Print("[SMM] Mission rewards spawned in reward container. Randomly selected loadout was "+ selectedLoadout +"." );
 		
-		//Insert mission objects into mission objects list
 		m_MissionObjects.Insert( MissionObject );
-		m_MissionObjects.Insert( stash );		 
-		m_MissionObjects.Insert( cc_stash );			
 		
-		Print("[SMM] Mission rewards spawned in reward container. Randomly selected loadout was "+selectedLoadout+"." );						
+		Print("[SMM] Survivor Mission "+ m_selectedMission +" :: "+ m_MissionName +" ...mission deployed!");
 	}
 	
 	void SpawnAIs()
-	{
-		//Spawn infected
-		for ( int j = 0 ; j < InfectedSpawns.Count() ; j++ )
+	{	
+		//Spawn pilot
+		DayZInfected InfectedPilot = DayZInfected.Cast( GetGame().CreateObject( "ZmbM_CommercialPilotOld_Olive" , m_MissionPosition , false , true ));
+			InfectedPilot.SetPosition( m_MissionPosition );
+		//InfectedPilot.PlaceOnSurface();
+			InfectedPilot.GetInventory().CreateAttachment("ZSh3PilotHelmet_Green");
+			InfectedPilot.GetInventory().CreateInInventory("M67Grenade");
+			InfectedPilot.GetInventory().CreateInInventory("CanOpener");
+			InfectedPilot.GetInventory().CreateInInventory("BandageDressing");
+			InfectedPilot.GetInventory().CreateInInventory("PeachesCan");
+			InfectedPilot.GetInventory().CreateInInventory("Canteen");
+			InfectedPilot.GetInventory().CreateAttachment("UKAssVest_Olive");
+			InfectedPilot.GetInventory().CreateInInventory("PersonalRadio");
+			InfectedPilot.GetInventory().CreateInInventory("Battery9V");
+			InfectedPilot.GetInventory().CreateInInventory("Battery9V");
+			InfectedPilot.GetInventory().CreateInInventory("Battery9V");
+			
+		//Pilot is dead
+		InfectedPilot.SetHealth("","",0);
+		
+		m_MissionAIs.Insert( InfectedPilot );
+		
+		//Spawn horde
+		for ( int j = 0; j < HordeDensity; j++ )
 		{
-    	   	string RandomInfected = InfectedTypes.GetRandomElement();
-			vector InfectedPos = MissionObject.ModelToWorld( InfectedSpawns.Get(j) );
-			m_MissionAIs.Insert( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ) );
-		}		
+			//calc new spawn position
+			float x = Math.RandomFloatInclusive( 3 , 30 );
+			float y = Math.RandomFloatInclusive( 3 , 30 );	
+			int Dice = Math.RandomIntInclusive( 0, 9);
+			if ( Dice > 4 ) x *= -1.0;
+			Dice = Math.RandomIntInclusive( 0, 9);
+			if ( Dice < 5 ) y *= -1.0;
+			vector NewPosVector = { x, 0, y };
+			
+			//Spawn infected
+			m_MissionAIs.Insert( GetGame().CreateObject( InfectedTypes.GetRandomElement(), m_MissionPosition + NewPosVector, false, true ));	
+		}
 	}
-
+	
 	void ObjDespawn() 
 	{	
-		//Despawn nothing
+		//nothing to despawn
 	}
-				
+	
 	void MissionFinal()
-	{	//When player enters last mission target zone
-		//Respawn some infected 
-		for ( int j = 0 ; j < 3 ; j++ )
-		{
-    	   	string RandomInfected = InfectedTypes.GetRandomElement();
-			vector InfectedPos = MissionObject.ModelToWorld( InfectedSpawns.Get(j) );
-			m_MissionAIs.Insert( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ) );			
-		}
+	{	//When player enters last mission target zone	
 
+		//Alert infected 
+		for ( int j = 1 ; j < m_MissionAIs.Count(); j++ )
+		{
+			DayZInfected Zed = DayZInfected.Cast( m_MissionAIs.Get(j));
+			if ( Zed )
+			{
+				DayZInfectedCommandMove moveCommandZ = Zed.GetCommand_Move();
+				moveCommandZ.SetIdleState(2);
+			}
+		}
+		
 		//Finish mission
 		m_RewardsSpawned = true;
 		m_MsgNum = -1;
 		m_MsgChkTime = m_MissionTime + MsgDlyFinish;			
 	}
-		
+	
 	void PlayerChecks( PlayerBase player )
 	{
-		//Check if container gets taken from player
-		if ( MissionSettings.Opt_DenyObjTakeaway )
-		{
-			if ( m_MissionObjects[0] && m_MissionObjects[0].ClassName() == "SeaChest" )
-			{
-				if ( player.GetInventory().HasEntityInInventory( EntityAI.Cast( m_MissionObjects[0] )) && !m_ContainerWasTaken )
-				{
-					m_ContainerWasTaken = true;
-					Print("[SMM] Mission object container was taken by a player ...and will be deleted.");
-					GetGame().ObjectDelete( m_MissionObjects[0] );
-				}
-			}
-		}		
+		
 	}
 		
+	void UpdateBots(float dt)
+	{
+			
+	}
+	
 	bool DeployMission()
 	{	//When first player enters the mission zone (primary/secondary)
 		if ( m_MissionPosition && m_MissionPosition != "0 0 0" )
 		{
 			//Call spawners	
 			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( this.SpawnObjects );
-			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( this.SpawnAIs );
-			return true;
+			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( this.SpawnAIs, 1000, false );
+			return true;		
 		}
 		else 
 		{
-			Print("[SMM] Mission position was rejected or doesn't exist!");
+			Print("[SMM] ERROR : Mission position was rejected or doesn't exist. MissionPosition is NULL!");
 			return false;
-		}					
-	}	
+		}
+	}
 }
+

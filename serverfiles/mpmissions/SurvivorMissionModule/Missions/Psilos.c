@@ -1,11 +1,11 @@
-class BearHuntMission extends SurvivorMissions
+class PsilosMission extends SurvivorMissions
 {
 	//Mission related entities
 	ItemBase MissionObject;
 	Object MissionBuilding;
 
 	//Mission parameters
-	int ReqMeatAmount = 4;				//pieces, requested mushroom amount
+	int ReqShroomsCount = 10;				//pieces, requested mushroom amount
 	int ExtendedTimout = 1800;				//seconds, mission duration time for extended mission
 	int MsgDlyFinish = 60;					//seconds, message delay time after player has finished mission
 	
@@ -17,10 +17,11 @@ class BearHuntMission extends SurvivorMissions
 	
 	//Mission variables 
 	string SurvivorName;		
+	string SurvivorExtName;
 	
 	bool IsExtended() return true;
 	
-	void BearHuntMission()
+	void PsilosMission()
 	{	
 		//Select primary mission
 		m_MissionExtended = true;
@@ -29,8 +30,8 @@ class BearHuntMission extends SurvivorMissions
 		m_MissionTimeout = 2700;			//seconds, mission max duration time
 		
 		//Mission zones
-		m_MissionZoneOuterRadius = 80.0;	//meters (!Do not set lower than 200m), mission activation distance
-		m_MissionZoneInnerRadius = 3.0;		//meters (!Do not set outside of 1-5m), mission finishing distance to target object
+		m_MissionZoneOuterRadius = 70.0;	//meters (!Do not set lower than 200m), mission activation distance
+		m_MissionZoneInnerRadius = 30.0;	//meters (!Do not set outside of 1-5m), mission finishing distance to target object
 				
 		//Mission informant
 		m_MissionInformant = "Dr. Legasov";
@@ -38,27 +39,36 @@ class BearHuntMission extends SurvivorMissions
 		//Mission person names
 		TStringArray SurvivorNames = {"Yuri", "Michail", "Boris", "Valeri", "Anatoli", "Ivan", "Alexej", "Dimitrij", "Sergej", "Nikolai"};
 		SurvivorName = SurvivorNames.GetRandomElement();
+		TStringArray SurvivorExtNames = {"Dr. Tamarova", "Dr. Lorzinski", "Dr. Blosmanova", "Dr. Haidenau", "Dr. Gabarin", "Dr. Sloskova", "Dr. Belzin", "Dr. Homyuk", "Dr. Trademzyuk", "Dr. Jankarova"};
+		SurvivorExtName = SurvivorExtNames.GetRandomElement();
 		
 		//Set mission messages for primary mission
-		m_MissionMessage1 = "A survivor recently reported to me that a bear attacked my friend "+ SurvivorName +" and killed 2 other survivor's. They went to the wrong location trying to hunt some deer in the forest of "+ m_MissionLocation +".";
-		m_MissionMessage2 = "I still can't believe it. "+ SurvivorName +" was one of the best hunters araound here. Once a week he brought fresh meat to the hidden camp to feed the survivor's. He was never selfless and tried to do everything to help out in the camp.";
-		m_MissionMessage3 = "The bear was last reported at the forest near\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI want you to kill this animal and take his pelt. It's not for revenge, we just need the pelt to make winter clothing for the kids. Be careful!";
+		m_MissionMessage1 = SurvivorName +", a survivor i met a few days ago told me that there are some places around here with numerous occurrencies of a special mushroom. It's classification name is 'Psilocybe semilanceata'.";
+		m_MissionMessage2 = "At the moment i am experimenting with the psychoactive ingredient Psilocybin on infected wild animals. The animals show interesting behaviors after 30 minutes of the oral intake. I can't say much about it yet, but for my experiments I need more mushrooms.";
+		m_MissionMessage3 = SurvivorName +" said that he found some of those anywhere\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI need "+ ReqShroomsCount +" more pieces of it. The mushrooms are very small. I recommend using a mushroom encyclopedia for possible occurrencies!";
 		
-		//Spawnpoint for MissionObject for secondary mission
-		Spawnpoints.Insert("-18.40 2.19 18.57");
+		//Spawnpoints for MissionObject for secondary mission
+		Spawnpoints.Insert("-8.2598 -5.3138 -3.3914");
+		Spawnpoints.Insert("-9.3223 -5.3234 1.1267");
+		Spawnpoints.Insert("2.4033 -1.7478 -3.8455");
+		Spawnpoints.Insert("-5.2329 -1.7252 -3.8408");
+		Spawnpoints.Insert("-9.3237 -1.7233 0.9534");
+		Spawnpoints.Insert("2.8477 -1.7252 2.5952");
+		Spawnpoints.Insert("0.7725 -1.7252 2.4839");
 				
 		//Infected spawnpoints for secondary mission
-		InfectedSpawns.Insert("-7.46 -4.94 -12.99");
-		InfectedSpawns.Insert("-15.65 -4.93 -22.08");
-		InfectedSpawns.Insert("-22.5 -4.93 1.95");
-		InfectedSpawns.Insert("-21.93 -4.93 13.0");
-		InfectedSpawns.Insert("-17.95 -4.93 21.84");
-		InfectedSpawns.Insert("-6.77 -4.89 21.28");
-		InfectedSpawns.Insert("-21.14 -1.83 -5.83");
-		InfectedSpawns.Insert("-10.5 1.27 -22.22");
+		InfectedSpawns.Insert("-6.9097 -5.9196 -2.2151"); //policeman
+		InfectedSpawns.Insert("-7.7876 -5.9899 1.9773"); //policeman
+		InfectedSpawns.Insert("-7.8467 -2.4139 1.9091"); //policeman
+		InfectedSpawns.Insert("0.7358 -2.4106 -2.3098"); //policeman
+		InfectedSpawns.Insert("1.3223 -5.9844 -3.1926"); //prisoner
+		InfectedSpawns.Insert("1.0986 -5.9846 -1.3384"); //prisoner
 		//...outside MissionBuilding 
-		InfectedSpawns.Insert("0.23 -5.52 3.55");
-		InfectedSpawns.Insert("19.78 -5.52 -5.66");
+		InfectedSpawns.Insert("-8.12 0 -5.97");
+		InfectedSpawns.Insert("-2.81 0 -5.8");
+		InfectedSpawns.Insert("0.41 0 -5.8");
+		InfectedSpawns.Insert("6.7 0 6.41");
+		InfectedSpawns.Insert("6 0 -1.85");
 		
 		//Infected types for secondary mission position
 		//Male												//Female
@@ -89,10 +99,10 @@ class BearHuntMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_ClerkFat_Brown");		InfectedTypes.Insert("ZmbF_JoggerSkinny_Brown");
 		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
 		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
-		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");		
+		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");	
 	}
 	
-	void ~BearHuntMission()
+	void ~PsilosMission()
 	{	
 		//Despawn all remaining objects
 		if ( m_MissionObjects )
@@ -128,7 +138,7 @@ class BearHuntMission extends SurvivorMissions
 	
 	void SpawnContainer()
 	{
-		MissionObject =  ItemBase.Cast( GetGame().CreateObject( "HuntingBag", m_MissionPosition ));
+		MissionObject =  ItemBase.Cast( GetGame().CreateObject( "SmallProtectorCase", m_MissionPosition ));
 		m_MissionObjects.InsertAt( MissionObject, 0); 		
 	}
 	
@@ -312,7 +322,7 @@ class BearHuntMission extends SurvivorMissions
 			MissionObject.GetInventory().CreateInInventory("Battery9V");
 			MissionObject.GetInventory().CreateInInventory("Battery9V");			
 		}
-				
+					
 		Print("[SMM] Mission rewards spawned in reward container. Randomly selected loadout was "+ selectedLoadout +"." );	
 	}
 	
@@ -320,7 +330,51 @@ class BearHuntMission extends SurvivorMissions
 	{			
 		if ( m_MissionExtended )
 		{	
-			//Spawn no objects at primary mission
+			//Spawn mushroom occurence		
+			float OccurenceDist = 30 * 0.707 ;
+			int MushroomsCount = Math.RandomIntInclusive( 50, 150);
+			vector SpawnPos;
+			bool ItemsAtGround = false; 
+		 
+			MissionObject = ItemBase.Cast( GetGame().CreateObject( "PsilocybeMushroom", m_MissionPosition ));
+			if ( MissionObject ) Print("[SMM] Mushrooms occurence spawned around @ "+ MissionObject.GetPosition());
+			
+			m_MissionObjects.Insert( MissionObject );
+			for ( int j = 1; j < MushroomsCount; j++ )
+			{
+				//calc new spawn position
+				float x = Math.RandomFloatInclusive( 0.5 , OccurenceDist );
+				float y = Math.RandomFloatInclusive( 0.5 , OccurenceDist );	
+				int Dice = Math.RandomIntInclusive( 0, 9);
+				if ( Dice > 4 ) x *= -1.0;
+				Dice = Math.RandomIntInclusive( 0, 9);
+				if ( Dice < 5 ) y *= -1.0;
+				vector NewPosVector = { x, 0, y };
+				SpawnPos = m_MissionPosition + NewPosVector;
+				
+				//check for items at ground
+				GetGame().GetObjectsAtPosition( SpawnPos , 1.0 , m_ObjectList , m_ObjectCargoList );
+				for ( int i = 0; i < m_ObjectList.Count(); i++ )
+				{ 
+					Object FoundObject = m_ObjectList.Get(i);
+					if ( FoundObject.IsItemBase() || FoundObject.IsTree() || FoundObject.IsRock() || FoundObject.IsBush() ) 
+					{
+						ItemsAtGround = true;
+						break;
+					}
+				}
+				if ( ItemsAtGround )
+				{
+					ItemsAtGround = false;
+					j--;
+					continue;
+				} 
+			
+				//spawn mushroom
+				m_MissionObjects.Insert( GetGame().CreateObject( "PsilocybeMushroom", SpawnPos ));	
+			}
+				
+			Print("[SMM] Survivor Mission "+ m_selectedMission +" :: "+ m_MissionName +" ...mission deployed!");
 		}
 		else
 		{				
@@ -330,7 +384,7 @@ class BearHuntMission extends SurvivorMissions
 				GetGame().GetObjectsAtPosition( m_MissionPosition, 0.5, m_ObjectList, m_ObjectCargoList );
 				for ( int k = 0; k < m_ObjectList.Count(); k++ )
 				{
-					Object FoundObject = m_ObjectList.Get(k);
+					FoundObject = m_ObjectList.Get(k);
 					if ( FoundObject.IsItemBase() )
 					GetGame().ObjectDelete( FoundObject );
 				}
@@ -348,38 +402,49 @@ class BearHuntMission extends SurvivorMissions
 	{	
 		if ( m_MissionExtended )
 		{
-			//Spawn Bear at primary mission
-			m_MissionAIs.Insert( GetGame().CreateObject("Animal_UrsusArctos", m_MissionPosition, false, true)); 
-			
-			Print("[SMM] Survivor Mission "+ m_selectedMission +" :: "+ m_MissionName +" ...mission deployed!");
+			//Spawn no AIs at primary mission
 		}
 		else
 		{
-			if ( MissionBuilding )
-			{			
-				//Spawn some infected at school 
-				for ( int j = 0 ; j < InfectedSpawns.Count() ; j++ )
-				{
-		    	   	string RandomInfected = InfectedTypes.GetRandomElement();
-					vector InfectedPos = MissionBuilding.ModelToWorld( InfectedSpawns.Get(j) );
-					DayZInfected Zed = DayZInfected.Cast( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ));
-					m_MissionAIs.Insert( Zed );
-				}			
+			//Spawn infected
+			string RandomInfected;
+			vector InfectedPos;
+			
+			//Spawn some infected at Police Station
+			for ( int k = 0 ; k < InfectedSpawns.Count() ; k++ )
+			{
+				if ( k == 0 )	RandomInfected = "ZmbM_PolicemanFat";
+				else if ( k == 1 )	RandomInfected = "ZmbF_PoliceWomanNormal";
+				else if ( k == 2 )	RandomInfected = "ZmbM_PolicemanSpecForce";
+				else if ( k == 3 )	RandomInfected = "ZmbM_PolicemanFat";
+	    	   	else RandomInfected = InfectedTypes.GetRandomElement();
+				InfectedPos = MissionBuilding.ModelToWorld( InfectedSpawns.Get(k) );
+				DayZInfected Zed = DayZInfected.Cast( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ));
+				m_MissionAIs.Insert( Zed );
 			}
 		}
 	}
 	
 	void ObjDespawn() 
 	{	
-		//Despawn nothing
+		//Despawn all mission objects at mission timeout except those retains until next mission
+		for ( int i = 0; i < m_MissionObjects.Count(); i++ )
+		{
+			//Exception: Psilo's will remain
+			if ( m_MissionObjects.Get(i) && m_MissionObjects.Get(i).GetType() == "PsilocybeMushroom" )	continue;
+
+			//Delete Object
+			GetGame().ObjectDelete( m_MissionObjects.Get(i) );
+			m_MissionObjects.Remove(i);
+		}
 	}
 	
 	void ExtendMission()
 	{
 		//Set new mission messages
-		m_MissionMessage1 = "Allright survivor, you have found the bear location. Try to safely engage and kill him by aiming at his head or heart. A bear is a strong animal, so it will take some shots to get him down.";
-		m_MissionMessage2 = "Take out your knife and eviscerate him. Bring the pelt and the meat to the\n** "+ m_MissionDescription[3] +" School laboratory class room **\n(left wing, top floor) because I want to examine the bear meat. I left a hunting bag on the labor desk.";
-		m_MissionMessage3 = "Put atleast "+ ReqMeatAmount +" bear steaks and the pelt in there. Be carefull, there might be bandits around which could intercepted our little radio talk here. Good luck!";
+		m_MissionMessage1 = "Allright survivor, if you have found "+ ReqShroomsCount +" of these mushrooms bring them to the following place. Hold on a second...";
+		m_MissionMessage2 = "Bring them to the ** "+ m_MissionDescription[3] +" Police Station **\n"+ SurvivorExtName +" said she could extract the active substance for me. She has left a small protector case on the desk in the office.";
+		m_MissionMessage3 = "Put all you have found in there. Be carefull, there might be bandits around which could intercepted our little radio talk here. Good luck!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1
@@ -390,60 +455,30 @@ class BearHuntMission extends SurvivorMissions
 		m_MissionTimeout = m_MissionTime + ExtendedTimout;  
 		
 		//deployment settings & init for extended mission
-		m_MissionZoneOuterRadius = 120.0;
+		m_MissionZoneOuterRadius = 90.0;
 		m_MissionZoneInnerRadius = 2.0;
 		
 		//Get building position from building type and location
-		if ( EventsWorldData.GetBuildingsAtLoc("Land_City_School", m_MissionDescription[3], ExtendedPosList ))
-		{
+		if ( EventsWorldData.GetBuildingsAtLoc("Land_Village_PoliceStation_Enoch", m_MissionDescription[3], ExtendedPosList ))
+		{			
 			//Get MissionPosition for MissionBuilding from secondary mission
 			m_MissionPosition = ExtendedPosList.GetRandomElement();						
-			GetGame().GetObjectsAtPosition( m_MissionPosition, 1.0 , m_ObjectList , m_ObjectCargoList );
-			for ( int m=0; m < m_ObjectList.Count(); m++ )
-			{ 
-				Object FoundObject = m_ObjectList.Get(m);
-				if ( FoundObject.GetType() == "Land_City_School" )
-				{	
-					MissionBuilding = FoundObject;			 
-										
-					//new MissionPosition is rewards spawnpoint
-					m_MissionPosition = MissionBuilding.ModelToWorld( Spawnpoints.Get(0) );
-					break;
-				}	
-			}
+			
 		}
-		else Print("[SMM] Can't find MissionBuilding City School in "+ m_MissionDescription[3] +"!");
+		else Print("[SMM] Can't find MissionBuilding Village Police Station in "+ m_MissionDescription[3] +"!");
 	}
 	
 	void MissionFinal()
-	{	//When player enters last mission target zone	
-		//Spawn infected
-		string RandomInfected;
-		vector InfectedPos;
-		
-		for ( int k = 0 ; k < InfectedSpawns.Count() ; k++ )
-		{
-    	   	RandomInfected = InfectedTypes.GetRandomElement();
-			InfectedPos = MissionBuilding.ModelToWorld( InfectedSpawns.Get(k) );
-			m_MissionAIs.Insert( GetGame().CreateObject( RandomInfected, InfectedPos, false, true ) );
-		}
-				
+	{	//When player enters last mission target zone
+		//do nothing			
 	}
 	
 	void PlayerChecks( PlayerBase player )
 	{
-		//Update Bear position 
-		if ( m_MissionExtended )
-		{
-			Object Bear = Object.Cast( m_MissionAIs[0] );
-			if ( Bear && Bear.ClassName() == "Animal_UrsusArctos" )
-			m_MissionPosition = Bear.GetPosition();
-		}
-		
 		//Check if container gets taken from player
 		if ( MissionSettings.Opt_DenyObjTakeaway && !m_MissionExtended )
 		{
-			if ( m_MissionObjects[0] && m_MissionObjects[0].ClassName() == "HuntingBag" )
+			if ( m_MissionObjects[0] && m_MissionObjects[0].ClassName() == "SmallProtectorCase" )
 			{
 				if ( player.GetInventory().HasEntityInInventory( EntityAI.Cast( m_MissionObjects[0] ) ) && !m_ContainerWasTaken )
 				{
@@ -455,30 +490,28 @@ class BearHuntMission extends SurvivorMissions
 		}
 		
 		//Check if container has desired amount of mushrooms collected at primary mission position
-		if ( MissionObject && MissionObject.ClassName() == "HuntingBag" && !m_MissionExtended )
+		if ( MissionObject && MissionObject.ClassName() == "SmallProtectorCase" && !m_MissionExtended )
 		{
 			int CargoCount = MissionObject.GetInventory().CountInventory();
 			int LastCount = 0;
-			int FoundMeatObjects = 0;
-			bool FoundPeltObject = false;
+			int FoundObjects = 0;
 			
 			if ( CargoCount != LastCount )
 			{
-				if ( CargoCount >= ReqMeatAmount && FoundMeatObjects <= ReqMeatAmount )
+				if ( CargoCount >= ReqShroomsCount && FoundObjects <= ReqShroomsCount )
 				{	
 					CargoBase CargoItems1 = MissionObject.GetInventory().GetCargo();		
 					
 					for ( int i = 0; i < CargoCount; i++ )
 					{
 						EntityAI CargoItem = CargoItems1.GetItem(i);
-						if ( CargoItem && CargoItem.GetType() == "BearSteakMeat" ) FoundMeatObjects++;
-						else if ( CargoItem && CargoItem.GetType() == "BearPelt" ) FoundPeltObject = true;
+						if ( m_MissionObjects.Find( CargoItem ) > -1 ) FoundObjects++;
 						else continue;					
 						
 						//When requested amount of mushrooms is present, despawn MissionObject & spawn rewards
-						if ( FoundMeatObjects >= ReqMeatAmount && FoundPeltObject )
+						if ( FoundObjects >= ReqShroomsCount )
 						{
-							Print("[SMM] Player with SteamID64: "+ player.GetIdentity().GetPlainId() +" has successfully stored the requested amount of "+ ReqMeatAmount +" MissionObjects in the container.");
+							Print("[SMM] Player with SteamID64: "+ player.GetIdentity().GetPlainId() +" has successfully stored the requested amount of "+ ReqShroomsCount +" MissionObjects in the container.");
 							//delete container first
 							GetGame().ObjectDelete( MissionObject );
 							//call rewards spawn one second later 
@@ -505,29 +538,22 @@ class BearHuntMission extends SurvivorMissions
 		//Get MissionBuilding at mission position
 		if ( !m_MissionExtended && !MissionBuilding )
 		{
-			if ( EventsWorldData.GetBuildingsAtLoc("Land_City_School", m_MissionDescription[3], ExtendedPosList ))
-			{		
-				//Get MissionPosition for MissionBuilding from secondary mission
-				m_MissionPosition = ExtendedPosList.GetRandomElement();						
-				GetGame().GetObjectsAtPosition( m_MissionPosition, 1.0 , m_ObjectList , m_ObjectCargoList );
-				for ( int m=0; m < m_ObjectList.Count(); m++ )
-				{ 
-					Object FoundObject = m_ObjectList.Get(m);
-					if ( FoundObject.GetType() == "Land_City_School" )
-					{	
-						MissionBuilding = FoundObject;			 
-						Print("[SMM] MissionBuilding extended is "+ MissionBuilding.GetType() +" at "+ m_MissionDescription[3] +" @ "+ MissionBuilding.GetPosition() );
-											
-						//new MissionPosition is rewards spawnpoint
-						m_MissionPosition = MissionBuilding.ModelToWorld( Spawnpoints.Get(0) );
-						break;
-					}	
-				}
-			}
-			else Print("[SMM] Can't find MissionBuilding City School in "+ m_MissionDescription[3] +"!");	
-		}
-		
+			GetGame().GetObjectsAtPosition( m_MissionPosition , 1.0 , m_ObjectList , m_ObjectCargoList );
+			for ( int m=0; m < m_ObjectList.Count(); m++ )
+			{ 
+				Object FoundObject = m_ObjectList.Get(m);
+				if ( FoundObject.GetType() == "Land_Village_PoliceStation_Enoch")
+				{	
+					MissionBuilding = FoundObject;			 
+					Print("[SMM] MissionBuilding extended is "+ MissionBuilding.GetType() +" at "+ m_MissionDescription[3] +" @ "+ MissionBuilding.GetPosition() );
 					
+					//new MissionPosition is rewards spawnpoint
+					m_MissionPosition = MissionBuilding.ModelToWorld( Spawnpoints.GetRandomElement() );
+					break;
+				}	
+			}
+		}	
+			
 		if ( (m_MissionPosition && m_MissionPosition != "0 0 0" && m_MissionExtended) || (MissionBuilding && !m_MissionExtended) )
 		{
 			//Call spawners	
