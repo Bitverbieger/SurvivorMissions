@@ -104,7 +104,7 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Camp Fishers_Camp east MedTent_1");											MissionPositions.Insert("10487.7 3.1 5601.1");
 		MissionEvents.Insert("Camp Georgestown west MedTent_1");											MissionPositions.Insert("4171.9 2.4 4374.9");
 		MissionEvents.Insert("Camp Georgestown north MedTent_1");											MissionPositions.Insert("4740 11.2 4759.2");
-		MissionEvents.Insert("Camp Georgestown northeast MedTent_1");										MissionPositions.Insert("49809 6.6 4632.8");
+		MissionEvents.Insert("Camp Georgestown northeast MedTent_1");										MissionPositions.Insert("4980.9 6.6 4632.8");
 		MissionEvents.Insert("Camp Greenville west MedTent_1");												MissionPositions.Insert("4463.5 2.2 1396.1");
 		MissionEvents.Insert("Camp Greenville southwest MedTent_1");										MissionPositions.Insert("4675.9 2.2 1270.4");
 		MissionEvents.Insert("Camp Greenville north MedTent_1");											MissionPositions.Insert("4886.3 12.9 1854.6");
