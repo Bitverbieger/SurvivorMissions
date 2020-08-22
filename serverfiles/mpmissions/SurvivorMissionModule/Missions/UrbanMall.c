@@ -687,8 +687,8 @@ class UrbanMallMission extends SurvivorMissions
 						
 		//Set messages for secondary mission
 		m_MissionMessage1 = "Allright you have found the supplies, try to get out there safely. Ms. "+ SurvivorName +" never told me her whereabouts because she wants to be absolutely secure from bandits and scavengers.";
-		m_MissionMessage2 = "I think the best will be if you could deposit the supplies in the lunch room of the\n** "+ m_MissionDescription[3] +" **  police department and put all into the orange backpack I left there. I will check it in one hour and try to contact her on radio.";
-		m_MissionMessage3 = "I will give you a lockpick, try to get to the armory room and lock it up. Everything is in there. Be careful, there might be bandits around "+ m_MissionDescription[3] +". They could intercepted our little radio talk here. Good luck!";
+		m_MissionMessage2 = "I think the best will be if you could deposit the supplies in the lunch room of the\n** "+ m_MissionSecondaryLoc +" **  police department and put all into the orange backpack I left there. I will check it in one hour and try to contact her on radio.";
+		m_MissionMessage3 = "I will give you a lockpick, try to get to the armory room and lock it up. Everything is in there. Be careful, there might be bandits around "+ m_MissionSecondaryLoc +". They could intercepted our little radio talk here. Good luck!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1
