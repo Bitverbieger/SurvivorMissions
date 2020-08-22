@@ -443,7 +443,7 @@ class PsilosMission extends SurvivorMissions
 	{
 		//Set new mission messages
 		m_MissionMessage1 = "Allright survivor, if you have found "+ ReqShroomsCount +" of these mushrooms bring them to the following place. Hold on a second...";
-		m_MissionMessage2 = "Bring them to the ** "+ m_MissionDescription[3] +" Police Station **\n"+ SurvivorExtName +" said she could extract the active substance for me. She has left a small protector case on the desk in the office.";
+		m_MissionMessage2 = "Bring them to the ** "+ m_MissionSecondaryLoc +" Police Station **\n"+ SurvivorExtName +" said she could extract the active substance for me. She has left a small protector case on the desk in the office.";
 		m_MissionMessage3 = "Put all you have found in there. Be carefull, there might be bandits around which could intercepted our little radio talk here. Good luck!";
 		
 		//init Messenger for new messages
