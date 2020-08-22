@@ -475,7 +475,7 @@ class FreePigsMission extends SurvivorMissions
 		//Set messages for secondary mission,
 		m_MissionMessage1 = "Allright, you have found the pigs. Herd them all out of the shed. Protect them from infected attacks and kill 2 pigs to get some meat.";
 		m_MissionMessage2 = "A man from the survivor camp said he could go to a save position anywhere in the forests and get the meat. I left a hunting bag at the picnic table on the hiking trail.";
-		m_MissionMessage3 = "Bring the meat to the picnic table near\n** "+ m_MissionDescription[3] +", coordinates: "+ Coords +" **\nPut "+ ReqMeatAmount +" pig steaks inside it and then you can take what you need. Be careful!";
+		m_MissionMessage3 = "Bring the meat to the picnic table near\n** "+ m_MissionSecondaryLoc +", coordinates: "+ Coords +" **\nPut "+ ReqMeatAmount +" pig steaks inside it and then you can take what you need. Be careful!";
 				
 		//Search for mission building at old mission position	
 		GetGame().GetObjectsAtPosition( m_MissionPositions.Get( m_selectedMission ) , 1.0 , m_ObjectList , m_ObjectCargoList );
