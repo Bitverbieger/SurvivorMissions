@@ -49,7 +49,7 @@ class TransportMission extends SurvivorMissions
 		
 		//Spawnpoints for MissionCar in Garage 
 		GarageCarSpawns.Insert("5.055 -1.504 -2.064"); 	//left garage
-		GarageCarSpawns.Insert("-4.95 -1.504 -1.843");	//right garage
+		//GarageCarSpawns.Insert("-4.95 -1.504 -1.843");	//right garage (deactivated because of several reported displacement bugs happening sometimes)
 		
 		//Spawnpoints for MissionObjects in middle garage (Do not change order!)
 		Spawnpoints.Insert("1.575 -0.605 -5.431");  //on table right (3x motor oil)
@@ -531,8 +531,8 @@ class TransportMission extends SurvivorMissions
 		
 		//Set messages for secondary mission
 		m_MissionMessage1 = "Allright, so you have found the car. "+ SurvivorName +" has probably drained all fuel and oil so prepare the car before that long trip. Check if the dried Cannabis is anywhere in the garages there and take the bag and put all 25 pieces in it.";
-		m_MissionMessage2 = "Drive to the  ** "+ m_MissionDescription[3] +" Gas Station **\nand bring the Ganjabag to cash desk. "+ SurvivorName +"'s ganja has the highest priority. Please don't steal or smoke any of it by your own because it could be very dangerous.";
-		m_MissionMessage3 = "I have some things for you at the gas station. Be carefull, there might be bandits on the way to "+ m_MissionDescription[3] +". They could intercepted our little radio talk here. Good luck and drive carefully!";
+		m_MissionMessage2 = "Drive to the  ** "+ m_MissionSecondaryLoc +" Gas Station **\nand bring the Ganjabag to cash desk. "+ SurvivorName +"'s ganja has the highest priority. Please don't steal or smoke any of it by your own because it could be very dangerous.";
+		m_MissionMessage3 = "I have some things for you at the gas station. Be carefull, there might be bandits on the way to "+ m_MissionSecondaryLoc +". They could intercepted our little radio talk here. Good luck and drive carefully!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1
