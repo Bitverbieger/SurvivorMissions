@@ -626,8 +626,8 @@ class CityMallMission extends SurvivorMissions
 
 		//Set messages for secondary mission
 		m_MissionMessage1 = "Allright you have found the supplies, try to get out there safely. Ms. "+ SurvivorName +" never told me her whereabouts because she wants to be absolutely secure from bandits and scavengers.";
-		m_MissionMessage2 = "I think the best will be if you could deposit the supplies in the quiet room of the small\n** "+ m_MissionDescription[3] +" ** police station and put all in the orange backpack i left there. I will check it in one hour and try to contact her on radio.";
-		m_MissionMessage3 = "I have some things for you at the small police station. Be careful, there might be bandits around "+ m_MissionDescription[3] +". They could intercepted our little radio talk here. Good luck!";
+		m_MissionMessage2 = "I think the best will be if you could deposit the supplies in the quiet room of the small\n** "+ m_MissionSecondaryLoc +" ** police station and put all in the orange backpack i left there. I will check it in one hour and try to contact her on radio.";
+		m_MissionMessage3 = "I have some things for you at the small police station. Be careful, there might be bandits around "+ m_MissionSecondaryLoc +". They could intercepted our little radio talk here. Good luck!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1
