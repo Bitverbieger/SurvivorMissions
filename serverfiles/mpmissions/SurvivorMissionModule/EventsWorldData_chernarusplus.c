@@ -745,7 +745,7 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Transport Krasnostav north Gorka");							MissionPositions.Insert("11205.7 198.4 12298.1");
 		MissionEvents.Insert("Transport Krasnostav southwest Topolniki");					MissionPositions.Insert("11114.8 203 12206");
 		MissionEvents.Insert("Transport Novaya_Petrovka northwest Berezino");				MissionPositions.Insert("3332.8 200 13081.1");
-		MissionEvents.Insert("Transport Novaya_Petrovka west Bogatyrka");					MissionPositions.Insert("3412.7 195 12996.3");
+		MissionEvents.Insert("Transport Novaya_Petrovka west Tri_Kresta");					MissionPositions.Insert("3412.7 195 12996.3");
 		MissionEvents.Insert("Transport Novaya_Petrovka east Pogorevka");					MissionPositions.Insert("3507 194.1 13065.1");
 		MissionEvents.Insert("Transport Novodmitrovsk west Zelenogorsk");					MissionPositions.Insert("11426.8 89.3 14660.6");
 		MissionEvents.Insert("Transport Novodmitrovsk west Vybor");							MissionPositions.Insert("11331.7 49.2 14477.3");
@@ -756,10 +756,10 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Transport Novodmitrovsk southwest Zaprudnoe");				MissionPositions.Insert("11512.2 48.2 14495.4");
 		MissionEvents.Insert("Transport Novoselki southeast Pustoshka");					MissionPositions.Insert("6407.1 18.1 3112");
 		MissionEvents.Insert("Transport Novoselki east Solnichniy");						MissionPositions.Insert("6322.5 29 3306.6");
-		MissionEvents.Insert("Transport Novy_Sobor southeast Bogatyrka");					MissionPositions.Insert("7189.3 285 7550.2");
+		MissionEvents.Insert("Transport Novy_Sobor southeast Tri_Kresta");					MissionPositions.Insert("7189.3 285 7550.2");
 		MissionEvents.Insert("Transport Pustoshka southeast Gorka");						MissionPositions.Insert("3065.8 316.3 7774.2");
 		MissionEvents.Insert("Transport Severograd west Staroye");							MissionPositions.Insert("7661.2 121 12651.1");
-		MissionEvents.Insert("Transport Severograd west Bogatyrka");						MissionPositions.Insert("7784 121.4 12574.7");
+		MissionEvents.Insert("Transport Severograd west Tri_Kresta");						MissionPositions.Insert("7784 121.4 12574.7");
 		MissionEvents.Insert("Transport Severograd northwest Solnichniy");					MissionPositions.Insert("7729.4 119.5 12707.2");
 		MissionEvents.Insert("Transport Severograd northwest Pustoshka");					MissionPositions.Insert("7744.8 119.5 12706.6");
 		MissionEvents.Insert("Transport Severograd north Gorka");							MissionPositions.Insert("7940.9 118.3 12739.7");
@@ -774,7 +774,7 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Transport Svetlojarsk central Elektrozavodsk");				MissionPositions.Insert("14016.1 14 13194");
 		MissionEvents.Insert("Transport Svetlojarsk southeast Dubrovka");					MissionPositions.Insert("14007.3 14.5 13096.6");
 		MissionEvents.Insert("Transport Svetlojarsk east Topolniki");						MissionPositions.Insert("14052.5 11.5 13145.2");
-		MissionEvents.Insert("Transport Topolniki southwest Bogatyrka");					MissionPositions.Insert("2701 230.2 12121.1");
+		MissionEvents.Insert("Transport Topolniki southwest Tri_Kresta");					MissionPositions.Insert("2701 230.2 12121.1");
 		MissionEvents.Insert("Transport Topolniki southwest Solnichniy");					MissionPositions.Insert("2708.3 229.6 12143.7");
 		MissionEvents.Insert("Transport Topolniki northeast Pustoshka");					MissionPositions.Insert("2974 212.7 12630");
 		MissionEvents.Insert("Transport Topolniki northeast Pogorevka");					MissionPositions.Insert("2989.9 212.3 12655.9");
@@ -786,7 +786,7 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Transport Vysotovo north Pustoshka");							MissionPositions.Insert("5540.7 69.4 2712.2");
 		MissionEvents.Insert("Transport Vysotovo north Solnichniy");						MissionPositions.Insert("5559.2 69.4 2703.5");
 		MissionEvents.Insert("Transport Vysotovo north Berezino");							MissionPositions.Insert("5562 69.4 2718.6");
-		MissionEvents.Insert("Transport Vysotovo north Bogatyrka");							MissionPositions.Insert("5580.3 69.4 2698.8");
+		MissionEvents.Insert("Transport Vysotovo north Tri_Kresta");						MissionPositions.Insert("5580.3 69.4 2698.8");
 		MissionEvents.Insert("Transport Vysotovo north Kamenka");							MissionPositions.Insert("5583.1 69.4 2713.9");
 		MissionEvents.Insert("Transport Vysotovo north Staroye");							MissionPositions.Insert("5596 69.5 2695.5");
 		MissionEvents.Insert("Transport Vysotovo north Gorka");								MissionPositions.Insert("5598.9 69.5 2710.5");
@@ -857,7 +857,6 @@ class EventsWorldData extends SurvivorMissions
 		else if ( MBuilding == "Land_FuelStation_Build")
 		{
 			if ( MLocation == "Berezino")					BuildingPosList.Insert("12978.3 7.6 10079.4");
-			else if ( MLocation == "Bogatyrka")				BuildingPosList.Insert("300.6 296.6 9399.6");
 			else if ( MLocation == "Chernogorsk_West")		BuildingPosList.Insert("5862.8 10.8 2212.3");
 			else if ( MLocation == "Chernogorsk_East")		BuildingPosList.Insert("6874.8 8.9 3094.6");
 			else if ( MLocation == "Dubrovka")				BuildingPosList.Insert("10750.5 146 10782.4");
@@ -872,6 +871,7 @@ class EventsWorldData extends SurvivorMissions
 			else if ( MLocation == "Staroye")				BuildingPosList.Insert("10119.3 231.2 5199.8");	
 			else if ( MLocation == "Svetlojarsk")			BuildingPosList.Insert("13574.4 35.9 13304.5");
 			else if ( MLocation == "Topolniki")				BuildingPosList.Insert("3031.1 211.2 12657");
+			else if ( MLocation == "Tri_Kresta")			BuildingPosList.Insert("300.6 296.6 9399.6");
 			else if ( MLocation == "Vybor")					BuildingPosList.Insert("3668.3 313.1 9002.2");
 			else if ( MLocation == "Zaprudnoe")				BuildingPosList.Insert("4349.9 178.5 13085.4");
 			else if ( MLocation == "Zelenogorsk")			BuildingPosList.Insert("2701.6 212.6 5599.7");
