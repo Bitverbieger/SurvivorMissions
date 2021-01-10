@@ -1,6 +1,6 @@
 class EventsWorldData extends SurvivorMissions
 {
-	const string EWD_MAP_NAME = "chernarusplus";
+	const string EWD_MAP_NAME = "rostow";
 	const string EWD_SCRIPT_VERSION = "0.85";
 	static ref array<string> MissionEvents = new array<string>;
 	static ref array<vector> MissionPositions = new array<vector>;
@@ -846,94 +846,56 @@ class EventsWorldData extends SurvivorMissions
 		
 		if ( MBuilding == "Land_City_Hospital")
 		{
-			if ( MLocation == "Chernogorsk") 				BuildingPosList.Insert("6474.1 17.1 2719.6");
-			else if ( MLocation == "Elektrozavodsk")		BuildingPosList.Insert("10283.9 20.2 2285.2");
-			else if ( MLocation == "Berezino") 				BuildingPosList.Insert("11928.2 61.7 9070.4");
-			else if ( MLocation == "Novodmitrovsk") 		BuildingPosList.Insert("11413.8 85.9 14597.9");
-			else if ( MLocation == "Pavlovo") 				BuildingPosList.Insert("2165.0 99.0 3357.7");
-			else if ( MLocation == "Severograd") 			BuildingPosList.Insert("8017.3 121.5 12752.4");
-			else return false;			//No match by location						
+			if ( MLocation == "Berasino")	 				BuildingPosList.Insert("3239.712646 204.343826 9311.269531");
+			else if ( MLocation == "Krasnapolle")			BuildingPosList.Insert("8632.393555 63.884583 2401.079102");
+			else if ( MLocation == "Ostrovez")				BuildingPosList.Insert("9698.116211 58.618462 10330.443359");
+			else if ( MLocation == "Borowoje")				BuildingPosList.Insert("11641.068359 54.054844 12430.030273");
+			else if ( MLocation == "Adamowsk")				BuildingPosList.Insert("11659.572266 50.732368 8992.710938");
+			else return false;			//No match by location
 		}
 		else if ( MBuilding == "Land_FuelStation_Build")
 		{
-			if ( MLocation == "Berezino")					BuildingPosList.Insert("12978.3 7.6 10079.4");
-			else if ( MLocation == "Chernogorsk_West")		BuildingPosList.Insert("5862.8 10.8 2212.3");
-			else if ( MLocation == "Chernogorsk_East")		BuildingPosList.Insert("6874.8 8.9 3094.6");
-			else if ( MLocation == "Dubrovka")				BuildingPosList.Insert("10750.5 146 10782.4");
-			else if ( MLocation == "Elektrozavodsk")		BuildingPosList.Insert("9518.7 7.2 2003.8.4");
-			else if ( MLocation == "Gorka")					BuildingPosList.Insert("10442.1 224.7 8884.4");
-			else if ( MLocation == "Grishino")				BuildingPosList.Insert("5858 279.3 10116.8");
-			else if ( MLocation == "Kamenka")				BuildingPosList.Insert("1122 7.2 2417.5");
-			else if ( MLocation == "Pogorevka")				BuildingPosList.Insert("4726.8 283.4 6389.7");
-			else if ( MLocation == "Pustoshka")				BuildingPosList.Insert("3000.5 344.1 7482.8");
-			else if ( MLocation == "Severograd")			BuildingPosList.Insert("7470.6 122.7 12659.4");
-			else if ( MLocation == "Solnichniy")			BuildingPosList.Insert("13369.9 6.2 6611.6");
-			else if ( MLocation == "Staroye")				BuildingPosList.Insert("10119.3 231.2 5199.8");	
-			else if ( MLocation == "Svetlojarsk")			BuildingPosList.Insert("13574.4 35.9 13304.5");
-			else if ( MLocation == "Topolniki")				BuildingPosList.Insert("3031.1 211.2 12657");
-			else if ( MLocation == "Tri_Kresta")			BuildingPosList.Insert("300.6 296.6 9399.6");
-			else if ( MLocation == "Vybor")					BuildingPosList.Insert("3668.3 313.1 9002.2");
-			else if ( MLocation == "Zaprudnoe")				BuildingPosList.Insert("4349.9 178.5 13085.4");
-			else if ( MLocation == "Zelenogorsk")			BuildingPosList.Insert("2701.6 212.6 5599.7");
+			if ( MLocation == "Berasino")					BuildingPosList.Insert("2842.265869 182.382339 9327.926758");
+			else if ( MLocation == "Babrujsk")				BuildingPosList.Insert("4542.953613 137.013916 11509.313477");
+			else if ( MLocation == "Krasnapolle")			BuildingPosList.Insert("9074.275391 55.038155 2017.682007");
+			else if ( MLocation == "Ostrovez")				BuildingPosList.Insert("9168.742188 54.606056 10659.800781");
+			else if ( MLocation == "Gorlowka")				BuildingPosList.Insert("9284.876953 93.993454 4825.966797");
+			else if ( MLocation == "Borowoje")				BuildingPosList.Insert("11622.315430 47.930241 12514.121094");
+			else if ( MLocation == "Adamowsk")				BuildingPosList.Insert("11831.187500 39.329353 8842.039063");
 			else return false;			//No match by location
 		}
 		else if ( MBuilding == "Land_Village_PoliceStation")
 		{
-			if ( MLocation == "Berezino")					BuildingPosList.Insert("12927.1 13.0 10183.2");
-			else if ( MLocation == "Dolina")				BuildingPosList.Insert("11186.2 83.3 6590.2");
-			else if ( MLocation == "Grishino")				BuildingPosList.Insert("6004.4 274.0 10349.1");
-			else if ( MLocation == "Gorka")					BuildingPosList.Insert("9530.0 309.7 8798.8");
-			else if ( MLocation == "Kamyshovo")				BuildingPosList.Insert("12058.0 12.8 3607.5");
-			else if ( MLocation == "Komarovo")				BuildingPosList.Insert("3569.7 13.3 2431.4");
-			else if ( MLocation == "Krasnostav")			BuildingPosList.Insert("11069.0 233.9 12487.3");
-			else if ( MLocation == "Nadezhdino")			BuildingPosList.Insert("5867.6 145.0 4677.4");
-			else if ( MLocation == "Novaya_Petrovka")		BuildingPosList.Insert("3421.3 199.7 13019.9");
-			else if ( MLocation == "Novoselki")				BuildingPosList.Insert("6202.3 32.8 2920.9");
-			else if ( MLocation == "Novy_Sobor")			BuildingPosList.Insert("7170.0 300.2 7671.2");
-			else if ( MLocation == "Staroye")				BuildingPosList.Insert("10157.8 250.6 5529.7");
+			if ( MLocation == "Klettzk")					BuildingPosList.Insert("963.772522 322.203857 4098.283691");
+			else if ( MLocation == "Berasino")				BuildingPosList.Insert("3108.640869 204.212234 9340.685547");
+			else if ( MLocation == "Borowoje")				BuildingPosList.Insert("11676.434570 55.729412 12717.525391");
+			else if ( MLocation == "Adamowsk")				BuildingPosList.Insert("11839.271484 43.620197 8949.211914");
 			else return false;			//No match by location
 		}
 		else if ( MBuilding == "Land_City_PoliceStation")
 		{
-			if ( MLocation == "Chernogorsk")				BuildingPosList.Insert("6633.1 14.0 2586.6");
-			else if ( MLocation == "Elektrozavodsk")		BuildingPosList.Insert("10456.0 12.7 2273.0");
-			else if ( MLocation == "Novodmitrovsk")			BuildingPosList.Insert("11489.7 53.1 14484.0");
-			else if ( MLocation == "Severograd")			BuildingPosList.Insert("7737.3 125.1 12636.6");
-			else if ( MLocation == "Svetlojarsk")			BuildingPosList.Insert("13846.7 27.3 13218.0");
-			else if ( MLocation == "Zelenogorsk")			BuildingPosList.Insert("2730.4 213.2 5373.8");
+			if ( MLocation == "Krasnapolle")				BuildingPosList.Insert("8661.697266 53.910019 1897.060669");
+			else if ( MLocation == "Ostrovez")				BuildingPosList.Insert("9407.207031 57.690754 10695.081055");
 			else return false;			//No match by location
 		}
-		else if ( MBuilding == "Land_Misc_TrailRoof_Small")
+		else if ( MBuilding == "Land_Misc_TrailRoof_")
 		{
-			if ( MLocation == "Black_Lake")					BuildingPosList.Insert("13346.5 71.2 12095.4");
-			else if ( MLocation == "Devils_Castle")			BuildingPosList.Insert("6930.7 378.2 11608.1");
-			else if ( MLocation == "Dubrovka")				BuildingPosList.Insert("10437.0 116.4 9845.2");
-			else if ( MLocation == "Gorka")					BuildingPosList.Insert("9334.4 321.9 8839.1");
-			else if ( MLocation == "Grishino")				BuildingPosList.Insert("6071.5 268.1 10481.7");
-			else if ( MLocation == "Gvozdno")				BuildingPosList.Insert("8303.3 150.5 12100,8");
-			else if ( MLocation == "Kozlovka")				BuildingPosList.Insert("4278.5 203.8 4459.1");
-			else if ( MLocation == "Kotka_Mountain")		BuildingPosList.Insert("5695.5 328.6 6892.9");
-			else if ( MLocation == "Nizhnoye")				BuildingPosList.Insert("12897.0 7.2 8338.3");
-			else if ( MLocation == "Nagornoe")				BuildingPosList.Insert("9394.3 232.5 14551.7");
-			else if ( MLocation == "Rog_Castle")			BuildingPosList.Insert("11235.3 235.3 4618.8");
-			else if ( MLocation == "Shakhovka")				BuildingPosList.Insert("9573.3 213.9 6791.0");
-			else if ( MLocation == "Stary_Sobor")			BuildingPosList.Insert("6203.4 333.1 8019.2");
-			else if ( MLocation == "Olha_Mountain")			BuildingPosList.Insert("12970.7 214.2 12763.9");
-			else if ( MLocation == "Ostry_Mountain")		BuildingPosList.Insert("10818.7 336.4 12864.2");
-			else if ( MLocation == "Veresnik_Mountain")		BuildingPosList.Insert("4436.5 340.3 8072.2");
-			else if ( MLocation == "Vavilovo")				BuildingPosList.Insert("2061.6 252.9 11340.3");
-			else if ( MLocation == "Zub_Castle")			BuildingPosList.Insert("6911.9 311.6 5589.6");
-			else if ( MLocation == "Prud")					BuildingPosList.Insert("6571.8 360.7 9045.1");
+			if ( MLocation == "Rezoni_Sportsfacility")		BuildingPosList.Insert("10616.217773 428.019836 6623.742676");
+			else if ( MLocation == "Old_Orschka")			BuildingPosList.Insert("6000.346680 177.984222 10878.038086");
+			else if ( MLocation == "Ostrovez_Lake")			BuildingPosList.Insert("10248.166992 38.021774 11355.142578");
+			else if ( MLocation == "Berasino_IndustrialNW")	BuildingPosList.Insert("2701.269287 147.249603 8778.312500");
+			else if ( MLocation == "Berasino_IndustrialE")	BuildingPosList.Insert("3721.185059 140.939880 8630.902344");
+			else if ( MLocation == "Berasino_Jelsk")		BuildingPosList.Insert("2134.150635 193.663467 9220.719727");
+			else if ( MLocation == "Mieva_AirforceFarm")	BuildingPosList.Insert("3670.513916 131.790619 5989.329590");
+			else if ( MLocation == "Jelsk_Klettzk")			BuildingPosList.Insert("1976.989990 201.881897 6967.889648");
+			else if ( MLocation == "Drowkino_Klettzk")		BuildingPosList.Insert("2591.935303 234.021301 3310.041504");
 			else return false;			//No match by location
 		}		
 		else if ( MBuilding == "Land_City_School")
 		{
-			if ( MLocation == "Berezino")					BuildingPosList.Insert("12168.3 17.1 9757.0");
-			else if ( MLocation == "Elektrozavodsk")		BuildingPosList.Insert("10223.2 29.2 2574.0");
-			else if ( MLocation == "Novaya_Petrovka")		BuildingPosList.Insert("3246.1 208.7 13045.8");
-			else if ( MLocation == "Severograd")			BuildingPosList.Insert("8658.1 110.5 12803.7");
-			else if ( MLocation == "Vysotovo")				BuildingPosList.Insert("5695.7 76.7 2562.8");
-			else return false;			//No match by location	
+			if ( MLocation == "Krasnapolle")				BuildingPosList.Insert("8720.284180 61.705582 2345.443848");
+			else if ( MLocation == "Ostrovez")				BuildingPosList.Insert("9486.150391 55.349426 10432.479492");
+			else return false;			//No match by location
 		}
 		else return false;		//No match by building type. Keep this line after last building check!
 		
@@ -1205,7 +1167,7 @@ class EventsWorldData extends SurvivorMissions
 		ref array<Object> Objects = new array<Object>;
 		ref array<CargoBase> ObjectCargos = new array<CargoBase>;
 		float vertex;
-		vector Center = "7680 0 7680";		//Chernarus terrain center position
+		vector Center = "7168 0 7168";		//Rostow terrain center position
 				
 		if ( Center[0] < Center[2] ) vertex = Center[2];
 		else vertex = Center[0];
