@@ -71,6 +71,16 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("CityMall Adamowsk northeast Berasino");						MissionPositions.Insert("11803.854492 40.232533 8987.278320");
 		MissionEvents.Insert("CityMall Adamowsk northeast Borowoje");						MissionPositions.Insert("11803.854492 40.232533 8987.278320");
 		MissionEvents.Insert("CityMall Adamowsk northeast Adamowsk");						MissionPositions.Insert("11803.854492 40.232533 8987.278320");
+		MissionEvents.Insert("UrbanMall Berasino central Ostrovez");						MissionPositions.Insert("3199.601807 196.905273 9277.301758");
+		MissionEvents.Insert("UrbanMall Berasino central Krasnapolle");						MissionPositions.Insert("3199.601807 196.905273 9277.301758");
+		MissionEvents.Insert("UrbanMall Krasnapolle north Krasnapolle");					MissionPositions.Insert("8874.276367 59.521458 2382.820313");
+		MissionEvents.Insert("UrbanMall Krasnapolle north Ostrovez");						MissionPositions.Insert("8874.276367 59.521458 2382.820313");
+		MissionEvents.Insert("UrbanMall Ostrovez northwest Krasnapolle");					MissionPositions.Insert("9313.882813 53.496910 10685.218750");
+		MissionEvents.Insert("UrbanMall Ostrovez northwest Ostrovez");						MissionPositions.Insert("9313.882813 53.496910 10685.218750");
+		MissionEvents.Insert("UrbanMall Ostrovez central Ostrovez");						MissionPositions.Insert("9591.127930 51.540833 10349.829102");
+		MissionEvents.Insert("UrbanMall Borowoje north Ostrovez");							MissionPositions.Insert("11605.883789 51.663086 12694.669922");
+		MissionEvents.Insert("UrbanMall Alekssevka northwest Ostrovez");					MissionPositions.Insert("13847.838867 39.802288 11220.696289");
+		MissionEvents.Insert("UrbanMall Alekssevka northwest Krasnapolle");					MissionPositions.Insert("13847.838867 39.802288 11220.696289");
 		MissionEvents.Insert("FreePigs Jelsk southeast Berasino_IndustrialNW");				MissionPositions.Insert("1023.076050 195.146332 8160.196289");
 		MissionEvents.Insert("FreePigs Jelsk southeast Berasino_Jelsk");					MissionPositions.Insert("1023.076050 195.146332 8160.196289");
 		MissionEvents.Insert("FreePigs Jelsk southeast Mieva_AirforceFarm");				MissionPositions.Insert("1023.076050 195.146332 8160.196289");
@@ -564,17 +574,6 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Shrooms Vysoky_Kamen_Mountain ontop Elektrozavodsk");			MissionPositions.Insert("8956.2 336.2 4352.9");
 		MissionEvents.Insert("Shrooms Zelenogorsk southsouthwest Pavlovo");					MissionPositions.Insert("2415.5 258.1 4606.8");	
 		MissionEvents.Insert("Shrooms Zub_Castle southeast Chernogorsk");					MissionPositions.Insert("6596.1 372.7 5527.2");
-		MissionEvents.Insert("UrbanMall Berezino north Svetlojarsk");						MissionPositions.Insert("12116.1 13.5 9761.1");
-		MissionEvents.Insert("UrbanMall Berezino north Novodmitrovsk");						MissionPositions.Insert("12116.1 13.5 9761.1");
-		MissionEvents.Insert("UrbanMall Chernogorsk north Elektrozavodsk");					MissionPositions.Insert("6375.8 16.9 2856.5");
-		MissionEvents.Insert("UrbanMall Dubovo west Elektrozavodsk");						MissionPositions.Insert("6535.7 63.4 3555.2");
-		MissionEvents.Insert("UrbanMall Dubovo west Zelenogorsk");							MissionPositions.Insert("6535.7 63.4 3555.2");
-		MissionEvents.Insert("UrbanMall Novoselki west Zelenogorsk");						MissionPositions.Insert("6077.7 54.2 3428.5");
-		MissionEvents.Insert("UrbanMall Novoselki west Elektrozavodsk");					MissionPositions.Insert("6077.7 54.2 3428.5");
-		MissionEvents.Insert("UrbanMall Topolniki south Severograd");						MissionPositions.Insert("3077.3 210.3 12667.2");
-		MissionEvents.Insert("UrbanMall Vysotovo central Zelenogorsk");						MissionPositions.Insert("5660.8 65.6 2444.2");
-		MissionEvents.Insert("UrbanMall Zelenogorsk central Chernogorsk");					MissionPositions.Insert("2673.3 206.9 5281.0");
-		//794
 					
 		// ***Add new mission events below this line	
 		//example: MissionEvents.Insert("MyNewMissionType Location LocationDir additionalParam");	MissionPositions.Insert("6869.6 350.3 10277.7");
