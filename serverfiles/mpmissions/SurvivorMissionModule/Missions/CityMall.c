@@ -714,7 +714,7 @@ class CityMallMission extends SurvivorMissions
 						EntityAI CargoItem = CargoItems1.GetItem(i); 
 						Object CargoObject = CargoItem;
 
-						if ( m_MissionObjects.Find( CargoObject ) > -1 ) 
+						if ( CargoObject && m_MissionObjects.Find( CargoObject ) > -1 )
 						{
 							if ( CargoObject.GetType() == "TetracyclineAntibiotics")	FoundMedObjects++; 
 							if ( FoodTypes.Find( CargoObject.GetType() ) > -1 )			FoundFoodObjects++;
