@@ -9,6 +9,9 @@ class EventsWorldData extends SurvivorMissions
 	
 	void EventsWorldData()
 	{
+		// Add additional mission buildings for more variety
+		EnrichRostow();
+
 		//Mission event																		//Mission position (absolute or BuildingPos)
 		MissionEvents.Insert("Apartment Berasino central TenSmall_1");						MissionPositions.Insert("3233.254883 209.284164 9352.265625");
 		MissionEvents.Insert("Apartment Berasino east TenSmall_2");							MissionPositions.Insert("3246.314453 218.716263 9450.332031");
@@ -638,6 +641,33 @@ class EventsWorldData extends SurvivorMissions
 			HQextra.PlaceOnSurface();
 			Print("[SEM] HQ :: Additional building "+ HQextra.GetType() +" spawned @"+ HQextra.GetPosition() );
 		}		
+	}
+
+	void EnrichRostow()
+	{
+		//Spawn Static Objects on map (should be mission unspecific like additional mission target/source buildings, e.g. Rostow only has one single TrailRoof_Small)
+		SpawnStaticObject( "Land_Misc_TrailRoof_Small", "2134.150635 193.663467 9220.719727", "-24.021982 0.648208 -0.165081" ));
+		SpawnStaticObject( "Land_Misc_TrailRoof_Small", "6000.346680 177.984222 10878.038086", "90.000000 0.362451 8.000011" ));
+		SpawnStaticObject( "Land_Misc_TrailRoof_Big", "1976.989990 201.8819 6967.889648", "-86.999989 0.000000 1.472942" ));
+
+		SpawnStaticObject( "Land_Misc_TrailRoof_Big", "2591.935303 234.021301 3310.041504", "-90.105385 0.029364 0.197385" ));
+		SpawnStaticObject( "land_cype_bench_1_br1", "2602.473145 231.556000 3309.507080", "-150.122971 -1.132533 -6.802283" ));
+		SpawnStaticObject( "land_cype_bench_1", "2598.239014 232.031799 3311.460693", "-160.140549 -2.294166 -7.801920" ));
+
+		SpawnStaticObject( "Land_Misc_TrailRoof_Small", "10248.166992 38.021774 11355.142578", "-33.000004 -0.327408 0.000000" ));
+
+		SpawnStaticObject( "Land_Misc_TrailRoof_Big", "3721.185059 140.939880 8630.902344", "-61.799446 0.514386 -2.684390" ));
+	}
+	
+	void SpawnStatic( string type, vector position, vector orientation ) {
+		auto obj = GetGame().CreateObject( type, position, ECE_CREATEPHYSICS );
+		obj.SetFlags( EntityFlags.STATIC, false );
+		obj.SetPosition( position );
+		obj.SetOrientation( orientation );
+		obj.SetOrientation( obj.GetOrientation() ); //Collision fix
+		obj.Update();
+		obj.SetAffectPathgraph( true, false );
+		if( obj.CanAffectPathgraph() ) GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 100, false, obj );
 	}
 	
 	static void ShowDebugInfo( PlayerBase player)
