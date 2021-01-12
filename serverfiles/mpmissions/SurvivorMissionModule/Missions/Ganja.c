@@ -20,6 +20,7 @@ class GanjaMission extends SurvivorMissions
 	
 	//Mission variables 
 	string SurvivorName;	
+	string MissionLocationName;
 	
 	bool IsExtended() return true;
 	
@@ -42,10 +43,14 @@ class GanjaMission extends SurvivorMissions
 		TStringArray SurvivorNames = {"Yuri","Michail","Boris","Valeri","Anatoli","Ivan","Alexej","Dimitrij","Sergej","Nikolai","Vladimir"};
 		SurvivorName = SurvivorNames.GetRandomElement();
 		
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+
 		//Set mission messages for primary mission
 		m_MissionMessage1 = SurvivorName +", a guy who was working for me, told me that he has cross-breeded a special Cannabis strain of various 'Cannabis ruderalis' plants. I just need it for my experiments on the infected. He said that he fertilized the mother plants with shredded infected.";
 		m_MissionMessage2 = "I think he meant any kind of fermented brew with water, infected ash and pieces of flesh done in a kitchen mixer. The impact on plants grow and bloom was massive. It also seems that it contains a substance other than the native Cannabinoids. I want to extract this substance to see how it acts on the infected.";
-		m_MissionMessage3 = SurvivorName +" has hidden his herbs in a garage at\n** "+ m_MissionLocation +" **\nHe certainly has locked the garage doors, so try to use a lockpick or shoot them up if you have none.";
+		m_MissionMessage3 = SurvivorName +" has hidden his herbs in a garage\n** "+ m_MissionLocationDir +" of "+ MissionLocationName +" **\nHe certainly has locked the garage doors, so try to use a lockpick or shoot them up if you have none.";
 		
 		//Spawnpoints for MissionCar in Garage 
 		GarageCarSpawns.Insert("5.055 -1.504 -2.064"); 	//left garage

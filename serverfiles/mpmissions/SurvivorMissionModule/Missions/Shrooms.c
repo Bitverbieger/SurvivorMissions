@@ -18,6 +18,7 @@ class ShroomsMission extends SurvivorMissions
 	//Mission variables 
 	string SurvivorName;		
 	string SurvivorExtName;
+	string MissionLocationName;
 	
 	bool IsExtended() return true;
 	
@@ -33,9 +34,16 @@ class ShroomsMission extends SurvivorMissions
 		m_MissionZoneOuterRadius = 70.0;	//meters (!Do not set lower than 200m), mission activation distance
 		m_MissionZoneInnerRadius = 30.0;	//meters (!Do not set outside of 1-5m), mission finishing distance to target object
 				
+		//randomize mission requirement
+		ReqShroomsCount = Math.RandomIntInclusive(8, 12);
+
 		//Mission informant
 		m_MissionInformant = "Dr. Legasov";
 	
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+
 		//Mission person names
 		TStringArray SurvivorNames = {"Yuri", "Michail", "Boris", "Valeri", "Anatoli", "Ivan", "Alexej", "Dimitrij", "Sergej", "Nikolai"};
 		SurvivorName = SurvivorNames.GetRandomElement();
@@ -43,9 +51,9 @@ class ShroomsMission extends SurvivorMissions
 		SurvivorExtName = SurvivorExtNames.GetRandomElement();
 		
 		//Set mission messages for primary mission
-		m_MissionMessage1 = SurvivorName +", a survivor i met a few days ago told me that there are some places around here with numerous occurrencies of a special mushroom. It's classification name is 'Psilocybe semilanceata'.";
-		m_MissionMessage2 = "At the moment i am experimenting with the containing psychoactive substance Psilocybin on infected wild animals. The animals show interesting behaviors after 30 minutes of the oral intake. I can't say much about it yet, but for my experiments I need more mushrooms.";
-		m_MissionMessage3 = SurvivorName +" said that he found some of those anywhere\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI need "+ ReqShroomsCount +" more pieces of it. The mushrooms are very small. I recommend using a mushroom encyclopedia for possible occurrencies!";
+		m_MissionMessage1 = SurvivorName +", a survivor I met a few days ago told me that there are some places around here with numerous occurrences of a special mushroom. It's classification name is 'Psilocybe semilanceata'.";
+		m_MissionMessage2 = "At the moment I am experimenting with the containing psychoactive substance Psilocybin on infected wild animals. The animals show interesting behaviors after 30 minutes of consumption. I can't say much about it yet, but I need more mushrooms for my experiments.";
+		m_MissionMessage3 = SurvivorName +" said that he found some of those anywhere\n** "+ m_MissionLocationDir +" of "+ MissionLocationName +" **\nI need "+ ReqShroomsCount +" more pieces of it. The mushrooms are very small. I recommend using a mushroom encyclopedia for possible occurrences!";
 		
 		//Spawnpoints for MissionObject for secondary mission
 		Spawnpoints.Insert("-20.2900 -6.6398 0.7559");

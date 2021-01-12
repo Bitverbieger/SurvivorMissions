@@ -13,6 +13,7 @@ class GraveyardMission extends SurvivorMissions
 
 	//Mission variables 
 	string SurvivorName;		
+	string MissionLocationName;
 	
 	bool IsExtended() return false;
 	
@@ -32,10 +33,14 @@ class GraveyardMission extends SurvivorMissions
 		TStringArray SurvivorNames = {"Shukov", "Stonov", "Alexejev", "Kasakov", "Stepanov", "Ivanov", "Mironov", "Dimitrijev", "Antonov", "Sorokin"};
 		SurvivorName = SurvivorNames.GetRandomElement();
 		
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+
 		//Set mission messages
 		m_MissionMessage1 = "I just received that the commander of the Chernarus Defense Troups General Major "+ SurvivorName +" hasn't survived his infection.";
-		m_MissionMessage2 = "He was one of the Soviet Army officers in Chernarus. "+ SurvivorName +" told me that he lost over 2000 men here and will never give up the fight against the infection as long as he lives. He got infected while securing residents of "+ m_MissionLocation +".";
-		m_MissionMessage3 = "He hided some equipment at the graveyard of\n** "+ m_MissionLocation +", "+ m_MissionLocationDir +" near the church **\nI think someone should get his lagcy. He burried it anywhere near the graves. You need atleast a shovel. Take care!";
+		m_MissionMessage2 = "He was one of the Army officers in Chernarus. "+ SurvivorName +" told me that he lost over 2000 men here and will never give up the fight against the infection as long as he lives. He got infected while securing residents of "+ MissionLocationName +".";
+		m_MissionMessage3 = "He's hiden some equipment at the graveyard of\n** "+ MissionLocationName +", "+ m_MissionLocationDir +" of the church **\nI think someone should get his lagcy. You'll need atleast a shovel. Take care!";
 		
 		//Infected spawnpoints
 		InfectedSpawns.Insert("-10.5186 0 25.0269");

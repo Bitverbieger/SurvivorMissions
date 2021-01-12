@@ -15,6 +15,7 @@ class PlaneCrashMission extends SurvivorMissions
 
 	//Mission variables 
 	string SurvivorName;		
+	string MissionLocationName;
 	
 	bool IsExtended() return false;
 	
@@ -33,10 +34,14 @@ class PlaneCrashMission extends SurvivorMissions
 		//Mission person names
 		SurvivorName = "Gerry Lane";
 		
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+
 		//Set mission messages
-        m_MissionMessage1 = "I just received a emergency call from a military pilot. One crew member was infected and suddenly attacked others. He said this flight has the highest international priority.";
-        m_MissionMessage2 = "Also onboard is Mr. "+ SurvivorName +", he is an UN agent and it seems he has some information about the cure for this pandemic disease. They were at flight level 300 on their way to Wales.";
-        m_MissionMessage3 = "The pilot said he was bitten and tried to emergency land somewhere in the fields\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nFind out if they made it. They have some equipment on board!";		
+		m_MissionMessage1 = "I just received an emergency call from a military pilot. One crew member was infected and suddenly attacked others. He said this flight has the highest international priority.";
+		m_MissionMessage2 = "Also onboard is Mr. "+ SurvivorName +", he is an UN agent and it seems he has some information about the cure for this pandemic disease. They were at flight level 300 on their way to Wales.";
+		m_MissionMessage3 = "The pilot said he was bitten and tried to emergency land somewhere in the fields\n** "+ m_MissionLocationDir +" of "+ MissionLocationName +" **\nFind out if they made it. They have some equipment on board!";		
 		
 		//Engine fire spawns 
 		FireSpawns.Insert("5.15 -2.18 -4.63");		//engine

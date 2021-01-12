@@ -16,6 +16,7 @@ class CampMission extends SurvivorMissions
 
 	//Mission variables 
 	string SurvivorName;		
+	string MissionLocationName;
 	
 	bool IsExtended() return false;
 	
@@ -35,10 +36,14 @@ class CampMission extends SurvivorMissions
 		TStringArray SurvivorNames = {"Yuri", "Michail", "Boris", "Valeri", "Anatoli", "Ivan", "Alexej", "Dimitrij", "Sergej", "Nikolai"};
 		SurvivorName = SurvivorNames.GetRandomElement();
 		
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+		
 		//Set mission messages
-        m_MissionMessage1 = "My friend "+ SurvivorName +" hasn't responded on the radio for last 2 hours. He is an excellent outdoor survivor and im wondering if he's ok.";
-        m_MissionMessage2 = "His daughter is infected,  He looks after her sometimes. About 5 hours ago, he told me that he has found  stuff in some houses of "+ m_MissionLocation +" and was attacked on the way back to his camp but wasn't injured.";
-        m_MissionMessage3 = "I think he said that he recently pitched up his tent\n "+ m_MissionLocationDir +" of "+ m_MissionLocation +" \nI am very worried, I would really appreciate it if you could go look after him. Be-Careful, he uses traps to protect his place!";		
+		m_MissionMessage1 = "My friend "+ SurvivorName +" hasn't responded on the radio for last 2 hours. He is an excellent outdoor survivor and im wondering if he's ok.";
+		m_MissionMessage2 = "His daughter is infected, he looks after her sometimes. About 5 hours ago, he told me that he has found  stuff in some houses of "+ MissionLocationName +" and was attacked on the way back to his camp but wasn't injured.";
+		m_MissionMessage3 = "I think he said that he recently pitched up his tent\n "+ m_MissionLocationDir +" of "+ MissionLocationName +" \nI am very worried, I would really appreciate it if you could go look after him. Be-Careful, he uses traps to protect his place!";		
 				
 		//Infected spawnpoints
 		InfectedSpawns.Insert("-10.5186 0 25.0269");

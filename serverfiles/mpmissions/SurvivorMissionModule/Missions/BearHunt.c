@@ -17,6 +17,7 @@ class BearHuntMission extends SurvivorMissions
 	
 	//Mission variables 
 	string SurvivorName;		
+	string MissionLocationName;	
 	
 	bool IsExtended() return true;
 	
@@ -39,10 +40,14 @@ class BearHuntMission extends SurvivorMissions
 		TStringArray SurvivorNames = {"Yuri", "Michail", "Boris", "Valeri", "Anatoli", "Ivan", "Alexej", "Dimitrij", "Sergej", "Nikolai"};
 		SurvivorName = SurvivorNames.GetRandomElement();
 		
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+		
 		//Set mission messages for primary mission
-		m_MissionMessage1 = "A survivor recently reported to me that a bear attacked my friend "+ SurvivorName +" and killed 2 other survivor's. They went to the wrong location trying to hunt some deer in the forest of "+ m_MissionLocation +".";
-		m_MissionMessage2 = "I still can't believe it. "+ SurvivorName +" was one of the best hunters araound here. Once a week he brought fresh meat to the hidden camp to feed the survivor's. He was never selfless and tried to do everything to help out in the camp.";
-		m_MissionMessage3 = "The bear was last reported at the forest near\n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nI want you to kill this animal and take his pelt. It's not for revenge, we just need the pelt to make winter clothing for the kids. Be careful!";
+		m_MissionMessage1 = "A survivor recently reported to me that a bear attacked my friend "+ SurvivorName +" and killed 2 other survivors. They went to the wrong location trying to hunt some deer in the forest of "+ MissionLocationName +".";
+		m_MissionMessage2 = "I still can't believe it. "+ SurvivorName +" was one of the best hunters around here. Once a week he brought fresh meat to the hidden camp to feed the survivors. He was always selfless and tried to do everything to help out in the camp.";
+		m_MissionMessage3 = "The bear was last reported at the forest near\n** "+ m_MissionLocationDir +" of "+ MissionLocationName +" **\nI want you to kill this animal and take his pelt. It's not for revenge, we just need the pelt to make winter clothing for the kids. Be careful!";
 		
 		//Spawnpoint for MissionObject for secondary mission
 		Spawnpoints.Insert("-18.40 2.19 18.57");
@@ -379,7 +384,7 @@ class BearHuntMission extends SurvivorMissions
 		//Set new mission messages
 		m_MissionMessage1 = "Allright survivor, you have found the bear location. Try to safely engage and kill him by aiming at his head or heart. A bear is a strong animal, so it will take some shots to get him down.";
 		m_MissionMessage2 = "Take out your knife and eviscerate him. Bring the pelt and the meat to the\n** "+ m_MissionSecondaryLoc +" School laboratory class room **\n(left wing, top floor) because I want to examine the bear meat. I left a hunting bag on the labor desk.";
-		m_MissionMessage3 = "Put atleast "+ ReqMeatAmount +" bear steaks and the pelt in there. Be carefull, there might be bandits around which could intercepted our little radio talk here. Good luck!";
+		m_MissionMessage3 = "Put atleast "+ ReqMeatAmount +" bear steaks and the pelt in there. Be careful, there might be bandits around which could've intercepted our little radio talk here. Good luck!";
 		
 		//init Messenger for new messages
 		m_MsgNum = 1;					//skip msg 0, begin with msg 1

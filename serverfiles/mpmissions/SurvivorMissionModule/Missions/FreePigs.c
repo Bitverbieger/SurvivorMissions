@@ -22,6 +22,7 @@ class FreePigsMission extends SurvivorMissions
 	string SurvivorName;
 	vector RewardsPosition = "0.84 -0.75 0.16";	
 	vector TargetPosition = "-1.74 -3.01 0.49";
+	string MissionLocationName;
 	
 	bool IsExtended() return true;
 	
@@ -44,10 +45,17 @@ class FreePigsMission extends SurvivorMissions
 		TStringArray SurvivorNames = {"Yuri","Michail","Boris","Valeri","Anatoli","Ivan","Alexej","Dimitrij","Sergej","Nikolai","Vladimir"};
 		SurvivorName = SurvivorNames.GetRandomElement();
 		
+		//randomize mission requirement
+		ReqMeatAmount = Math.RandomIntInclusive(10, 14);
+		
+		//Mission location name
+		MissionLocationName = m_MissionLocation;
+		MissionLocationName.Replace("_", " ");
+		
 		//Set mission messages for primary mission
-		m_MissionMessage1 = SurvivorName +", a farmer from "+ m_MissionLocation +", died 2 days ago after a attack from bandits. He was protecting his animls from infected and scavengers and was farming pigs to deliver meat to the young and old survivors hideout somewhere in the forests.";
+		m_MissionMessage1 = SurvivorName +", a farmer from "+ MissionLocationName +", died 2 days ago after an attack from bandits. He was protecting his animls from infected and scavengers and was farming pigs to deliver meat to a survivors hideout somewhere in the forests.";
 		m_MissionMessage2 = "He was well known under survivors for his perfection in making good bacon and spiced meat for barbecue. His pigs are still in the shed and I am afraid they could starve to death, if they are not already dead by infected or robbed by bandits.";
-		m_MissionMessage3 = "Go to "+ SurvivorName +"'s farm located \n** "+ m_MissionLocationDir +" of "+ m_MissionLocation +" **\nand free all the pigs from their cage to give them a chance to survive. You need at least a knife.";
+		m_MissionMessage3 = "Go to "+ SurvivorName +"'s farm located \n** "+ m_MissionLocationDir +" of "+ MissionLocationName +" **\nand free all the pigs from their cage to give them a chance to survive. You need at least a knife.";
 		
 		//Spawnpoints for caged pigs in farm (view from inside building at door position)
 		//right cage row
@@ -472,10 +480,14 @@ class FreePigsMission extends SurvivorMissions
 
 		string Coords = Math.Round( m_MissionPosition[0] ).ToString() +" / "+ Math.Round( m_MissionPosition[2] ).ToString();  
 		
+		//Mission location name
+		MissionLocationName = m_MissionDescription[3];
+		MissionLocationName.Replace("_", " ");
+		
 		//Set messages for secondary mission,
 		m_MissionMessage1 = "Allright, you have found the pigs. Herd them all out of the shed. Protect them from infected attacks and kill 2 pigs to get some meat.";
 		m_MissionMessage2 = "A man from the survivor camp said he could go to a save position anywhere in the forests and get the meat. I left a hunting bag at the picnic table on the hiking trail.";
-		m_MissionMessage3 = "Bring the meat to the picnic table near\n** "+ m_MissionSecondaryLoc +", coordinates: "+ Coords +" **\nPut "+ ReqMeatAmount +" pig steaks inside it and then you can take what you need. Be careful!";
+		m_MissionMessage3 = "Bring the meat to the picnic table near\n** "+ MissionLocationName +", coordinates: "+ Coords +" **\nPut "+ ReqMeatAmount +" pork steaks inside and then take what you need. Be careful!";
 				
 		//Search for mission building at old mission position	
 		GetGame().GetObjectsAtPosition( m_MissionPositions.Get( m_selectedMission ) , 1.0 , m_ObjectList , m_ObjectCargoList );
