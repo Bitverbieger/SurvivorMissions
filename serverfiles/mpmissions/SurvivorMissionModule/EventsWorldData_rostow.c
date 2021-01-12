@@ -646,17 +646,17 @@ class EventsWorldData extends SurvivorMissions
 	void EnrichRostow()
 	{
 		//Spawn Static Objects on map (should be mission unspecific like additional mission target/source buildings, e.g. Rostow only has one single TrailRoof_Small)
-		SpawnStatic( "Land_Misc_TrailRoof_Small", "2134.150635 193.663467 9220.719727", "-24.021982 0.648208 -0.165081" ));
-		SpawnStatic( "Land_Misc_TrailRoof_Small", "6000.346680 177.984222 10878.038086", "90.000000 0.362451 8.000011" ));
-		SpawnStatic( "Land_Misc_TrailRoof_Big", "1976.989990 201.8819 6967.889648", "-86.999989 0.000000 1.472942" ));
+		SpawnStatic( "Land_Misc_TrailRoof_Small", "2134.150635 193.663467 9220.719727", "-24.021982 0.648208 -0.165081" );
+		SpawnStatic( "Land_Misc_TrailRoof_Small", "6000.346680 177.984222 10878.038086", "90.000000 0.362451 8.000011" );
+		SpawnStatic( "Land_Misc_TrailRoof_Big", "1976.989990 201.8819 6967.889648", "-86.999989 0.000000 1.472942" );
 
-		SpawnStatic( "Land_Misc_TrailRoof_Big", "2591.935303 234.021301 3310.041504", "-90.105385 0.029364 0.197385" ));
-		SpawnStatic( "land_cype_bench_1_br1", "2602.473145 231.556000 3309.507080", "-150.122971 -1.132533 -6.802283" ));
-		SpawnStatic( "land_cype_bench_1", "2598.239014 232.031799 3311.460693", "-160.140549 -2.294166 -7.801920" ));
+		SpawnStatic( "Land_Misc_TrailRoof_Big", "2591.935303 234.021301 3310.041504", "-90.105385 0.029364 0.197385" );
+		SpawnStatic( "land_cype_bench_1_br1", "2602.473145 231.556000 3309.507080", "-150.122971 -1.132533 -6.802283" );
+		SpawnStatic( "land_cype_bench_1", "2598.239014 232.031799 3311.460693", "-160.140549 -2.294166 -7.801920" );
 
-		SpawnStatic( "Land_Misc_TrailRoof_Small", "10248.166992 38.021774 11355.142578", "-33.000004 -0.327408 0.000000" ));
+		SpawnStatic( "Land_Misc_TrailRoof_Small", "10248.166992 38.021774 11355.142578", "-33.000004 -0.327408 0.000000" );
 
-		SpawnStatic( "Land_Misc_TrailRoof_Big", "3721.185059 140.939880 8630.902344", "-61.799446 0.514386 -2.684390" ));
+		SpawnStatic( "Land_Misc_TrailRoof_Big", "3721.185059 140.939880 8630.902344", "-61.799446 0.514386 -2.684390" );
 	}
 	
 	void SpawnStatic( string type, vector position, vector orientation ) {
