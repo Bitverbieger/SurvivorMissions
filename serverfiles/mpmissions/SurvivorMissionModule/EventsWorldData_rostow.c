@@ -362,10 +362,10 @@ class EventsWorldData extends SurvivorMissions
 		MissionEvents.Insert("Horde Jelsk southeast SkinnyGreen");							MissionPositions.Insert("1009.49 193.0 8124.36");
 		// @TODO: add more
 		
-		MissionEvents.Insert("PlaneCrash Rezoni_Airstrip south 275");						MissionPositions.Insert("4326.58 5487.88");
-		MissionEvents.Insert("PlaneCrash Kovrin northeast 320");							MissionPositions.Insert("4261.05 4462.27");
-		MissionEvents.Insert("PlaneCrash Dribin northeast 295");							MissionPositions.Insert("4516.15 9997.12");
-		MissionEvents.Insert("PlaneCrash Adamowsk northwest 314");							MissionPositions.Insert("11277.6 9717.72");
+		MissionEvents.Insert("PlaneCrash Rezoni_Airstrip south 275");						MissionPositions.Insert("4326.58 129.5 5487.88");
+		MissionEvents.Insert("PlaneCrash Kovrin northeast 320");							MissionPositions.Insert("4261.05 98.9 4462.27");
+		MissionEvents.Insert("PlaneCrash Dribin northeast 295");							MissionPositions.Insert("4516.15 123.4 9997.12");
+		MissionEvents.Insert("PlaneCrash Adamowsk northwest 314");							MissionPositions.Insert("11277.6 36.7 9717.72");
 		// @TODO: add more
 		
 		MissionEvents.Insert("Shrooms Dribin northeast Berasino");							MissionPositions.Insert("5252.57 116.6 9885.59");
