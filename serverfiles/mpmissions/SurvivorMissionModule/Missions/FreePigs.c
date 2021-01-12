@@ -474,8 +474,8 @@ class FreePigsMission extends SurvivorMissions
 		m_MissionZoneInnerRadius = 2.0;
 		
 		//Get secondary mission position
-		if ( EventsWorldData.GetBuildingsAtLoc("Land_Misc_TrailRoof_Small", m_MissionDescription[3], ExtendedPosList ))
-		m_MissionPosition = ExtendedPosList.GetRandomElement();
+		if ( EventsWorldData.GetBuildingsAtLoc("Land_Misc_TrailRoof_", m_MissionDescription[3], ExtendedPosList ))
+			m_MissionPosition = ExtendedPosList.GetRandomElement();
 		else Print("[SMM] Can't get secondary MissionPosition in "+ m_MissionDescription[3] +" from EventsWorldData!");
 
 		string Coords = Math.Round( m_MissionPosition[0] ).ToString() +" / "+ Math.Round( m_MissionPosition[2] ).ToString();  
@@ -588,10 +588,10 @@ class FreePigsMission extends SurvivorMissions
 			for ( int i=0; i < m_ObjectList.Count(); i++ )
 			{ 
 				Object FoundObject = m_ObjectList.Get(i);
-				if ( FoundObject.GetType() == "Land_Misc_TrailRoof_Small" )
+				if ( FoundObject.GetType().Contains("Land_Misc_TrailRoof_") )
 				{			 
 					MissionBuilding = FoundObject;
-					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" Hiking Rest @ "+ m_MissionPosition );
+					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" "+ FoundObject.GetType() +" @ "+ m_MissionPosition );
 					
 					//new MissionPosition is rewards spawnpoint
 					m_MissionPosition = MissionBuilding.ModelToWorld( RewardsPosition );

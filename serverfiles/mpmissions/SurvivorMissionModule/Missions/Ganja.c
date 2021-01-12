@@ -626,10 +626,10 @@ class GanjaMission extends SurvivorMissions
 			for ( int i=0; i < m_ObjectList.Count(); i++ )
 			{ 
 				Object FoundObject = m_ObjectList.Get(i);
-				if ( FoundObject.GetType() == "Land_FuelStation_Build_Enoch" || FoundObject.GetType() == "Land_FuelStation_Build")
+				if ( FoundObject.GetType().Contains("Land_FuelStation_Build") )
 				{			 
 					MissionBuilding = FoundObject;
-					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" Gas Station @ "+ m_MissionPosition );
+					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" "+ FoundObject.GetType() +" @ "+ m_MissionPosition );
 					
 					//new MissionPosition is rewards spawnpoint
 					m_MissionPosition = MissionBuilding.ModelToWorld( Spawnpoints.Get(5) );

@@ -467,7 +467,7 @@ class PsilosMission extends SurvivorMissions
 		m_MissionZoneInnerRadius = 2.0;
 		
 		//Get building position from building type and location
-		if ( EventsWorldData.GetBuildingsAtLoc("Land_Village_PoliceStation_Enoch", m_MissionDescription[3], ExtendedPosList ))
+		if ( EventsWorldData.GetBuildingsAtLoc("Land_Village_PoliceStation", m_MissionDescription[3], ExtendedPosList ))
 		{			
 			//Get MissionPosition for MissionBuilding from secondary mission
 			m_MissionPosition = ExtendedPosList.GetRandomElement();						
@@ -550,7 +550,7 @@ class PsilosMission extends SurvivorMissions
 			for ( int m=0; m < m_ObjectList.Count(); m++ )
 			{ 
 				Object FoundObject = m_ObjectList.Get(m);
-				if ( FoundObject.GetType() == "Land_Village_PoliceStation_Enoch")
+				if ( FoundObject.GetType().Contains("Land_Village_PoliceStation") )
 				{	
 					MissionBuilding = FoundObject;			 
 					Print("[SMM] MissionBuilding extended is "+ MissionBuilding.GetType() +" at "+ m_MissionDescription[3] +" @ "+ MissionBuilding.GetPosition() );

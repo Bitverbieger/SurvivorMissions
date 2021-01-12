@@ -755,10 +755,10 @@ class CityMallMission extends SurvivorMissions
 			for ( int i=0; i < m_ObjectList.Count(); i++ )
 			{ 
 				Object FoundObject = m_ObjectList.Get(i);
-				if ( FoundObject.GetType() == "Land_Village_PoliceStation")
+				if ( FoundObject.GetType().Contains("Land_Village_PoliceStation") )
 				{			 
 					MissionBuilding = FoundObject;
-					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" Police Station @ "+ m_MissionPosition );
+					Print("[SMM] MissionBuilding extended is "+ m_MissionDescription[3] +" "+ FoundObject.GetType() +" @ "+ m_MissionPosition );
 					
 					//new MissionPosition is rewards spawnpoint
 					m_MissionPosition = MissionBuilding.ModelToWorld( RewardsPosition );

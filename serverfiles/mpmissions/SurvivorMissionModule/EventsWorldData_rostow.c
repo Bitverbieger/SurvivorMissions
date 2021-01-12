@@ -528,9 +528,7 @@ class EventsWorldData extends SurvivorMissions
 		for ( int j=0; j < ObjectList.Count(); j++)
 		{
 			Object FoundObject = ObjectList.Get(j);
-			if ( FoundObject.GetType() != building )
-			continue;
-			else 
+			if ( FoundObject.GetType().Contains(building) )
 			{
 				BuildingFound = true;
 				break;
@@ -554,12 +552,12 @@ class EventsWorldData extends SurvivorMissions
 		string building;
 		bool BuildingFound;
 		
-		for ( int i=0; i < ExcludedTypes.Count(); i++)	{ if ( type == ExcludedTypes.Get(i) ) return true;}
+		if ( ExcludedTypes.Find(type) )	return true;
 		
 		//Add new mission type and building type for secondary mission here!
 		if ( type == "BearHunt")					building = "Land_City_School";
 		else if ( type == "CityMall")				building = "Land_Village_PoliceStation";
-		else if ( type == "FreePigs")				building = "Land_Misc_TrailRoof_Small";
+		else if ( type == "FreePigs")				building = "Land_Misc_TrailRoof_";
 		else if ( type == "Shrooms")				building = "Land_City_Hospital";
 		else if ( type == "Transport")				building = "Land_FuelStation_Build";
 		else if ( type == "UrbanMall")				building = "Land_City_PoliceStation";
@@ -581,9 +579,7 @@ class EventsWorldData extends SurvivorMissions
 				for ( int j=0; j < ObjectList.Count(); j++)
 				{
 					Object FoundObject = ObjectList.Get(j);
-					if ( FoundObject.GetType() != building )
-					continue;
-					else 
+					if ( FoundObject.GetType().Contains(building) )
 					{
 						BuildingFound = true;
 						break;
