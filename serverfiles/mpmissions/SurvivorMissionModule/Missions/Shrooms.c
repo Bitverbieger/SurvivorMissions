@@ -371,7 +371,7 @@ class ShroomsMission extends SurvivorMissions
 				} 
 			
 				//spawn mushroom
-				m_MissionObjects.Insert( GetGame().CreateObject( "PsilocybeMushroom", SpawnPos ));	
+				m_MissionObjects.Insert( GetGame().CreateObjectEx( "PsilocybeMushroom", SpawnPos, ECE_PLACE_ON_SURFACE ));
 			}
 				
 			Print("[SMM] Survivor Mission "+ m_selectedMission +" :: "+ m_MissionName +" ...mission deployed!");
