@@ -1,5 +1,8 @@
 class PlaneCrashMission extends SurvivorMissions
 {
+	//Mission timeout
+  	int MissionCutoffTime;
+	  
 	//Mission related entities 
 	Object CrashedC130;
 	ItemBase MissionObject;
@@ -99,6 +102,14 @@ class PlaneCrashMission extends SurvivorMissions
 		InfectedTypes.Insert("ZmbM_ClerkFat_White");		InfectedTypes.Insert("ZmbF_MechanicNormal_Grey");
 		InfectedTypes.Insert("ZmbM_Jacket_magenta");		InfectedTypes.Insert("ZmbF_BlueCollarFat_Green");
 		InfectedTypes.Insert("ZmbM_PolicemanSpecForce");	InfectedTypes.Insert("ZmbF_DoctorSkinny");
+	
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime);
+    
+    	if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+    	{
+			MissionSettings.DelayTime = 3600;
+		}
+	
 	}
 	
 	void ~PlaneCrashMission()

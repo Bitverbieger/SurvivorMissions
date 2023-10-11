@@ -1,5 +1,8 @@
 class FreePigsMission extends SurvivorMissions
 {
+	//Mission timeout
+  	int MissionCutoffTime;
+	  
 	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
@@ -132,7 +135,15 @@ class FreePigsMission extends SurvivorMissions
 			for ( int j=0; j < 5; j++ ) if ( farm.IsDoorOpen(j) ) farm.CloseDoor(j); 
 	
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 1000, false, farm );		
-		}			
+		}	
+		
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime + ExtendedTimout );
+		
+		if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+		{
+			MissionSettings.DelayTime = 3600;
+		}
+
 	}
 	
 	void ~FreePigsMission()

@@ -1,5 +1,8 @@
 class GanjaMission extends SurvivorMissions
 {
+	//Mission timeout
+  	int MissionCutoffTime;
+	  
 	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
@@ -56,7 +59,7 @@ class GanjaMission extends SurvivorMissions
 		Spawnpoints.Insert("1.750 -0.605 -4.731");  //on table center (bag)
 		Spawnpoints.Insert("1.800 -0.575 -3.8");	//on table left (weed pile)
 		Spawnpoints.Insert("1.724 -1.504 -1.560");	//left beside table (gasoline canister)
-		Spawnpoints.Insert("-1.85 -1.04 -2.196");	//shelf (spark plug)
+		Spawnpoints.Insert("-1.85 -0.96 -2.196");	//shelf (spark plug)
 		
 		//Spawnpoint for reward container in Gas Station Building
 		Spawnpoints.Insert("0.330 -1.538 0.6");		//beside desk
@@ -131,7 +134,15 @@ class GanjaMission extends SurvivorMissions
 				if ( !Garage.IsDoorLocked(j) ) Garage.LockDoor(j); 
 			}	
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 1000, false, Garage );		
-		}			
+		}
+		
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime + ExtendedTimout );
+		
+		if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+		{
+			MissionSettings.DelayTime = 3600;
+		}
+
 	}
 	
 	void ~GanjaMission()
