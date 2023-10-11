@@ -18,6 +18,7 @@ class MissionSettings
 	const int DebugMission = 53;				//select mission by number (array index of EWD), set -1 to let SurvivorMissionModule select the mission
 	
 	//Mission options
+	static bool Opt_SchedulRst = true;    //Scheduled server restart, 1= Enables Mission cutoff to prevent a mission being aborted by shutdown 
 	static bool Opt_OnStartCleanUp = true;		//1 = Clean up previous mission position from any items at server start, 0 = deactivate OnStartCleanUp
 	static bool Opt_BuildStatics = false;		//1 = Spawn additional static buildings on startup(check EventsWorldData file), 0 = deploy only missions 
 	static bool Opt_SendStoryOnDisconn = true;	//1 = Player gets SurvivorStories displayed in main menu after disconnecting, 0 = deactivate SurvivorStories 
@@ -40,6 +41,7 @@ class MissionSettings
 	static string TimeoutMsg = "I am sorry but you are too late!\nI will call you for further tasks on this radio channel.\nOver and out!";	//(Message -2)
 	
 	//Mission module settings
+	static int RestartCycleTime = 14400;  //seconds (!Do not set lower than 3600 seconds), Scheduled server restart      edit: 14,400 = 4 hours
 	static int DelayTime = 360;					//seconds (!Do not set lower than 300 seconds), delay time of first and between previous and next mission
 	static int CleanUpDlyTime = 180;			//seconds (!Do not set lower than 180 seconds), delay time of OnStartCleanup executed once after mpmission is loaded by the server
 	static int MsgFreqDlyTime = 1800;			//seconds (!Do not set lower than 900 seconds), radio frequency information delay time 

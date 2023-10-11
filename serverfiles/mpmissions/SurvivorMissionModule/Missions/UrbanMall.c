@@ -2,6 +2,9 @@ class UrbanMallMission extends SurvivorMissions
 {	//UrbanMall is a copy of CityMall mission, it has equal functionality but uses different MissionBuilding 
 	//types which also have different model center positions. All model vectors of indoor spawnpoints get an offset.
 	 
+	//Mission timeout
+  	int MissionCutoffTime;
+	  
 	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
@@ -244,6 +247,16 @@ class UrbanMallMission extends SurvivorMissions
 			}	
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 1000, false, Store );		
 		}			
+
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime + ExtendedTimout );
+		
+		if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+		{
+			MissionSettings.DelayTime = 3600;
+		}
+
+
+
 	}
 	
 	void ~UrbanMallMission()

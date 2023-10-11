@@ -6,6 +6,7 @@ class EventsWorldData extends SurvivorMissions
 	static ref array<vector> MissionPositions = new array<vector>;
 	static ref array<Object> ObjectList = new array<Object>; 
 	static ref array<CargoBase> ObjectCargoList = new array<CargoBase>;
+	static ref array<vector> TerritoryBldChk = new array<vector>;
 	
 	void EventsWorldData()
 	{
@@ -426,6 +427,82 @@ class EventsWorldData extends SurvivorMissions
 		return true;
 	}
 	
+static void TerritoryCheck()
+    {
+        Print("[SEM] EWD Territory Check Start!" );
+        int TerrCount = 0;
+        int SecCount = 0;
+        int NumMisPos = MissionPositions.Count();
+        Print("[SEM] EWD Territory Check :: "+ NumMisPos +" missions to be checked!" );
+        
+        string Description[4];
+        string EventName;
+        string Type;
+        string Secondary;
+        bool IsInTerritory;
+        
+        for ( int p=0; p < MissionPositions.Count(); p++ )
+        {
+            IsInTerritory = false;
+            TerritoryBldChk.Clear();
+            EventName = MissionEvents.Get(p);
+            EventName.ParseString( Description );
+            Type = Description[0];
+            Secondary = Description[3];
+            Object FoundObject;
+            string ObjectType;
+            
+            if ( SecondaryMissionCHK( Type, Secondary, -1) )
+            {
+                for ( int xy=0; xy < TerritoryBldChk.Count(); xy++)
+                {
+                    GetGame().GetObjectsAtPosition( TerritoryBldChk.Get(xy), 120.0, ObjectList, ObjectCargoList );
+                    for ( int o=0; o < ObjectList.Count(); o++)
+                    {
+                        FoundObject = ObjectList.Get(o);
+                        ObjectType = FoundObject.ToString();
+                        if ( GetGame().ObjectIsKindOf( FoundObject, "BaseBuildingBase" ))
+                        {
+                            IsInTerritory = true;
+                            SecCount++;
+                            Print("[SEM] Territory Check :: Mission: ("+ MissionEvents.Get(p) +"), 2nd part is too close to a players territory, removing it from the mission list.");
+                            break;
+                        }
+                    }
+                    if ( IsInTerritory ) break;
+                }
+            }
+		//Check primary mission
+            if ( !IsInTerritory )
+            {
+                GetGame().GetObjectsAtPosition( MissionPositions.Get(p), 120.0, ObjectList, ObjectCargoList );
+                for ( int n=0; n < ObjectList.Count(); n++)
+                {
+                    FoundObject = ObjectList.Get(n);
+                    ObjectType = FoundObject.ToString();
+                    if ( GetGame().ObjectIsKindOf( FoundObject, "BaseBuildingBase" ))
+                    {
+                        IsInTerritory = true;
+                        TerrCount++;
+                        Print("[SEM] Territory Check :: Mission: ("+ MissionEvents.Get(p) +"), is too close to a players territory, removing it from the mission list.");
+                        break;
+                    }
+                }
+            }
+            //Remove mission from pool in case...
+            if ( IsInTerritory )
+            {
+                MissionPositions.RemoveOrdered(p);
+                MissionEvents.RemoveOrdered(p);
+                p--;                
+            }
+        }
+        Print("[SEM] EWD Territory Check Summary :: "+ NumMisPos +" missions have been checked, Valid Mission Positions/Events remaining: "+ MissionPositions.Count() );
+        if ( TerrCount == 0 && SecCount == 0 ) Print("[SEM] EWD Territory Check...OK");
+        if ( TerrCount > 0 ) Print("[SEM] EWD Territory Check Summary: "+ TerrCount +" primary mission zones have territories too close and have been removed from the pool!");
+        if ( SecCount > 0 ) Print("[SEM] EWD Territory Check Summary: "+ SecCount +" scecondary mission zones have territories too close and have been removed from the pool!");
+    }
+
 	static void CheckEWD()
 	{
 		int ErrorCount = 0;
@@ -506,6 +583,14 @@ class EventsWorldData extends SurvivorMissions
 	
 	static bool SecondaryMissionCHK( string type, string location, int nr )
 	{
+		if ( nr == -1 )
+		{
+			for ( int d=0; d < ExtendedPosList.Count(); d++) 
+			TerritoryBldChk.Insert( ExtendedPosList.Get(d) );
+
+			return ExtendedPosList.Count() > 0;
+		}
+		
 		//List all mission types with no sec. MissionBuilding here!
 		ref array<string> ExcludedTypes = new array<string>;
 		ExcludedTypes.InsertArray( {"Apartment","Camp","Graveyard","PlaneCrash","Horde"} );

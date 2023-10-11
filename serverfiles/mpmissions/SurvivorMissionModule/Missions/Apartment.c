@@ -1,5 +1,8 @@
 class ApartmentMission extends SurvivorMissions
 {
+	//Mission timeout
+  	int MissionCutoffTime;
+
 	//Mission related entities 
 	Object MissionBuilding;
 
@@ -119,7 +122,14 @@ class ApartmentMission extends SurvivorMissions
 		//left plank wall
 		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-0.920 -5.377 6.860", "0 -90 0"));
 		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-0.920 -5.165 6.860", "180 -90 0"));
-		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-0.920 -4.955 6.860", "0 90 0"));			
+		Barricades.Insert( new Param3<string,vector,vector>("WoodenPlank", "-0.920 -4.955 6.860", "0 90 0"));
+
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime);
+    
+    	if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+    	{
+			MissionSettings.DelayTime = 3600;
+		}			
 	}
 	
 	void ~ApartmentMission()
