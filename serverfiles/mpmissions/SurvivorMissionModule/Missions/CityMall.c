@@ -1,5 +1,8 @@
 class CityMallMission extends SurvivorMissions
 {
+	//Mission timeout
+  	int MissionCutoffTime;
+	  
 	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
@@ -213,7 +216,15 @@ class CityMallMission extends SurvivorMissions
 				if ( !Store.IsDoorLocked(j) ) Store.LockDoor(j); 
 			}	
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 1000, false, Store );		
-		}			
+		}	
+
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime + ExtendedTimout );
+		
+		if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+		{
+			MissionSettings.DelayTime = 3600;
+		}		
+
 	}
 	
 	void ~CityMallMission()

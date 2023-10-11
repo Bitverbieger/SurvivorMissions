@@ -1,5 +1,8 @@
 class TransportMission extends SurvivorMissions
 {
+	//Mission timeout
+  	int MissionCutoffTime;
+	  
 	//Mission related entities 
 	Car MissionCar;
 	Object MissionBuilding;
@@ -132,6 +135,16 @@ class TransportMission extends SurvivorMissions
 			}	
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( GetGame().UpdatePathgraphRegionByObject, 1000, false, Garage );		
 		}			
+
+		MissionCutoffTime = MissionSettings.RestartCycleTime - (m_MissionTimeout + MissionSettings.DelayTime + ExtendedTimout );
+		
+		if ( GetGame().GetTime() * 0.001 > MissionCutoffTime )
+		{
+			MissionSettings.DelayTime = 3600;
+		}
+
+
+
 	}
 	
 	void ~TransportMission()
