@@ -1,6 +1,11 @@
 ------------------------------------------------------------------------------------------------------------------------------
 HotFix Change Log
 ------------------------------------------------------------------------------------------------------------------------------
+//changelog version 0.85 v2 Hotfixes and Features Published 2023/11/10
+Module:
+-added: Tent Check Function from Discord - Credits: Vandest
+
+------------------------------------------------------------------------------------------------------------------------------
 //changelog version 0.85 v2 Hotfixes and Features Published 2022/3/8
 Module:
 -added: Territory Check Function from Discord - Credits: Gramps
