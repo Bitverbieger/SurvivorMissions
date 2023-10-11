@@ -941,7 +941,7 @@ class EventsWorldData extends SurvivorMissions
 		return true;
 	}
 
-	static void TerritoryCheck()
+		static void TerritoryCheck()
     {
         Print("[SEM] EWD Territory Check Start!" );
         int TerrCount = 0;
@@ -965,6 +965,7 @@ class EventsWorldData extends SurvivorMissions
             Secondary = Description[3];
             Object FoundObject;
             string ObjectType;
+			TentBase Tent;
             
             if ( SecondaryMissionCHK( Type, Secondary, -1) )
             {
@@ -981,6 +982,17 @@ class EventsWorldData extends SurvivorMissions
                             SecCount++;
                             Print("[SEM] Territory Check :: Mission: ("+ MissionEvents.Get(p) +"), 2nd part is too close to a players territory, removing it from the mission list.");
                             break;
+                        }
+						else if ( GetGame().ObjectIsKindOf( FoundObject, "TentBase" ))
+                        {
+							Tent = TentBase.Cast(FoundObject);
+							if ( Tent.GetState() == TentBase.PITCHED && !Tent.CanBePacked() )
+							{
+								IsInTerritory = true;
+								SecCount++;
+								Print("[SEM] Tent Check :: Mission: ("+ MissionEvents.Get(p) +"), 2nd part is too close to a players Tent, removing it from the mission list.");
+								break;
+							}
                         }
                     }
                     if ( IsInTerritory ) break;
@@ -1001,6 +1013,13 @@ class EventsWorldData extends SurvivorMissions
                         Print("[SEM] Territory Check :: Mission: ("+ MissionEvents.Get(p) +"), is too close to a players territory, removing it from the mission list.");
                         break;
                     }
+					else if ( GetGame().ObjectIsKindOf( FoundObject, "TentBase" ))
+                    {
+                        IsInTerritory = true;
+                        TerrCount++;
+                        Print("[SEM] Tent Check :: Mission: ("+ MissionEvents.Get(p) +"), is too close to a players Tent, removing it from the mission list.");
+                        break;
+                    }
                 }
             }
             //Remove mission from pool in case...
@@ -1013,8 +1032,8 @@ class EventsWorldData extends SurvivorMissions
         }
         Print("[SEM] EWD Territory Check Summary :: "+ NumMisPos +" missions have been checked, Valid Mission Positions/Events remaining: "+ MissionPositions.Count() );
         if ( TerrCount == 0 && SecCount == 0 ) Print("[SEM] EWD Territory Check...OK");
-        if ( TerrCount > 0 ) Print("[SEM] EWD Territory Check Summary: "+ TerrCount +" primary mission zones have territories too close and have been removed from the pool!");
-        if ( SecCount > 0 ) Print("[SEM] EWD Territory Check Summary: "+ SecCount +" scecondary mission zones have territories too close and have been removed from the pool!");
+        if ( TerrCount > 0 ) Print("[SEM] EWD Territory Check Summary: "+ TerrCount +" primary mission zones have territories or tents too close and have been removed from the pool!");
+        if ( SecCount > 0 ) Print("[SEM] EWD Territory Check Summary: "+ SecCount +" scecondary mission zones have territories or tents too close and have been removed from the pool!");
     }
 	
 	static void CheckEWD()
